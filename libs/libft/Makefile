@@ -6,7 +6,7 @@
 #    By: safoh <safoh@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/08/11 13:33:46 by safoh         #+#    #+#                  #
-#    Updated: 2021/10/01 17:16:00 by safoh        \___)=(___/                  #
+#    Updated: 2021/10/01 17:44:58 by safoh        \___)=(___/                  #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,6 +87,6 @@ fclean: clean
 re: fclean all
 
 libft_tester: re
-	bash tests/libft-war-machine/grademe.sh -d
+	bash tests/libft-war-machine/grademe.sh -d -u
 
 .PHONY: all clean fclean re libft_tester

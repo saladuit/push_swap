@@ -6,15 +6,16 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2021/09/22 11:47:31 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2021/09/22 14:26:26 by safoh        \___)=(___/                 */
+/*   Updated: 2021/09/30 15:35:11 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/ft_printf.h"
+#include <stdio.h>
 
 int	main(void)
 {
+	char sa[3] = "sa";
 
-	ft_printf("%d", 0);
+	printf("%s", sa);
 	return (0);
 }

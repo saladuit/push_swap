@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                    .--.  _                 */
-/*   main.c                                          |o_o || |                */
+/*   push_swap.h                                     |o_o || |                */
 /*                                                   |:_/ || |_ _   ___  __   */
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
-/*   Created: 2021/09/22 11:47:31 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2021/09/22 14:26:26 by safoh        \___)=(___/                 */
+/*   Created: 2021/09/30 15:20:23 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
+/*   Updated: 2021/09/30 15:22:07 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/ft_printf.h"
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
+# include <stddef.h>
+# include <stdlib.h>
 
-int	main(void)
-{
-
-	ft_printf("%d", 0);
-	return (0);
-}
+#endif

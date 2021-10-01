@@ -1,4 +1,4 @@
-ROOT=..
+ROOT=.
 TIME_LIMIT=1
 
 

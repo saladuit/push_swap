@@ -1,37 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strjoin.c                                       :+:    :+:            */
+/*   ft_strjoin.c                                    |o_o || |                */
 /*                                                     +:+                    */
 /*   By: saladin <saladin@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/29 02:51:17 by saladin       #+#    #+#                 */
-/*   Updated: 2021/07/26 16:07:52 by safoh         ########   odam.nl         */
+/*   Updated: 2021/10/01 17:15:00 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
-
-static	void	*ft_memalloc(size_t size)
-{
-	void	*ptr;
-
-	ptr = malloc(size);
-	if (!ptr)
-		return (NULL);
-	ft_bzero(ptr, size);
-	return (ptr);
-}
-
-static	char	*ft_strnew(size_t size)
-{
-	char	*str;
-
-	if (size == __SIZE_MAX__)
-		return (NULL);
-	str = (char *)ft_memalloc(size + 1);
-	return (str);
-}
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {

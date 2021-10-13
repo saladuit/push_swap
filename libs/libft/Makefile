@@ -6,7 +6,7 @@
 #    By: safoh <safoh@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/08/11 13:33:46 by safoh         #+#    #+#                  #
-#    Updated: 2021/10/13 13:35:52 by safoh        \___)=(___/                  #
+#    Updated: 2021/10/13 15:35:48 by safoh        \___)=(___/                  #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ SRCS			=	ft_memset.c ft_bzero.c ft_memcpy.c ft_strlen.c ft_atoi.c \
 		ft_putnbr_fd.c ft_calloc.c ft_memchr.c ft_strmapi.c ft_itoa.c \
 		ft_numlen.c ft_uitoa.c ft_putuint_fd.c ft_uitoh.c ft_strtoupper.c \
 		ft_strtolower.c ft_ultoh.c ft_sgdnumlen.c ft_strnew.c ft_memalloc.c
-SRCS_BONUS := ft_lstnew.c ft_lstadd_front.c
+SRCS_BONUS		= ft_lstnew.c
 SRC_DIR 		:=	./src
 INC_DIR 		:=	./include
 BUILD_DIR		:=	./build
@@ -97,4 +97,8 @@ libft_tester: re
 bonus:
 	$(MAKE) -C ./ BONUS=1 all
 
-.PHONY: all clean fclean re libft_tester bonus
+main: bonus
+	$(CC) $(CFLAGS) src/main.c -lft_debug -o libft_gdb
+	./libft_gdb
+
+.PHONY: all clean fclean re libft_tester bonus main

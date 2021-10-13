@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   libft.h                                         |o_o || |                */
+/*   libft.h                                            :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: saladin <saladin@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/10 17:29:41 by saladin       #+#    #+#                 */
-/*   Updated: 2021/10/01 17:10:20 by safoh        \___)=(___/                 */
+/*   Updated: 2021/10/02 10:54:17 by safoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,16 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdbool.h>
+
+typedef struct
+{
+void
+struct s_list
+}
+s_list
+*content;
+*next;
+t_list;
 
 int		ft_atoi(const char *nptr);
 void	ft_bzero(void *s, size_t n);

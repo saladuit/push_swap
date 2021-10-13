@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         ::::::::             #
-#    Makefile                                           :+:    :+:             #
+#    Makefile                                        |o_o || |                 #
 #                                                      +:+                     #
 #    By: safoh <safoh@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/08/11 13:33:46 by safoh         #+#    #+#                  #
-#    Updated: 2021/10/02 11:07:43 by safoh         ########   odam.nl          #
+#    Updated: 2021/10/13 13:35:52 by safoh        \___)=(___/                  #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ RM				:=	rm -f
 # BUILD_DIR		=	BUILD DIRECTORY
 # OBJS			=	OBJECTS
 
-SRCS			:=	ft_memset.c ft_bzero.c ft_memcpy.c ft_strlen.c ft_atoi.c \
+SRCS			=	ft_memset.c ft_bzero.c ft_memcpy.c ft_strlen.c ft_atoi.c \
 		ft_memmove.c ft_memccpy.c ft_memcmp.c ft_strlcpy.c ft_strlcat.c \
 		ft_strrchr.c ft_strnstr.c ft_strncmp.c ft_isalpha.c ft_strchr.c \
 		ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_toupper.c \
@@ -30,12 +30,13 @@ SRCS			:=	ft_memset.c ft_bzero.c ft_memcpy.c ft_strlen.c ft_atoi.c \
 		ft_strdup.c ft_substr.c ft_strjoin.c ft_strtrim.c ft_split.c \
 		ft_putnbr_fd.c ft_calloc.c ft_memchr.c ft_strmapi.c ft_itoa.c \
 		ft_numlen.c ft_uitoa.c ft_putuint_fd.c ft_uitoh.c ft_strtoupper.c \
-		ft_strtolower.c ft_ultoh.c ft_sgdnumlen.c ft_strnew.c ft_memalloc.c \
-		ft_lstnew.c
+		ft_strtolower.c ft_ultoh.c ft_sgdnumlen.c ft_strnew.c ft_memalloc.c
+SRCS_BONUS := ft_lstnew.c ft_lstadd_front.c
 SRC_DIR 		:=	./src
 INC_DIR 		:=	./include
 BUILD_DIR		:=	./build
 OBJS			:=	$(addprefix $(BUILD_DIR)/, $(SRCS:.c=.o))
+OBJS_BONUS		:=	$(addprefix $(BUILD_DIR)/, $(SRCS_BONUS:.c=.o))
 
 ###############################################################################
 # MESSSAGE		=	Message after compiling
@@ -64,6 +65,9 @@ endif
 ifdef CRITERION
 CFLAGS	+=	-lcriterion
 endif
+ifdef BONUS
+SRCS += $(SRCS_BONUS)
+endif
 
 all: $(NAME)
 
@@ -88,6 +92,9 @@ fclean: clean
 re: fclean all
 
 libft_tester: re
-	bash tests/libft-war-machine/grademe.sh -d -u
+	bash tests/libft-war-machine/grademe.sh -d -u $(FILE)
 
-.PHONY: all clean fclean re libft_tester
+bonus:
+	$(MAKE) -C ./ BONUS=1 all
+
+.PHONY: all clean fclean re libft_tester bonus

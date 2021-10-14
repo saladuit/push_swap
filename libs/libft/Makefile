@@ -6,7 +6,7 @@
 #    By: safoh <safoh@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/08/11 13:33:46 by safoh         #+#    #+#                  #
-#    Updated: 2021/10/14 11:44:44 by safoh        \___)=(___/                  #
+#    Updated: 2021/10/14 16:28:53 by safoh        \___)=(___/                  #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,8 +30,8 @@ SRCS			=	ft_memset.c ft_bzero.c ft_memcpy.c ft_strlen.c ft_atoi.c \
 		ft_strdup.c ft_substr.c ft_strjoin.c ft_strtrim.c ft_split.c \
 		ft_putnbr_fd.c ft_calloc.c ft_memchr.c ft_strmapi.c ft_itoa.c \
 		ft_numlen.c ft_uitoa.c ft_putuint_fd.c ft_uitoh.c ft_strtoupper.c \
-		ft_strtolower.c ft_ultoh.c ft_sgdnumlen.c ft_strnew.c ft_memalloc.c
-SRCS_BONUS		= ft_lstnew.c
+		ft_strtolower.c ft_ultoh.c ft_sgdnumlen.c ft_strnew.c ft_memalloc.c \
+		ft_lstadd_front.c ft_lstnew.c ft_memdel.c ft_strdel.c ft_lstsize.c
 SRC_DIR 		:=	./src
 INC_DIR 		:=	./include
 BUILD_DIR		:=	./build
@@ -64,9 +64,6 @@ endif
 ifdef CRITERION
 CFLAGS	+=	-lcriterion
 endif
-ifdef BONUS
-SRCS += $(SRCS_BONUS)
-endif
 
 all: $(NAME)
 
@@ -93,11 +90,11 @@ re: fclean all
 libft_tester: re
 	bash tests/libft-war-machine/grademe.sh -d -u $(FILE)
 
-bonus:
-	$(MAKE) -C ./ BONUS=1 all
+libft_unit_test: re
+	$(MAKE) -C ./tests/libft-unit-test f $(FILE)
 
-main: bonus
+main: all
 	$(CC) $(CFLAGS) src/main.c -lft_debug -o libft_gdb
 	./libft_gdb
 
-.PHONY: all clean fclean re libft_tester bonus main
+.PHONY: all clean fclean re libft_tester main

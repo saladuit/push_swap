@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                    .--.  _                 */
-/*   ft_lstadd_front.c                               |o_o || |                */
+/*   ft_lstsize.c                                    |o_o || |                */
 /*                                                   |:_/ || |_ _   ___  __   */
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
-/*   Created: 2021/10/13 11:34:06 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2021/10/14 13:40:41 by safoh        \___)=(___/                 */
+/*   Created: 2021/10/14 16:29:08 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
+/*   Updated: 2021/10/14 16:34:07 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+int ft_lstsize(t_list *lst)
 {
-	new->next = *lst;
-	*lst = new;
-	return ;
+	*lst = NULL;
+	return ()1);
 }

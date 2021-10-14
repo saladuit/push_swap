@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strnstr.c                                       :+:    :+:            */
+/*   ft_strnstr.c                                    |o_o || |                */
 /*                                                     +:+                    */
 /*   By: saladin <saladin@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/29 02:51:30 by saladin       #+#    #+#                 */
-/*   Updated: 2021/07/27 14:47:52 by safoh         ########   odam.nl         */
+/*   Updated: 2021/10/14 14:10:24 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,8 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 
 	i = 0;
 	j = ft_strlen(little);
-	if (little == NULL || *little == '\0' || len == 0)
-	{
-		if (*little == '\0')
-			return ((char *)big);
-		else
-			return (NULL);
-	}
+	if (*little == '\0' || little == NULL || len == 0 || little == big)
+		return ((char *)big);
 	while (i < len)
 	{
 		if (!ft_strncmp(big + i, little, j) && i + j < len)

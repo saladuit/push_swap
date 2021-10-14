@@ -3,7 +3,7 @@ $> hostname; uname -msr
 f0r3s20.codam.nl
 Darwin 18.7.0 x86_64
 $> date
-Wed Oct 13 15:29:42 CEST 2021
+Thu Oct 14 11:49:46 CEST 2021
 $> gcc --version
 Apple clang version 11.0.0 (clang-1100.0.33.8)
 Target: x86_64-apple-darwin18.7.0
@@ -29,10 +29,9 @@ Run ./tests/Libftest/grademe.sh to test the libft library
 
 $> make bonus
 /Applications/Xcode.app/Contents/Developer/usr/bin/make -C ./ BONUS=1 all
-make[2]: Nothing to be done for `all'.
-
+Building C objects...                                  
 $> ls -la libft.a
--rw-r--r--  1 safoh  piscine  41240 Oct 13 15:29 /Users/safoh/Documents/Projects_Codam/push_swap/libs/libft/tests/libft-war-machine/dirlibft/libft.a
+-rw-r--r--  1 safoh  piscine  41240 Oct 14 11:49 /Users/safoh/Documents/Projects_Codam/push_swap/libs/libft/tests/libft-war-machine/dirlibft/libft.a
 
 = Bonus_functions ==============================================================
 

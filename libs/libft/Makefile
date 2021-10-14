@@ -6,7 +6,7 @@
 #    By: safoh <safoh@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/08/11 13:33:46 by safoh         #+#    #+#                  #
-#    Updated: 2021/10/13 15:35:48 by safoh        \___)=(___/                  #
+#    Updated: 2021/10/14 11:44:44 by safoh        \___)=(___/                  #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,8 +35,7 @@ SRCS_BONUS		= ft_lstnew.c
 SRC_DIR 		:=	./src
 INC_DIR 		:=	./include
 BUILD_DIR		:=	./build
-OBJS			:=	$(addprefix $(BUILD_DIR)/, $(SRCS:.c=.o))
-OBJS_BONUS		:=	$(addprefix $(BUILD_DIR)/, $(SRCS_BONUS:.c=.o))
+OBJS			=	$(addprefix $(BUILD_DIR)/, $(SRCS:.c=.o))
 
 ###############################################################################
 # MESSSAGE		=	Message after compiling

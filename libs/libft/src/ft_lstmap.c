@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                    .--.  _                 */
-/*   ft_lstnew.c                                                          0   */
+/*   ft_lstmap.c                                     |o_o || |                */
 /*                                                   |:_/ || |_ _   ___  __   */
-/*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
+/*   By: marvin <marvin@42.fr>                      //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
-/*   Created: 2022/02/09 13:18:19 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/02/09 19:58:45 by safoh                                0   */
+/*   Created: 2022/02/10 15:44:25 by marvin       /'\_   _/`\__|\__,_/_/\_\   */
+/*   Updated: 2022/02/10 16:00:40 by marvin       \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-t_list	*ft_lstnew(void *content)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list *node;
-
-	node = malloc(sizeof(t_list));
-	if (!node)
-		return (NULL);
-	node->content = content;
-	node->next = NULL;
-	return (node);
+	
 }

@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                     .--.  _                  #
-#    Makefile                                                             0    #
+#    Makefile                                        |o_o || |                 #
 #                                                    |:_/ || |_ _   ___  __    #
 #    By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /    #
 #                                                  (|     | )|_| |_| |>  <     #
 #    Created: 2022/02/09 17:06:29 by safoh        /'\_   _/`\__|\__,_/_/\_\    #
-#    Updated: 2022/02/09 20:53:47 by safoh                                0    #
+#    Updated: 2022/02/11 19:58:58 by marvin       \___)=(___/                  #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ SRCS			=	ft_memset.c ft_bzero.c ft_memcpy.c ft_strlen.c ft_atoi.c \
 		ft_strtolower.c ft_ultoh.c ft_sgdnumlen.c ft_strnew.c ft_memalloc.c \
 		ft_lstadd_front.c ft_lstnew.c ft_memdel.c ft_strdel.c ft_lstsize.c \
 		ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c \
-		ft_lstiter.c
+		ft_lstiter.c ft_lstmap.c
 SRC_DIR 		:=	./src
 INC_DIR 		:=	./include
 BUILD_DIR		:=	./build

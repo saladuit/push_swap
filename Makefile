@@ -6,7 +6,7 @@
 #    By: safoh <safoh@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/08/11 14:27:07 by safoh         #+#    #+#                  #
-#    Updated: 2021/09/30 15:47:36 by safoh        \___)=(___/                  #
+#    Updated: 2022/03/02 17:43:35 by safoh        \___)=(___/                  #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,6 +81,7 @@ clean:
 fclean: clean
 	$(RM) $(NAME) push_swap_gdb
 	$(MAKE) fclean -C libs/libft/
+	rm -rf printf_gdb.dSYM
 	@echo "Files cleaned"
 
 re: fclean all

@@ -11,6 +11,7 @@ You have at your disposal a set of int values, 2 stacks and a set of instruction
 - Rigor
 ## Documentation
 - [Instructions](/docs/instructions.md)
+- [Game rules](/docs/game_rules.md)
 ## Usage
 Compile the project
 ```console

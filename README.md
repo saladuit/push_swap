@@ -1,15 +1,15 @@
-# push_swap
+# **push_swap**
 A Codam Coding College project made by Saladin Afoh
 ## Project Goal
 Write a program in C called push_swap which calculates and displays on the standard output the smallest program using Push_swap instruction language that sorts the integer arguments received.
 You have at your disposal a set of int values, 2 stacks and a set of instructions to manipulate both stacks.
 ## Learning Targets
 - Sorting algoritms
+- Linked lists
 - Complexity
 - Rigor
-- README.md files
+- README.md
 - Version control
-- Linked lists
 ## Documentation
 - [Instructions](/docs/instructions.md)
 - [Game rules](/docs/game_rules.md)
@@ -51,9 +51,16 @@ Be able to perform all of the listed actions from alinea 18, chapter 3
 - Temporarily create multiple cursors based on a selection or a pattern match, and edit the text at each in parallel
 - Display compilation errors in the current project
 - Run the current project's tests
+### ZSH
+- Reorder configuration structure
+- Add vim commands
+- Good example
+  - https://github.com/seebi/zshrc
 ## Credits
 A good guide for making a comprehensive Makefile:
 https://readmetips.github.io/
+A lot of usefull links:
+https://github.com/rsapkf/42
 ## License
 The MIT License (MIT)
 

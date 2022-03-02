@@ -12,6 +12,7 @@ You have at your disposal a set of int values, 2 stacks and a set of instruction
 ## Documentation
 - [Instructions](/docs/instructions.md)
 - [Game rules](/docs/game_rules.md)
+- [The “push_swap” program](/docs/push_swap.md)
 ## Usage
 Compile the project
 ```console

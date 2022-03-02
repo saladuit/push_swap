@@ -6,7 +6,7 @@
 #    By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /    #
 #                                                  (|     | )|_| |_| |>  <     #
 #    Created: 2022/02/09 17:06:29 by safoh        /'\_   _/`\__|\__,_/_/\_\    #
-#    Updated: 2022/02/11 19:58:58 by marvin       \___)=(___/                  #
+#    Updated: 2022/03/02 17:46:41 by safoh        \___)=(___/                  #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,6 +85,7 @@ clean:
 
 fclean: clean
 	@$(RM) $(NAME)
+	rm -rf libft_gdb.dSYM
 	@echo "Library libft cleaned"
 
 re: fclean all

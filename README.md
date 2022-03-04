@@ -56,10 +56,10 @@ Be able to perform all of the listed actions from alinea 18, chapter 3
 - Add vim commands
 - Good example
   - https://github.com/seebi/zshrc
-## Credits
-A good guide for making a comprehensive Makefile:
+### Credits
+- A good guide for making a comprehensive Makefile:
 https://readmetips.github.io/
-A lot of usefull links:
+- A lot of usefull links:
 https://github.com/rsapkf/42
 ## License
 The MIT License (MIT)

@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                    .--.  _                 */
-/*   main.c                                          |o_o || |                */
+/*   push_swap_tester.c                              |o_o || |                */
 /*                                                   |:_/ || |_ _   ___  __   */
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
-/*   Created: 2021/09/22 11:47:31 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/03/09 19:36:34 by safoh        \___)=(___/                 */
+/*   Created: 2022/03/09 20:05:09 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
+/*   Updated: 2022/03/09 20:41:36 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include <criterion/criterion.h>
+#include <unistd.h>
+#include "include/push_swap.h"
 
-int	main(int argc, char **argv)
+TestSuite(push_swap);
+
+Test(valid_input, only_numbers)
 {
-	if (argc <= 1)
-		:
-	return (0);
+
 }

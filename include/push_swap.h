@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2021/09/30 15:20:23 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2021/09/30 15:22:07 by safoh        \___)=(___/                 */
+/*   Updated: 2022/03/16 21:56:02 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,4 +15,5 @@
 # include <stddef.h>
 # include <stdlib.h>
 
+char	*push_swap(char **list);
 #endif

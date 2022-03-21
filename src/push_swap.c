@@ -6,16 +6,19 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2021/09/22 11:47:31 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/03/21 11:42:14 by safoh        \___)=(___/                 */
+/*   Updated: 2022/03/21 17:47:31 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include "../include/push_swap.h"
+#include "push_swap.h"
+#include "libft.h"
 
-char	*push_swap(char **list)
+char	*push_swap(int argc, char **list)
 {
+	ft_strlen(*list);
 	list = NULL;
+	argc = 0;
 	return (*list);
 }
 

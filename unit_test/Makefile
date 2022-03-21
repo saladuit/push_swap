@@ -6,13 +6,14 @@
 #    By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /    #
 #                                                  (|     | )|_| |_| |>  <     #
 #    Created: 2022/03/21 10:11:56 by safoh        /'\_   _/`\__|\__,_/_/\_\    #
-#    Updated: 2022/03/21 12:43:44 by safoh        \___)=(___/                  #
+#    Updated: 2022/03/21 15:01:03 by safoh        \___)=(___/                  #
 #                                                                              #
 # **************************************************************************** #
 
-include	../makepretty.mk
-include	src/testsrcs.txt
+include	../makerc/utils.mk
+include ../makerc/colours.mk
 include	../src/pushsrcs.txt
+include	src/testsrcs.txt
 
 NAME		:=	pushtest
 CC			=	gcc

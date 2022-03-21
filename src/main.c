@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                    .--.  _                 */
-/*   push_swap.h                                     |o_o || |                */
+/*   main.c                                          |o_o || |                */
 /*                                                   |:_/ || |_ _   ___  __   */
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
-/*   Created: 2021/09/30 15:20:23 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/03/21 16:55:48 by safoh        \___)=(___/                 */
+/*   Created: 2022/03/21 16:52:43 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
+/*   Updated: 2022/03/21 16:56:25 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
-# include <stddef.h>
-# include <stdlib.h>
+#include "../include/push_swap.h"
 
-char	*push_swap(int argc, char **list);
-#endif
+int	main(int argc, char **argv)
+{
+	push_swap(argc, argv);
+	return (0);
+}

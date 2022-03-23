@@ -6,7 +6,7 @@
 /*   By: saladin <saladin@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/10 17:29:41 by saladin       #+#    #+#                 */
-/*   Updated: 2021/10/14 16:32:15 by safoh        \___)=(___/                 */
+/*   Updated: 2022/03/23 22:27:02 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	*ft_memset(void *s, int c, size_t n);
 
 //STRING FUNCTIONS
 char	**ft_split(char const *s, char c);
+bool	ft_strbapi(char const *s, int (*f)(int));
 char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(const char *s);
 void	ft_strdel(void **ptr);

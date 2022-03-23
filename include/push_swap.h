@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2021/09/30 15:20:23 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/03/21 16:55:48 by safoh        \___)=(___/                 */
+/*   Updated: 2022/03/23 21:58:42 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 # define PUSH_SWAP_H
 # include <stddef.h>
 # include <stdlib.h>
+# include <stdbool.h>
 
 char	*push_swap(int argc, char **list);
+bool	count_check(int argc);
+bool	var_check(char **argv);
 #endif

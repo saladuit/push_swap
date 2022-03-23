@@ -1,2 +1,1 @@
-SRCS := push_swap.c \
-		main.c
+SRCS := push_swap.c 

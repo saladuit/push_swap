@@ -6,7 +6,7 @@
 #    By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /    #
 #                                                  (|     | )|_| |_| |>  <     #
 #    Created: 2022/03/21 11:07:01 by safoh        /'\_   _/`\__|\__,_/_/\_\    #
-#    Updated: 2022/03/21 18:14:22 by safoh        \___)=(___/                  #
+#    Updated: 2022/03/23 20:42:56 by safoh        \___)=(___/                  #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,8 @@ include makerc/utils.mk
 include makerc/srcs.mk
 
 ################################################################################
-PROJECT		= Push-Swap
-NAME		=	$(if $(or $(DEBUG), $(FSAN)), push_swap_debug, push_swap)
+PROJECT		=	Push-Swap
+NAME		=	$(if $(or $(DEBUG), $(FSAN)),push_swap_debug,push_swap)
 
 CC			:=	gcc
 RM			:=	rm -rf
@@ -26,9 +26,10 @@ CFLAGS		=	-Wall -Wextra -Werror $(if $(DEBUG), -g) \
 SRC_DIR		=	./src
 BUILD_DIR	=	./build
 OBJS		=	$(addprefix $(BUILD_DIR)/, $(SRCS:%.c=%.o))
+OBJS		+=	main.c
 
 LIB_DIR		=	libs/libft
-LIBFT		:= $(if $(or $(FSAN), $(DEBUG)), $(LIB_DIR)/libft_debug.a, $(LIB_DIR)/libft.a)
+LIBFT		:= $(if $(or $(FSAN), $(DEBUG)),$(LIB_DIR)/libft_debug.a,$(LIB_DIR)/libft.a)
 HEADERS			=	$(LIB_DIR)/include/libft.h \
 					include/push_swap.h
 INCLUDE_FLAGS	+= $(addprefix -I, $(sort $(dir $(HEADERS))))

@@ -1,0 +1,1 @@
+-Wall -Wextra -Werror -coverage -I../include/ -I../libs/libft/include/

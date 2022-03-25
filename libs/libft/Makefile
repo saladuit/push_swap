@@ -6,7 +6,7 @@
 #    By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /    #
 #                                                  (|     | )|_| |_| |>  <     #
 #    Created: 2022/02/09 17:06:29 by safoh        /'\_   _/`\__|\__,_/_/\_\    #
-#    Updated: 2022/03/24 21:38:40 by safoh        \___)=(___/                  #
+#    Updated: 2022/03/25 10:40:23 by safoh        \___)=(___/                  #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,22 +37,22 @@ endif
 all: $(NAME)
 
 $(NAME): $(OBJS)
+	@$(call print_prefix,"$(PROJECT)","make")
 	@ar rc $@ $^
 	@$(call print_prefix,"$(PROJECT)","make")
 	@printf "$(BLUE_FG)$(NAME)$(RESET_COLOR) created\n"
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS)
 	@mkdir -p $(dir $@)
+	@$(call print_prefix,"$(PROJECT)","make")
 	@$(call exec_no_nl,$(CC) $(CFLAGS) $(INCLUDE_FLAGS) $(INCLUDES) -c $< -o $@)
 	@printf "$(CLEAR_REST_OF_LINE)\r"
 
 ################################################################################
 clean:
-	@$(call print_prefix,"$(PROJECT)","$@")
 	$(RM) $(BUILD_DIR)
 
 fclean: clean
-	@$(call print_prefix,"$(PROJECT)","$@")
 	$(RM) *.a *.dSYM $(MAKE_TXT)
 
 re: fclean all

@@ -6,7 +6,7 @@
 #    By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /    #
 #                                                  (|     | )|_| |_| |>  <     #
 #    Created: 2022/02/09 17:06:29 by safoh        /'\_   _/`\__|\__,_/_/\_\    #
-#    Updated: 2022/03/21 18:14:27 by safoh        \___)=(___/                  #
+#    Updated: 2022/03/24 21:38:40 by safoh        \___)=(___/                  #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,23 +29,17 @@ HEADERS			=	include/libft.h
 INCLUDE_FLAGS	=	$(addprefix -I, $(sort $(dir $(HEADERS))))
 LIB_FLAGS		+=	$(addprefix -L, $(sort $(dir $(USER_LIBS))))
 
-MAKE_TXT		:=	$(addprefix $(BUILD_DIR)/, .make_data.txt)
-MAKE_DATA		:=	$(CFLAGS) $(DEBUG) $(FSAN) $(LIB_FLAGS) $(INCLUDE_FLAGS) $(sort $(OBJECTS))
-ifneq	($(shell echo $(MAKE_DATA)), $(shell cat "$(MAKE_TXT)" 2> /dev/null))
-PRE_RULES		:=	fclean
-endif
 
 ifndef PROJECT_SPACING
 	export PROJECT_SPACING := 7
 endif
 ################################################################################
-all: $(PRE_RULES) $(NAME)
+all: $(NAME)
 
 $(NAME): $(OBJS)
 	@ar rc $@ $^
 	@$(call print_prefix,"$(PROJECT)","make")
 	@printf "$(BLUE_FG)$(NAME)$(RESET_COLOR) created\n"
-	@echo $(MAKE_DATA) > $(MAKE_TXT)
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS)
 	@mkdir -p $(dir $@)

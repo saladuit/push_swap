@@ -1,1 +1,1 @@
-TESTSRCS := push_swap_tester.c
+USRCS := push_swap_tester.c

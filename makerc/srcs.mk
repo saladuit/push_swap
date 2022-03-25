@@ -1,1 +1,1 @@
-SRCS := push_swap.c 
+SRCS = push_swap.c

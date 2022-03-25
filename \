@@ -5,59 +5,60 @@
 #                                                    |:_/ || |_ _   ___  __    #
 #    By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /    #
 #                                                  (|     | )|_| |_| |>  <     #
-#    Created: 2022/03/21 11:07:01 by safoh        /'\_   _/`\__|\__,_/_/\_\    #
-#    Updated: 2022/03/24 21:37:29 by safoh        \___)=(___/                  #
+#    Created: 2022/03/21 10:11:56 by safoh        /'\_   _/`\__|\__,_/_/\_\    #
+#    Updated: 2022/03/24 21:38:01 by safoh        \___)=(___/                  #
 #                                                                              #
 # **************************************************************************** #
 
-include makerc/colours.mk
-include makerc/utils.mk
-include makerc/srcs.mk
-include makerc/main.mk
+include	../makerc/utils.mk
+include ../makerc/colours.mk
+include ../makerc/srcs.mk
+include	src/usrcs.mk
 
-################################################################################
-PROJECT		=	Push-Swap
-NAME		=	$(if $(or $(DEBUG), $(FSAN)),push_swap_debug,push_swap)
+PROJECT		=	Unit-Test
+NAME		:=	$(if $(or $(DEBUG), $(FSAN)),pushtest_debug,pushtest)
+PSWAP		=	push_swap
 
-CC			:=	gcc
-RM			:=	rm -rf
-CFLAGS		=	-Wall -Wextra -Werror $(if $(DEBUG), -g) \
-				$(if $(FSAN), -fsanitize=address -g)
+CC			=	gcc
+RM			=	rm -rfv
+CFLAGS		=	-Wall -Wextra -Werror$(if $(DEBUG),-g)\
+				$(if$(FSAN),-fsanitize=address -g)
+CRITERION	=	-lcriterion
 
+OBJS		=	$(addprefix $(BUILD_DIR)/, $(USRCS:%.c= %.o))
+POBJS		=	$(addprefix $(PBUILD_DIR)/, $(SRCS:%.c= %.o))
 SRC_DIR		=	./src
+PSRC_DIR	=	../src
 BUILD_DIR	=	./build
-OBJS		=	$(addprefix $(BUILD_DIR)/, $(SRCS:%.c=%.o))
-OBJS		+=	$(addprefix $(BUILD_DIR)/, $(MAIN:%.c=%.o))
+PBUILD_DIR	=	../build
 
-LIB_DIR		=	libs/libft
-LIBFT		:= $(if $(or $(FSAN), $(DEBUG)),$(LIB_DIR)/libft_debug.a,$(LIB_DIR)/libft.a)
+LIB_DIR		:=	../libs/libft
+LIBFT		:=	$(if $(or $(FSAN), $(DEBUG)),$(LIB_DIR)/libft_debug.a,$(LIB_DIR)/libft.a)
 HEADERS			=	$(LIB_DIR)/include/libft.h \
-					include/push_swap.h
+					../include/push_swap.h 
+
 INCLUDE_FLAGS	+= $(addprefix -I, $(sort $(dir $(HEADERS))))
 LIB_FLAGS += $(addprefix -L, $(sort $(dir $(USER_LIBS))))
 
-ifndef PROJECT_SPACING
-	export PROJECT_SPACING := 11
-endif
 ################################################################################
-all: $(PRE_RULES) $(NAME)
+all: $(NAME)
 
-$(NAME): $(OBJS) $(LIBFT)
+$(NAME): $(OBJS) | $(PSWAP) $(LIBFT)
 	@$(call print_prefix,"$(PROJECT)","make")
-	$(CC) $(CFLAGS) $^ $(INCLUDE_FLAGS) $(LIB_FLAGS) -o $(NAME)
+	$(CC) $(CFLAGS) $(CRITERION) $(POBJS) $(LIBFT) $^ $(INCLUDE_FLAGS) $(LIB_FLAGS) -o $(NAME)
 	@$(call print_prefix,"$(PROJECT)","make")
 	@printf "$(BLUE_FG)$(NAME)$(RESET_COLOR) created\n"
+	./$(NAME)
 
-$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS)
+$(OBJS): $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c | $(HEADERS)
 	@mkdir -p $(dir $@)
 	@$(call print_prefix,"$(PROJECT)","make")
 	@$(call exec_no_nl,$(CC) $(CFLAGS) $(INCLUDE_FLAGS) $(INCLUDES) -c $< -o $@)
 	@printf "$(CLEAR_REST_OF_LINE)\r"
 
-$(LIBFT):
-	@$(MAKE) -C $(LIB_DIR)
+$(PSWAP):
+	@$(MAKE) -C ..
 
-################################################################################
 clean:
 	@$(call print_prefix,"$(PROJECT)","$@")
 	$(RM) $(OBJS)
@@ -65,7 +66,7 @@ clean:
 
 fclean: clean
 	@$(call print_prefix,"$(PROJECT)","$@")
-	$(RM) $(NAME) push_swap_debug *.dSYM $(MAKE_TXT)
+	$(RM) $(NAME) pushtest_debug *.dSYM $(MAKE_TXT)
 	@$(MAKE) fclean -C $(LIB_DIR)
 
 debug:
@@ -76,5 +77,5 @@ fsan:
 
 re: fclean all
 
-.PHONY: all clean fclean push_swap_tester re debug fsan
+.PHONY: all clean fclean re debug fsan
 ################################################################################

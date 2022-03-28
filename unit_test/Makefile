@@ -6,7 +6,7 @@
 #    By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /    #
 #                                                  (|     | )|_| |_| |>  <     #
 #    Created: 2022/03/21 10:11:56 by safoh        /'\_   _/`\__|\__,_/_/\_\    #
-#    Updated: 2022/03/24 21:38:18 by safoh        \___)=(___/                  #
+#    Updated: 2022/03/28 13:28:05 by safoh        \___)=(___/                  #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,13 +16,12 @@ include ../makerc/srcs.mk
 include	src/usrcs.mk
 
 PROJECT		=	Unit-Test
-NAME		:=	$(if $(or $(DEBUG), $(FSAN)),pushtest_debug,pushtest)
+NAME		:=	pushtest
 PSWAP		=	push_swap
 
 CC			=	gcc
 RM			=	rm -rfv
-CFLAGS		=	-Wall -Wextra -Werror$(if $(DEBUG),-g)\
-				$(if$(FSAN),-fsanitize=address -g)
+CFLAGS		=	-Wall -Wextra -Werror
 CRITERION	=	-lcriterion
 
 OBJS		=	$(addprefix $(BUILD_DIR)/, $(USRCS:%.c= %.o))
@@ -33,9 +32,10 @@ BUILD_DIR	=	./build
 PBUILD_DIR	=	../build
 
 LIB_DIR		:=	../libs/libft
-LIBFT		:=	$(if $(or $(FSAN), $(DEBUG)),$(LIB_DIR)/libft_debug.a,$(LIB_DIR)/libft.a)
-HEADERS			=	$(LIB_DIR)/include/libft.h \
-					../include/push_swap.h 
+LIBFT		:=	$(LIB_DIR)/libft.a
+HEADERS		=	$(LIB_DIR)/include/libft.h \
+			../include/push_swap.h \
+			./include/
 
 INCLUDE_FLAGS	+= $(addprefix -I, $(sort $(dir $(HEADERS))))
 LIB_FLAGS += $(addprefix -L, $(sort $(dir $(USER_LIBS))))
@@ -45,6 +45,8 @@ ifndef PROJECT_SPACING
 endif
 ################################################################################
 all: $(NAME)
+
+$(NAME): SHELL := /bin/bash
 
 $(NAME): $(OBJS) | $(PSWAP) $(LIBFT)
 	@$(call print_prefix,"$(PROJECT)","make")
@@ -69,16 +71,10 @@ clean:
 
 fclean: clean
 	@$(call print_prefix,"$(PROJECT)","$@")
-	$(RM) $(NAME) pushtest_debug *.dSYM $(MAKE_TXT)
+	$(RM) $(NAME)
 	@$(MAKE) fclean -C $(LIB_DIR)
-
-debug:
-	@$(MAKE) DEBUG=1
-
-fsan:
-	@$(MAKE) FSAN=1
 
 re: fclean all
 
-.PHONY: all clean fclean re debug fsan
+.PHONY: all clean fclean re
 ################################################################################

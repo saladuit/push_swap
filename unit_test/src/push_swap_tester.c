@@ -6,59 +6,30 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/03/09 20:05:09 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/03/25 12:18:11 by safoh        \___)=(___/                 */
+/*   Updated: 2022/03/28 16:27:47 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <criterion/criterion.h>
-#include <criterion/redirect.h>
-#include <criterion/internal/redirect.h>
-#include <criterion/internal/test.h>
-#include <criterion/new/assert.h>
-#include <stdbool.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include "/Users/safoh/Documents/Projects_Codam/push_swap/include/push_swap.h"
-#include "/Users/safoh/Documents/Projects_Codam/push_swap/libs/libft/include/libft.h"
-#include <string.h>
-
-# define MAX_LEN 40
-
-void redirect_all_stdout(void)
-{
-        cr_redirect_stdout();
-        cr_redirect_stderr();
-}
-
-void assert_empty_stdout()
-{
-	FILE	*f_stdout;
-	f_stdout = cr_get_redirected_stdout();
-	cr_expect(f_stdout == NULL);
-
-}
+#include "/Users/safoh/Documents/Projects_Codam/push_swap/unit_test/include/unit_push_swap.h"
+#include "unit_push_swap.h"
 
 /* ************************************************************************** */
+TestSuite(check_argc, .init=redirect_all_stdout);
 
-TestSuite(program_call, .init=redirect_all_stdout);
-
-Test(program_call, one_arg, .fini=assert_empty_stdout)
+Test(check_argc, one_arg, .fini=assert_empty_stdout)
 {
 	cr_expect(count_check(1) == false);
 }
 
-Test(program_call, two_arg)
+Test(check_argc, two_arg, .fini=assert_error_stdout)
 {
 	cr_expect(count_check(2) == false);
-	cr_expect_stdout_eq_str("error\n");
 }
 
-Test(count, more_than_two_arg, .fini=assert_empty_stdout)
+Test(check_argc, more_than_two_arg, .fini=assert_empty_stdout)
 {
 	cr_expect(count_check(3) == true);
 }
-
 /* ************************************************************************** */
 /*check for:*/
 /*- int min & max*/
@@ -67,36 +38,60 @@ Test(count, more_than_two_arg, .fini=assert_empty_stdout)
 /*- non-numeric parameters*/
 /*- no parameters sould display nothing*/
 /*- check "-"*/
-TestSuite(var, .init=redirect_all_stdout);
+TestSuite(check_argv, .init=redirect_all_stdout);
 
-Test(var, NULL_pointer, .fini=assert_empty_stdout)
+Test(check_argv, NULL_pointer, .fini=assert_empty_stdout)
 {
-	char *string = NULL;
+	cr_expect(var_check(NULL) == false);
+}
+
+Test(check_argv, one_number, .fini=assert_empty_stdout)
+{
+	char *string = "1";
+	cr_expect(var_check(&string) == true);
+}
+
+Test(check_argv, one_char, .fini=assert_error_stdout)
+{
+	char *string = "a";
 	cr_expect(var_check(&string) == false);
 }
-	/*char *string1 = "1";*/
-	/*char *string2[2] = {"1", "2"};*/
-	/*char *string3[2] = {"2", "1"};*/
-	/*char *string4[2] = {"a", "2"};*/
-	/*char *string5[2] = {"1", "a"};*/
+
+Test(check_argv, two_numbers_sorted, .fini=assert_empty_stdout)
+{
+	char *string[2] = {"1", "2"};
+	cr_expect(var_check(string) == true);
+}
+
+Test(check_argv, two_numbers_unsorted, .fini=assert_empty_stdout)
+{
+	char *string[2] = {"2", "1"};
+	cr_expect(var_check(string) == true);
+}
+
+Test(check_argv, invalid_char, .fini=assert_error_stdout)
+{
+	char *string[2] = {"a", "1"};
+	cr_expect(var_check(string) == false);
+}
+
+Test(check_argv, inlvaid_char_second_arg, .fini=assert_error_stdout)
+{
+	char *string[2] = {"1", "a"};
+	cr_expect(var_check(string) == false);
+}
+
+Test(check_argv, invalid_char_second_position, .fini=assert_error_stdout)
+{
+	char *string[2] = {"1a", "1"};
+	cr_expect(var_check(string) == false);
+}
+Test(check_argv, invalid_char_random_position, .fini=assert_error_stdout)
+{
+	char *string[2] = {"a1", "1234a"};
+	cr_expect(var_check(string) == false);
+}
 	/*char *string6[2] = {"1", "1a"};*/
 	/*char *string7[2] = {"1", "-"};*/
 	/*char *string8[3] = {"1", "2", "1"};*/
 	/*char **string9;*/
-/*cr_assert_stdout_eq_str("foobar\n"); // assert that stdout contains the expected string*/
-/*cr_assert_stderr_eq_str("-"); // assert that stderr ONLY contains our dummy print. (so nothing was printed)*/
-	/*cr_assert(var_check(&string0) == false);*/
-	/*cr_assert(var_check(&string1) == false);*/
-	/*cr_assert(var_check(string2) == false);*/
-	/*cr_assert(var_check(string3) == false);*/
-	/*cr_assert(var_check(string4) == false);*/
-	/*cr_assert(var_check(string5) == false);*/
-	/*cr_assert(var_check(string6) == false);*/
-	/*cr_assert(var_check(string7) == false);*/
-	/*cr_assert(var_check(string8) == false);*/
-	/*string9 = ft_split("1,2,3", ',');*/
-	/*cr_assert(var_check("") == false);*/
-	/*free_str_arr(var);*/
-	/*while (arr[i])*/
-		/*free(arr[i])*/
-/*}*/

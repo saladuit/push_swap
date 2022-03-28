@@ -10,4 +10,4 @@ include
 -I
 ../include
 -I
-../libs/libft
+../libs/libft/include

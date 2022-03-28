@@ -854,5 +854,105 @@
    "build/ft_strbapi.o"
   ],
   "file": "src/ft_strbapi.c"
+ },
+ {
+  "directory": "/Users/safoh/Documents/Projects_Codam/push_swap/unit_test",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I../include/",
+   "-I../libs/libft/include/",
+   "-I./include/",
+   "-c",
+   "src/push_swap_tester.c",
+   "-o",
+   "build/push_swap_tester.o"
+  ],
+  "file": "src/push_swap_tester.c"
+ },
+ {
+  "directory": "/Users/safoh/Documents/Projects_Codam/push_swap/unit_test",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I../include/",
+   "-I../libs/libft/include/",
+   "-I./include/",
+   "-c",
+   "src/redirect_all_stdout.c",
+   "-o",
+   "build/redirect_all_stdout.o"
+  ],
+  "file": "src/redirect_all_stdout.c"
+ },
+ {
+  "directory": "/Users/safoh/Documents/Projects_Codam/push_swap/unit_test",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I../include/",
+   "-I../libs/libft/include/",
+   "-I./include/",
+   "-c",
+   "src/assert_empty_stdout.c",
+   "-o",
+   "build/assert_empty_stdout.o"
+  ],
+  "file": "src/assert_empty_stdout.c"
+ },
+ {
+  "directory": "/Users/safoh/Documents/Projects_Codam/push_swap/unit_test",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-I../include/",
+   "-I../libs/libft/include/",
+   "-I./include/",
+   "-c",
+   "src/assert_error_stdout.c",
+   "-o",
+   "build/assert_error_stdout.o"
+  ],
+  "file": "src/assert_error_stdout.c"
+ },
+ {
+  "directory": "/Users/safoh/Documents/Projects_Codam/push_swap",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Iinclude/",
+   "-Ilibs/libft/include/",
+   "-c",
+   "src/push_swap.c",
+   "-o",
+   "build/push_swap.o"
+  ],
+  "file": "src/push_swap.c"
+ },
+ {
+  "directory": "/Users/safoh/Documents/Projects_Codam/push_swap",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Iinclude/",
+   "-Ilibs/libft/include/",
+   "-c",
+   "src/main.c",
+   "-o",
+   "build/main.o"
+  ],
+  "file": "src/main.c"
  }
 ]

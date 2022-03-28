@@ -6,7 +6,7 @@
 /*   By: saladin <saladin@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/29 02:51:25 by saladin       #+#    #+#                 */
-/*   Updated: 2022/03/23 22:26:42 by safoh        \___)=(___/                 */
+/*   Updated: 2022/03/26 15:32:14 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 bool	ft_strbapi(char const *s, int (*f)(int))
 {
-	size_t		i;
+	size_t	i;
+	size_t	len;
 
 	if ((s == 0) || (f == 0))
 		return (0);
-	i = ft_strlen(s);
-	while (s[i])
+	i = 0;
+	len = ft_strlen(s);
+	while (i < len)
 	{
 		if(!f(s[i]))
 			return (false);

@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2021/09/30 15:20:23 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/03/24 20:34:28 by safoh        \___)=(___/                 */
+/*   Updated: 2022/03/28 17:44:00 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 # include <stddef.h>
 # include <stdlib.h>
 # include <stdbool.h>
+# include "/Users/safoh/Documents/Projects_Codam/push_swap/libs/libft/include/libft.h"
+//# include "libft.h"
 
 char	*push_swap(int argc, char **list);
 bool	count_check(int argc);

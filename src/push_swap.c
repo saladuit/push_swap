@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2021/09/22 11:47:31 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/03/28 17:00:25 by safoh        \___)=(___/                 */
+/*   Updated: 2022/03/28 18:17:02 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,13 @@ bool	count_check(int argc)
 bool	var_check(char **argv)
 {
 	size_t i;
+	size_t len;
 
 	i = 0;
 	if (argv == NULL)
 		return (false);
-	while(argv[i])
+	len = ft_strlen(*argv);
+	while(i < len)
 	{
 		if (ft_strbapi(argv[i], ft_isdigit) == false)
 		{

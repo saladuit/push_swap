@@ -6,7 +6,7 @@
 #    By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /    #
 #                                                  (|     | )|_| |_| |>  <     #
 #    Created: 2022/02/09 17:06:29 by safoh        /'\_   _/`\__|\__,_/_/\_\    #
-#    Updated: 2022/03/25 10:40:23 by safoh        \___)=(___/                  #
+#    Updated: 2022/03/28 18:10:34 by safoh        \___)=(___/                  #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,10 +29,6 @@ HEADERS			=	include/libft.h
 INCLUDE_FLAGS	=	$(addprefix -I, $(sort $(dir $(HEADERS))))
 LIB_FLAGS		+=	$(addprefix -L, $(sort $(dir $(USER_LIBS))))
 
-
-ifndef PROJECT_SPACING
-	export PROJECT_SPACING := 7
-endif
 ################################################################################
 all: $(NAME)
 

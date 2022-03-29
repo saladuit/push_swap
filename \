@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/03/09 20:05:09 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/03/29 17:39:55 by safoh        \___)=(___/                 */
+/*   Updated: 2022/03/29 16:21:14 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,7 @@ Test(init_stack_a, one_valid_char, .init=assert_empty_stdout)
 	while(i < (size_t)argc)
 	{
 		cr_expect(strcmp(stack_a->content, string[i]) == 0);
+		cr_log_warn("Stack_a: content %s\n", stack_a->content);
 		stack_a = stack_a->next;
 		i++;
 	}
@@ -164,17 +165,17 @@ Test(init_stack_a, one_valid_char, .init=assert_empty_stdout)
 Test(init_stack_a, two_valid_char, .init=assert_empty_stdout)
 {
 	char *string[] = {"1", "2", NULL};
-	int	expected[] = {1, 2, '\0'};
 	t_list	*stack_a;
 	int argc;
 	size_t i;
 
-	argc = 2;
+	argc = 1;
 	i = 0;
 	stack_a = init_stack_a(argc, string);
 	while(i < (size_t)argc)
 	{
-		cr_expect(((int*)(stack_a->content)) == 1);
+		cr_expect(strcmp(stack_a->content, string[i]) == 0);
+		cr_log_warn("Stack_a: content %s\n", stack_a->content);
 		stack_a = stack_a->next;
 		i++;
 	}

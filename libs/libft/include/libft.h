@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ftlib.h                                         |o_o || |                */
+/*   libft.h                                         |o_o || |                */
 /*                                                     +:+                    */
 /*   By: saladin <saladin@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/10 17:29:41 by saladin       #+#    #+#                 */
-/*   Updated: 2022/03/23 22:27:02 by safoh        \___)=(___/                 */
+/*   Updated: 2022/03/28 18:41:51 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
-void	ft_lstadd_back(t_list **lst, t_list *new);
-void	ft_lstadd_front(t_list **lst, t_list *new);
+void	ft_lstadd_back(t_list **lst, t_list *lnew);
+void	ft_lstadd_front(t_list **lst, t_list *lnew);
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));

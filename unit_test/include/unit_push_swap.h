@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/03/25 17:34:35 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/03/28 14:48:48 by safoh        \___)=(___/                 */
+/*   Updated: 2022/03/29 17:20:04 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define UNIT_PUSH_SWAP
 # include <criterion/criterion.h>
 # include <criterion/redirect.h>
+# include <criterion/logging.h>
 # include <criterion/internal/redirect.h>
 # include <criterion/internal/test.h>
 # include <criterion/new/assert.h>

@@ -6,7 +6,7 @@
 #    By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /    #
 #                                                  (|     | )|_| |_| |>  <     #
 #    Created: 2022/03/21 10:11:56 by safoh        /'\_   _/`\__|\__,_/_/\_\    #
-#    Updated: 2022/03/28 17:40:34 by safoh        \___)=(___/                  #
+#    Updated: 2022/03/30 21:21:03 by safoh        \___)=(___/                  #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ PSWAP		=	push_swap
 
 CC			=	gcc
 RM			=	rm -rfv
-CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror $(if $(FSAN),-g -fsanitize=address)
 CRITERION	=	-lcriterion
 
 OBJS		=	$(addprefix $(BUILD_DIR)/, $(USRCS:%.c= %.o))
@@ -67,12 +67,15 @@ $(PSWAP):
 clean:
 	@$(call print_prefix,"$(PROJECT)","$@")
 	$(RM) $(OBJS)
-	@$(MAKE) clean -C $(LIB_DIR)
+	@$(MAKE) clean -C ..
 
 fclean: clean
 	@$(call print_prefix,"$(PROJECT)","$@")
 	$(RM) $(NAME)
-	@$(MAKE) fclean -C $(LIB_DIR)
+	@$(MAKE) fclean -C ..
+
+fsan:
+	$(MAKE) FSAN=1
 
 re: fclean all
 

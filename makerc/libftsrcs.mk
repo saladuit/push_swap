@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                     .--.  _                  #
+#    libftsrcs.mk                                    |o_o || |                 #
+#                                                    |:_/ || |_ _   ___  __    #
+#    By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /    #
+#                                                  (|     | )|_| |_| |>  <     #
+#    Created: 2022/04/02 15:08:09 by safoh        /'\_   _/`\__|\__,_/_/\_\    #
+#    Updated: 2022/04/02 15:08:20 by safoh        \___)=(___/                  #
+#                                                                              #
+# **************************************************************************** #
+
 SRCS  := ft_memset.c ft_bzero.c ft_memcpy.c ft_strlen.c ft_atoi.c \
 		ft_memmove.c ft_memccpy.c ft_memcmp.c ft_strlcpy.c ft_strlcat.c \
 		ft_strrchr.c ft_strnstr.c ft_strncmp.c ft_isalpha.c ft_strchr.c \
@@ -9,4 +21,5 @@ SRCS  := ft_memset.c ft_bzero.c ft_memcpy.c ft_strlen.c ft_atoi.c \
 		ft_strtolower.c ft_ultoh.c ft_sgdnumlen.c ft_strnew.c ft_memalloc.c \
 		ft_lstadd_front.c ft_lstnew.c ft_memdel.c ft_strdel.c ft_lstsize.c \
 		ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c \
-		ft_lstiter.c ft_lstmap.c ft_strbapi.c
+		ft_lstiter.c ft_lstmap.c ft_strbapi.c ft_isspace.c ft_strtol.c \
+		ft_arrint.c

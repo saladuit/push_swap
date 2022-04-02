@@ -1,21 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_atoi.c                                          :+:    :+:            */
+/*   ft_atoi.c                                       |o_o || |                */
 /*                                                     +:+                    */
 /*   By: saladin <saladin@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/28 18:50:33 by saladin       #+#    #+#                 */
-/*   Updated: 2021/07/26 17:03:49 by safoh         ########   odam.nl         */
+/*   Updated: 2022/03/31 19:03:01 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-static	bool	ft_isspace(int c)
-{
-	return ((c >= 9 && c <= 13) || c == 32);
-}
 
 static size_t	init_atoi(const char *nptr, int *sign)
 {

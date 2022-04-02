@@ -6,13 +6,13 @@
 /*   By: saladin <saladin@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/29 02:51:25 by saladin       #+#    #+#                 */
-/*   Updated: 2022/03/26 15:32:14 by safoh        \___)=(___/                 */
+/*   Updated: 2022/03/31 18:52:55 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-bool	ft_strbapi(char const *s, int (*f)(int))
+bool	ft_strbapi(char const *s, bool (*f)(int))
 {
 	size_t	i;
 	size_t	len;

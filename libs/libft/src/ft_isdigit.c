@@ -1,16 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_isdigit.c                                       :+:    :+:            */
+/*   ft_isdigit.c                                    |o_o || |                */
 /*                                                     +:+                    */
 /*   By: saladin <saladin@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/29 02:46:30 by saladin       #+#    #+#                 */
-/*   Updated: 2021/07/26 16:10:26 by safoh         ########   odam.nl         */
+/*   Updated: 2022/03/31 18:50:07 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isdigit(int c)
+#include <stdbool.h>
+
+bool	ft_isdigit(int c)
 {
 	if (c >= '0' && c <= '9')
 		return (1);

@@ -6,7 +6,7 @@
 #    By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /    #
 #                                                  (|     | )|_| |_| |>  <     #
 #    Created: 2022/02/09 17:06:29 by safoh        /'\_   _/`\__|\__,_/_/\_\    #
-#    Updated: 2022/03/28 18:10:34 by safoh        \___)=(___/                  #
+#    Updated: 2022/03/30 21:27:31 by safoh        \___)=(___/                  #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,10 +16,10 @@ include ../../makerc/libftsrcs.mk
 
 ################################################################################
 PROJECT			=	Libft
-NAME			=	$(if $(or $(DEBUG), $(FSAN)), libft_debug.a, libft.a)
+NAME			=	libft.a
 
 CC				:=	gcc
-CFLAGS			=	-Wall -Wextra -Werror $(if $(DEBUG), -g) $(if $(FSAN), -fsanitize=address -g)
+CFLAGS			=	-Wall -Wextra -Werror $(if $(DEBUG),-g) $(if $(FSAN),-fsanitize=address -g)
 RM				:=	rm -rf
 
 SRC_DIR 		:=	./src
@@ -31,6 +31,8 @@ LIB_FLAGS		+=	$(addprefix -L, $(sort $(dir $(USER_LIBS))))
 
 ################################################################################
 all: $(NAME)
+
+$(NAME): SHELL := /bin/bash
 
 $(NAME): $(OBJS)
 	@$(call print_prefix,"$(PROJECT)","make")
@@ -49,7 +51,7 @@ clean:
 	$(RM) $(BUILD_DIR)
 
 fclean: clean
-	$(RM) *.a *.dSYM $(MAKE_TXT)
+	$(RM) *.a *.dSYM
 
 re: fclean all
 

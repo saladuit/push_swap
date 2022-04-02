@@ -6,7 +6,7 @@
 /*   By: saladin <saladin@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/10 17:29:41 by saladin       #+#    #+#                 */
-/*   Updated: 2022/03/28 18:41:51 by safoh        \___)=(___/                 */
+/*   Updated: 2022/04/02 15:05:42 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <unistd.h>
 # include <stdbool.h>
 
+# define FT_LONG_MAX 9223372036854775807
+
 //WRITE FUNCTIONS
 void	ft_putchar_fd(char c, int fd);
 void	ft_putendl_fd(char *s, int fd);
@@ -24,11 +26,12 @@ void	ft_putstr_fd(char *s, int fd);
 void	ft_putuint_fd(unsigned int nb, int fd);
 
 //CHECK FUNCTIONS
-int		ft_isalnum(int c);
-int		ft_isalpha(int c);
-int		ft_isascii(int c);
-int		ft_isdigit(int c);
-int		ft_isprint(int c);
+bool	ft_isalnum(int c);
+bool	ft_isalpha(int c);
+bool	ft_isascii(int c);
+bool	ft_isdigit(int c);
+bool	ft_isprint(int c);
+bool	ft_isspace(int c);
 
 //MEMORY FUNCTIONS
 void	ft_bzero(void *s, size_t n);
@@ -44,7 +47,7 @@ void	*ft_memset(void *s, int c, size_t n);
 
 //STRING FUNCTIONS
 char	**ft_split(char const *s, char c);
-bool	ft_strbapi(char const *s, int (*f)(int));
+bool	ft_strbapi(char const *s, bool (*f)(int));
 char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(const char *s);
 void	ft_strdel(void **ptr);
@@ -69,6 +72,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 // strnequ
 //MISCELLANEOUS FUNCTIONS
 int		ft_atoi(const char *nptr);
+long	ft_strtol(const char *nptr, char **endptr, int base);
 char	*ft_itoa(int n);
 size_t	ft_numlen(long long num);
 size_t	ft_sgdnumlen(long long num);
@@ -77,6 +81,7 @@ int		ft_tolower(int c);
 char	*ft_uitoa(unsigned int n);
 char	*ft_uitoh(unsigned int n);
 char	*ft_ultoh(unsigned long n);
+int		*ft_arrint(int *array, int num, int len);
 
 //LIST FUNCTIONS
 typedef struct s_list

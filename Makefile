@@ -6,7 +6,7 @@
 #    By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /    #
 #                                                  (|     | )|_| |_| |>  <     #
 #    Created: 2022/03/21 11:07:01 by safoh        /'\_   _/`\__|\__,_/_/\_\    #
-#    Updated: 2022/03/28 18:10:01 by safoh        \___)=(___/                  #
+#    Updated: 2022/03/30 21:22:03 by safoh        \___)=(___/                  #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ include makerc/main.mk
 
 ################################################################################
 PROJECT		=	Push-Swap
-NAME		=	$(if $(or $(DEBUG), $(FSAN)),push_swap_debug,push_swap)
+NAME		=	push_swap
 
 CC			:=	gcc
 RM			:=	rm -rf
@@ -30,7 +30,7 @@ OBJS		=	$(addprefix $(BUILD_DIR)/, $(SRCS:%.c=%.o))
 OBJS		+=	$(addprefix $(BUILD_DIR)/, $(MAIN:%.c=%.o))
 
 LIB_DIR		=	libs/libft
-LIBFT		:= $(if $(or $(FSAN), $(DEBUG)),$(LIB_DIR)/libft_debug.a,$(LIB_DIR)/libft.a)
+LIBFT		:=  $(LIB_DIR)/libft.a
 HEADERS			=	$(LIB_DIR)/include/libft.h \
 					include/push_swap.h
 INCLUDE_FLAGS	+= $(addprefix -I, $(sort $(dir $(HEADERS))))
@@ -38,6 +38,8 @@ LIB_FLAGS += $(addprefix -L, $(sort $(dir $(USER_LIBS))))
 
 ################################################################################
 all: $(PRE_RULES) $(NAME)
+
+$(NAME): SHELL := /bin/bash
 
 $(NAME): $(OBJS) $(LIBFT)
 	@$(call print_prefix,"$(PROJECT)","make")
@@ -72,6 +74,5 @@ fsan:
 	@$(MAKE) FSAN=1
 
 re: fclean all
-
 .PHONY: all clean fclean push_swap_tester re debug fsan
 ################################################################################

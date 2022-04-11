@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/03/09 20:05:09 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/04/11 16:04:17 by safoh        \___)=(___/                 */
+/*   Updated: 2022/04/11 16:28:03 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,7 +245,7 @@ Test(argvtoarray, MAX_plusone)
 	char	*string[] = {"2147483648", NULL};
 
 	cr_expect(setup_argvtoarray(string) == false);
-	stderr_is_empty();
+	stderr_contains_error();
 }
 
 Test(argvtoarray, MAX_plusone_pluspad)
@@ -253,7 +253,7 @@ Test(argvtoarray, MAX_plusone_pluspad)
 	char	*string[] = {"+2147483648", NULL};
 
 	cr_expect(setup_argvtoarray(string) == false);
-	stderr_is_empty();
+	stderr_contains_error();
 }
 Test(argvtoarray, MIN)
 {
@@ -263,12 +263,52 @@ Test(argvtoarray, MIN)
 	stderr_is_empty();
 }
 
-Test(argvtoarray, MIN_minpluspadding)
+Test(argvtoarray, MIN_minpluspadding_v1)
 {
 	char	*string[] = {"-+-2147483648", NULL};
 
 	cr_expect(setup_argvtoarray(string) == false);
-	stderr_is_empty();
+	stderr_contains_error();
+}
+
+Test(argvtoarray, MIN_minpluspadding_v2)
+{
+	char	*string[] = {"-+2147483648", NULL};
+
+	cr_expect(setup_argvtoarray(string) == false);
+	stderr_contains_error();
+}
+
+Test(argvtoarray, MIN_minpluspadding_v3)
+{
+	char	*string[] = {"+-2147483648", NULL};
+
+	cr_expect(setup_argvtoarray(string) == false);
+	stderr_contains_error();
+}
+
+Test(argvtoarray, MIN_minpluspadding_v4)
+{
+	char	*string[] = {"--2147483648", NULL};
+
+	cr_expect(setup_argvtoarray(string) == false);
+	stderr_contains_error();
+}
+
+Test(argvtoarray, MIN_minpluspadding_v5)
+{
+	char	*string[] = {"++2147483648", NULL};
+
+	cr_expect(setup_argvtoarray(string) == false);
+	stderr_contains_error();
+}
+
+Test(argvtoarray, MIN_minpluspadding_v6)
+{
+	char	*string[] = {"0+2147483648", NULL};
+
+	cr_expect(setup_argvtoarray(string) == false);
+	stderr_contains_error();
 }
 
 Test(argvtoarray, MIN_minone)
@@ -276,7 +316,7 @@ Test(argvtoarray, MIN_minone)
 	char	*string[] = {"-2147483649", NULL};
 
 	cr_expect(setup_argvtoarray(string) == false);
-	stderr_is_empty();
+	stderr_contains_error();
 }
 
 Test(argvtoarray, extra_padding_MIN)

@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/03/09 20:05:09 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/04/05 15:03:13 by safoh        \___)=(___/                 */
+/*   Updated: 2022/04/11 16:04:17 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,16 +167,156 @@ Test(check_argv, invalid_nullterminator_afternum)
 TestSuite(argvtoarray, .init=redirect_all_stdout);
 /* ************************************************************************** */
 
-Test(argvtoarray, NULL_values)
+bool	setup_argvtoarray(char **argv)
 {
-	cr_expect(argvtoarray(0, NULL, NULL) == NULL);
+	int	len;
+	int i;
+	int	*integer = NULL;
+	long	*expected = NULL;
+
+	len = 0;
+	i = 0;
+	if (argv)
+		while (argv[len])
+			len++;
+	expected = calloc(len + 1, sizeof(long));
+	integer = argvtoarray(len, argv);
+	if(integer && !argv)
+	{
+		free(expected);
+		free(integer);
+		cr_log_warn("Integer should be freed\n");
+		return (false);
+	}
+	while (i < len)
+	{
+
+		expected[i] = atol(argv[i]);
+		if (expected[i] != integer[i])
+			return (false);
+		i++;
+	}
+	free(expected);
+	free(integer);
+	return (true);
+}
+
+Test(argvtoarray, NULL_value)
+{
+
+	cr_expect(setup_argvtoarray(NULL) == true);
 	stderr_contains_error();
 }
 
-Test(argvtoarray, one_valid_argv)
+Test(argvtoarray, only_one)
 {
-	cr_expect(argvtoarray(0, NULL, NULL) == NULL);
-	stderr_contains_error();
+	char	*string[] = {"0", NULL};
+
+	cr_expect(setup_argvtoarray(string) == true);
+	stderr_is_empty();
+}
+
+Test(argvtoarray, extra_padding_only_one)
+{
+	char	*string[] = {"0001", NULL};
+
+	cr_expect(setup_argvtoarray(string) == true);
+	stderr_is_empty();
+}
+
+Test(argvtoarray, extra_padding_only_one_min)
+{
+	char	*string[] = {"0001", NULL};
+
+	cr_expect(setup_argvtoarray(string) == true);
+	stderr_is_empty();
+}
+
+Test(argvtoarray, MAX)
+{
+	char	*string[] = {"2147483647", NULL};
+
+	cr_expect(setup_argvtoarray(string) == true);
+	stderr_is_empty();
+}
+
+Test(argvtoarray, MAX_plusone)
+{
+	char	*string[] = {"2147483648", NULL};
+
+	cr_expect(setup_argvtoarray(string) == false);
+	stderr_is_empty();
+}
+
+Test(argvtoarray, MAX_plusone_pluspad)
+{
+	char	*string[] = {"+2147483648", NULL};
+
+	cr_expect(setup_argvtoarray(string) == false);
+	stderr_is_empty();
+}
+Test(argvtoarray, MIN)
+{
+	char	*string[] = {"-2147483648", NULL};
+
+	cr_expect(setup_argvtoarray(string) == true);
+	stderr_is_empty();
+}
+
+Test(argvtoarray, MIN_minpluspadding)
+{
+	char	*string[] = {"-+-2147483648", NULL};
+
+	cr_expect(setup_argvtoarray(string) == false);
+	stderr_is_empty();
+}
+
+Test(argvtoarray, MIN_minone)
+{
+	char	*string[] = {"-2147483649", NULL};
+
+	cr_expect(setup_argvtoarray(string) == false);
+	stderr_is_empty();
+}
+
+Test(argvtoarray, extra_padding_MIN)
+{
+	char	*string[] = {"-002147483648", NULL};
+
+	cr_expect(setup_argvtoarray(string) == true);
+	stderr_is_empty();
+}
+
+Test(argvtoarray, extra_padding_MAX)
+{
+	char	*string[] = {"002147483647", NULL};
+
+	cr_expect(setup_argvtoarray(string) == true);
+	stderr_is_empty();
+}
+
+Test(argvtoarray, multiple_arguments_v1)
+{
+	char	*string[] = {"0001", "298347", NULL};
+
+	cr_expect(setup_argvtoarray(string) == true);
+	stderr_is_empty();
+}
+
+Test(argvtoarray, multiple_arguments_v2)
+{
+	char	*string[] = {"0001", "298347", "-12304987", NULL};
+
+	cr_expect(setup_argvtoarray(string) == true);
+	stderr_is_empty();
+}
+
+Test(argvtoarray, multiple_arguments_v3)
+{
+	char	*string[] = {"0001", "298347", "-12304987", "0", NULL};
+
+	cr_expect(setup_argvtoarray(string) == true);
+	stderr_is_empty();
 }
 /*Is the list already sorted and does it contain double numbers*/
 /* ************************************************************************** */

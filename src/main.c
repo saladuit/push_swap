@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/03/21 16:52:43 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/04/11 14:52:35 by safoh        \___)=(___/                 */
+/*   Updated: 2022/04/11 16:49:24 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ bool	setup_argvtoarray(char **argv)
 			len++;
 	expected = calloc(len + 1, sizeof(long));
 	integer = argvtoarray(len, argv);
-	if (!argv && integer)
+	if ((!integer || !expected) && argv)
 	{
 		free(expected);
 		free(integer);
@@ -49,7 +49,7 @@ bool	setup_argvtoarray(char **argv)
 
 int	main(void)
 {
-	char	*string[] = {"-+-2147483648", NULL};
+	char	*string[] = {"2147483648", NULL};
 
 	setup_argvtoarray(string);
 

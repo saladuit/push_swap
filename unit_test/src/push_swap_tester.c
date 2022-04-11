@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/03/09 20:05:09 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/04/11 16:28:03 by safoh        \___)=(___/                 */
+/*   Updated: 2022/04/11 17:53:11 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,8 +124,8 @@ Test(check_argv, invalid_char_nl)
 Test(check_argv, invalid_char_specialchar)
 {
 	char *string[] = {"1", "-", NULL};
-	cr_expect(var_check(2, string) == false);
-	stderr_contains_error();
+	cr_expect(var_check(2, string) == true);
+	stderr_is_empty();
 }
 
 Test(check_argv, invalid_char_tab)
@@ -163,6 +163,55 @@ Test(check_argv, invalid_nullterminator_afternum)
 	stderr_is_empty();
 }
 
+Test(check_argv, atoi_v1)
+{
+	char *string[] = {"004", NULL};
+	cr_expect(var_check(1, string) == true);
+	stderr_is_empty();
+}
+
+Test(check_argv, atoi_v2)
+{
+	char *string[] = {"+4", NULL};
+	cr_expect(var_check(1, string) == true);
+	stderr_is_empty();
+}
+
+Test(check_argv, atoi_v3)
+{
+	char *string[] = {"-4", NULL};
+	cr_expect(var_check(1, string) == true);
+	stderr_is_empty();
+}
+
+Test(check_argv, atoi_v4)
+{
+	char *string[] = {"-4", NULL};
+	cr_expect(var_check(1, string) == true);
+	stderr_is_empty();
+}
+
+Test(check_argv, atoi_v5)
+{
+	char *string[] = {"4-", NULL};
+	cr_expect(var_check(1, string) == true);
+	stderr_is_empty();
+}
+
+Test(check_argv, atoi_v6)
+{
+	char *string[] = {"4+", NULL};
+	cr_expect(var_check(1, string) == true);
+	stderr_is_empty();
+}
+
+Test(check_argv, atoi_v7)
+{
+	char *string[] = {"000-4+", NULL};
+	cr_expect(var_check(1, string) == true);
+	stderr_is_empty();
+}
+
 /* ************************************************************************** */
 TestSuite(argvtoarray, .init=redirect_all_stdout);
 /* ************************************************************************** */
@@ -181,6 +230,12 @@ bool	setup_argvtoarray(char **argv)
 			len++;
 	expected = calloc(len + 1, sizeof(long));
 	integer = argvtoarray(len, argv);
+	if((!integer || !expected) && argv)
+	{
+		free(expected);
+		free(integer);
+		return (false);
+	}
 	if(integer && !argv)
 	{
 		free(expected);
@@ -208,9 +263,33 @@ Test(argvtoarray, NULL_value)
 	stderr_contains_error();
 }
 
-Test(argvtoarray, only_one)
+Test(argvtoarray, zero_v1)
 {
 	char	*string[] = {"0", NULL};
+
+	cr_expect(setup_argvtoarray(string) == true);
+	stderr_is_empty();
+}
+
+Test(argvtoarray, zero_v2)
+{
+	char	*string[] = {"-00000", NULL};
+
+	cr_expect(setup_argvtoarray(string) == true);
+	stderr_is_empty();
+}
+
+Test(argvtoarray, zero_v3)
+{
+	char	*string[] = {"+00000", NULL};
+
+	cr_expect(setup_argvtoarray(string) == true);
+	stderr_is_empty();
+}
+
+Test(argvtoarray, zero_v4)
+{
+	char	*string[] = {"+000010", NULL};
 
 	cr_expect(setup_argvtoarray(string) == true);
 	stderr_is_empty();

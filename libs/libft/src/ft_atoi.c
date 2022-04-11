@@ -6,7 +6,7 @@
 /*   By: saladin <saladin@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/28 18:50:33 by saladin       #+#    #+#                 */
-/*   Updated: 2022/04/11 15:48:11 by safoh        \___)=(___/                 */
+/*   Updated: 2022/04/11 17:27:53 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,10 @@ int	ft_atoi(const char *nptr)
 	i = init_atoi(nptr, &sign);
 	while (nptr[i] && ft_isdigit((int)nptr[i]))
 	{
-		if (nbr * sign < -2147483648 || nbr * sign > 2147483647)
-		{
-			if (sign < 0)
-				return (0);
-			else
-				return (-1);
-		}
 		nbr = nbr * 10 + nptr[i] - '0';
 		i++;
 	}
+	if (nbr * sign < -2147483648 || nbr * sign > 2147483647)
+			return (0);
 	return ((int)nbr * sign);
 }

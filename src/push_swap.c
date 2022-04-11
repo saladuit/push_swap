@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2021/09/22 11:47:31 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/04/11 14:27:02 by safoh        \___)=(___/                 */
+/*   Updated: 2022/04/11 18:18:41 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,30 @@ void	ft_error(void)
 
 }
 
+/*check whether the string is valid for atoi that should become a zero */
+bool	ft_iszero(char *string)
+{
+	int i;
+
+	i = 0;
+	if (string[i] == '-' || string[i] == '+')
+		i++;
+	while (string[i])
+	{
+		if (string[i] != '0')	
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
+/* check whether char is atoi valid*/
+bool	ft_isatoi(int c)
+{
+	if ((c >= '0' && c <= '9') || c == '-' || c == '+')
+		return (true);
+	return (false);
+}
 /*Make sure size of arguments is at least 3 to make it sortable*/
 bool	count_check(int argc)
 {
@@ -40,7 +64,7 @@ bool	var_check(int len, char **argv)
 		return (false);
 	while(i < (size_t)len)
 	{
-		if (ft_strbapi(argv[i], ft_isdigit) == false)
+		if (ft_strbapi(argv[i], ft_isatoi) == false)
 		{
 			ft_error();
 			return (false);
@@ -67,7 +91,7 @@ int	*argvtoarray(int len, char **argv)
 	while (i < (size_t)len)
 	{
 		integer[i] = ft_atoi(argv[i]);
-		if (integer[i] == 0 && ft_strncmp(argv[i], "0", 1))
+		if (integer[i] == 0 && ft_iszero(argv[i]) == false)
 		{
 			ft_error();
 			return (NULL);
@@ -125,3 +149,10 @@ t_list	*init_stack_a(int len,int *integer, t_list *stack_a)
 	}
 	return (stack_a);
 }
+
+/*void	sa(t_list *stack_a)*/
+/*{*/
+	/*if (ft_lstsize(stack_a) < 2)*/
+		/*return ;*/
+	
+/*}*/

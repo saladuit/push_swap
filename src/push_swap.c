@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2021/09/22 11:47:31 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/04/02 16:29:42 by safoh        \___)=(___/                 */
+/*   Updated: 2022/04/05 14:54:42 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,23 @@
 #include <stdio.h>
 #include "../include/push_swap.h"
 
-/*need to make sure size of arguments is at least 3 to make it sortable*/
+void	ft_error(void)
+{
+		ft_putendl_fd("Error", 2);
+
+}
+
+/*Make sure size of arguments is at least 3 to make it sortable*/
 bool	count_check(int argc)
 {
 	if (argc == 2)
-		ft_putstr_fd("error\n", 1);
+		ft_error();
 	if (argc < 3)
 		return (false);
 	return (true);
 }
 
-/*need to make sure arguments contain digits only \0 will be seen as 0*/
+/*Make sure arguments contain digits*/
 bool	var_check(int len, char **argv)
 {
 	size_t i;
@@ -36,7 +42,7 @@ bool	var_check(int len, char **argv)
 	{
 		if (ft_strbapi(argv[i], ft_isdigit) == false)
 		{
-			ft_putstr_fd("error\n", 1);
+			ft_error();
 			return (false);
 		}
 		i++;
@@ -44,7 +50,7 @@ bool	var_check(int len, char **argv)
 	return (true);
 }
 
-/*initialize int array*/
+/*Initialize int array*/
 int	*argvtoarray(int len, char **argv, int *integer)
 {
 	size_t i;
@@ -52,7 +58,7 @@ int	*argvtoarray(int len, char **argv, int *integer)
 	integer = ft_calloc(len + 1, sizeof(int));
 	if (integer == NULL || argv == NULL || len == 0)
 	{
-		ft_putstr_fd("Error\n", 1);
+		ft_error();
 		return (NULL);
 	}
 	i = 0;
@@ -61,7 +67,7 @@ int	*argvtoarray(int len, char **argv, int *integer)
 		integer[i] = ft_atoi(argv[i]);
 		if (ft_strncmp(ft_itoa(integer[i]), argv[i], ft_strlen(argv[i])))
 		{
-			ft_putstr_fd("Error\n", 1);
+			ft_error();
 			return (NULL);
 		}
 		i++;
@@ -69,7 +75,7 @@ int	*argvtoarray(int len, char **argv, int *integer)
 	return (integer);
 }
 
-/*check *integer for being not duplicate and not is sorted*/
+/*Integer shouldn't be sorted or contain duplicate integer values*/
 bool	array_check(int len, int *integer)
 {
 	bool issorted;
@@ -77,7 +83,7 @@ bool	array_check(int len, int *integer)
 
 	if (!integer || len == 0)
 	{
-		ft_putstr_fd("Error\n", 1);
+		ft_error();
 		return (false);
 	}
 	i = 0;
@@ -88,14 +94,14 @@ bool	array_check(int len, int *integer)
 			issorted = false;
 		if (ft_arrint(integer, integer[i], i))
 		{
-			ft_putstr_fd("Error\n", 1);
+			ft_error();
 			return (false);
 		}
 		i++;
 	}
 	if (issorted == false)
 		return (true);
-	ft_putstr_fd("Error\n", 1);
+	ft_error();
 	return (false);
 }
 
@@ -106,7 +112,7 @@ t_list	*init_stack_a(int len,int *integer, t_list *stack_a)
 
 	if (integer == NULL)
 	{
-		ft_putstr_fd("Error\n", 1);
+		ft_error();
 		return (NULL);
 	}
 	i = 0;

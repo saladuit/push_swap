@@ -6,7 +6,7 @@
 #    By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /    #
 #                                                  (|     | )|_| |_| |>  <     #
 #    Created: 2022/03/21 10:11:56 by safoh        /'\_   _/`\__|\__,_/_/\_\    #
-#    Updated: 2022/03/30 21:21:03 by safoh        \___)=(___/                  #
+#    Updated: 2022/04/04 11:54:52 by safoh        \___)=(___/                  #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,6 @@ $(NAME): $(OBJS) | $(PSWAP) $(LIBFT)
 	$(CC) $(CFLAGS) $(CRITERION) $(POBJS) $(LIBFT) $^ $(INCLUDE_FLAGS) $(LIB_FLAGS) -o $(NAME)
 	@$(call print_prefix,"$(PROJECT)","make")
 	@printf "$(BLUE_FG)$(NAME)$(RESET_COLOR) created\n"
-	./$(NAME)
 
 $(OBJS): $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c | $(HEADERS)
 	@mkdir -p $(dir $@)

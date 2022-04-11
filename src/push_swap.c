@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2021/09/22 11:47:31 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/04/05 14:54:42 by safoh        \___)=(___/                 */
+/*   Updated: 2022/04/11 14:27:02 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,15 @@ bool	var_check(int len, char **argv)
 }
 
 /*Initialize int array*/
-int	*argvtoarray(int len, char **argv, int *integer)
+int	*argvtoarray(int len, char **argv)
 {
 	size_t i;
+	int *integer;
 
 	integer = ft_calloc(len + 1, sizeof(int));
-	if (integer == NULL || argv == NULL || len == 0)
+	if (integer == NULL || argv == NULL || *argv == NULL || len == 0)
 	{
+		free(integer);
 		ft_error();
 		return (NULL);
 	}
@@ -65,7 +67,7 @@ int	*argvtoarray(int len, char **argv, int *integer)
 	while (i < (size_t)len)
 	{
 		integer[i] = ft_atoi(argv[i]);
-		if (ft_strncmp(ft_itoa(integer[i]), argv[i], ft_strlen(argv[i])))
+		if (integer[i] == 0 && ft_strncmp(argv[i], "0", 1))
 		{
 			ft_error();
 			return (NULL);

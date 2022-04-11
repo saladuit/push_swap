@@ -6,7 +6,7 @@
 #    By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /    #
 #                                                  (|     | )|_| |_| |>  <     #
 #    Created: 2022/03/21 10:11:56 by safoh        /'\_   _/`\__|\__,_/_/\_\    #
-#    Updated: 2022/04/04 11:54:52 by safoh        \___)=(___/                  #
+#    Updated: 2022/04/11 16:05:58 by safoh        \___)=(___/                  #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ PSWAP		=	push_swap
 
 CC			=	gcc
 RM			=	rm -rfv
-CFLAGS		=	-Wall -Wextra -Werror $(if $(FSAN),-g -fsanitize=address)
+CFLAGS		=	-Wall -Wextra -Werror -g -fsanitize=address
 CRITERION	=	-lcriterion
 
 OBJS		=	$(addprefix $(BUILD_DIR)/, $(USRCS:%.c= %.o))

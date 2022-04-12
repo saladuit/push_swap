@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/03/09 20:05:09 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/04/11 17:53:11 by safoh        \___)=(___/                 */
+/*   Updated: 2022/04/12 17:39:16 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@ void	stderr_contains_error(void)
 void	stderr_is_empty(void)
 {
 	cr_expect_stderr_eq_str("");
+}
+
+void	stdout_is_empty(void)
+{
+	cr_expect_stdout_eq_str("");
 }
 
 /* ************************************************************************** */
@@ -612,4 +617,54 @@ Test(init_stack_a, 0_three_valid_negint)
 	int	expected[] = {-3, 0, -1, '\0'};
 	cr_expect(test_init_stack_a(expected) == true);
 	stderr_is_empty();
+}
+/* ************************************************************************** */
+TestSuite(sa, .init=redirect_all_stdout);
+/* ************************************************************************** */
+
+bool	check_sa(int *expected)
+{
+	t_list	*stack_a = NULL;
+	int len = 0;
+	int i = 0;
+	int number = 0;
+
+	if (expected)
+		while (expected[len])
+			len++;
+	stack_a = init_stack_a(len, expected, stack_a);
+	if (stack_a == NULL)
+	{
+		cr_log_error("Stack_init_setup failed in sa\n");
+		return (false);
+	}
+	if(sa(stack_a) == false)
+		return (false);
+	ft_swap(&expected[0], &expected[1]);
+	while(i < len)
+	{
+		number = *(int *)stack_a->content;
+		if(number != expected[i])
+			return (false);
+		stack_a = stack_a->next;
+		i++;
+	}
+	ft_lstclear(&stack_a, NULL);
+	return (true);
+}
+
+Test(sa, basic_input)
+{
+	int	expected[] = {1, 2, '\0'};
+
+	cr_expect(check_sa(expected) == true);
+	cr_expect_stdout_eq_str("sa\n");
+}
+
+Test(sa, invalid_input)
+{
+	int	expected[] = {1, '\0'};
+
+	cr_expect(check_sa(expected) == false);
+	stdout_is_empty();
 }

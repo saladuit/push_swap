@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/03/21 16:52:43 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/04/11 16:49:24 by safoh        \___)=(___/                 */
+/*   Updated: 2022/04/12 17:29:47 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,45 +14,49 @@
 #include <assert.h>
 #include <stdio.h>
 
-bool	setup_argvtoarray(char **argv)
+bool	check_sa(int *expected)
 {
-	int	len;
-	int i;
-	int	*integer = NULL;
-	long	*expected = NULL;
+	t_list	*stack_a = NULL;
+	int *checker = NULL;
+	int len = 0;
+	int i = 0;
+	int number = 0;
 
-	len = 0;
-	i = 0;
-	if (argv)
-		while (argv[len])
+	if (expected)
+		while (expected[len])
 			len++;
-	expected = calloc(len + 1, sizeof(long));
-	integer = argvtoarray(len, argv);
-	if ((!integer || !expected) && argv)
-	{
-		free(expected);
-		free(integer);
+	checker = ft_calloc(len + 1, sizeof(int));
+	if (!checker)
 		return (false);
-	}
-	while (i < len)
+	while (expected[i])
 	{
-
-		expected[i] = atol(argv[i]);
-		if (expected[i] != integer[i])
+		checker[i] = expected[i];
+		i++;	
+	}
+	i = 0;
+	stack_a = init_stack_a(len, expected, stack_a);
+	if (stack_a == NULL)
+		if (expected)
+		return (false);
+	ft_swap(&checker[0], &checker[1]);
+	sa(stack_a);
+	while(i < len)
+	{
+		number = *(int *)stack_a->content;
+		if(number != checker[i])
 			return (false);
+		stack_a = stack_a->next;
 		i++;
 	}
-	free(expected);
-	free(integer);
-	return(true);
+	ft_lstclear(&stack_a, NULL);
+	return (true);
 }
 
 int	main(void)
 {
-	char	*string[] = {"2147483648", NULL};
+	int	expected[] = {1, 2, '\0'};
 
-	setup_argvtoarray(string);
-
+	check_sa(expected);
 }
 /*int	main(int argc, char **argv)*/
 /*{*/

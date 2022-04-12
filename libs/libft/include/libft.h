@@ -6,7 +6,7 @@
 /*   By: saladin <saladin@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/10 17:29:41 by saladin       #+#    #+#                 */
-/*   Updated: 2022/04/02 15:05:42 by safoh        \___)=(___/                 */
+/*   Updated: 2022/04/12 14:24:29 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ char	*ft_uitoa(unsigned int n);
 char	*ft_uitoh(unsigned int n);
 char	*ft_ultoh(unsigned long n);
 int		*ft_arrint(int *array, int num, int len);
+void	ft_swap(int *x, int *y);
 
 //LIST FUNCTIONS
 typedef struct s_list
@@ -99,5 +100,10 @@ t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 t_list	*ft_lstnew(void *content);
 int		ft_lstsize(t_list *lst);
+//LIST IDEAS to implement
+//ft_lsttravel
+//ft_lstadd_after
+//ft_lstsearch
+//ft_lstprint
 
 #endif

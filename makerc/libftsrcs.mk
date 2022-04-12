@@ -6,7 +6,7 @@
 #    By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /    #
 #                                                  (|     | )|_| |_| |>  <     #
 #    Created: 2022/04/02 15:08:09 by safoh        /'\_   _/`\__|\__,_/_/\_\    #
-#    Updated: 2022/04/02 15:08:20 by safoh        \___)=(___/                  #
+#    Updated: 2022/04/12 14:26:11 by safoh        \___)=(___/                  #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,4 +22,4 @@ SRCS  := ft_memset.c ft_bzero.c ft_memcpy.c ft_strlen.c ft_atoi.c \
 		ft_lstadd_front.c ft_lstnew.c ft_memdel.c ft_strdel.c ft_lstsize.c \
 		ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c \
 		ft_lstiter.c ft_lstmap.c ft_strbapi.c ft_isspace.c ft_strtol.c \
-		ft_arrint.c
+		ft_arrint.c ft_swap.c

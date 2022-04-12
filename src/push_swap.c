@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2021/09/22 11:47:31 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/04/11 18:18:41 by safoh        \___)=(___/                 */
+/*   Updated: 2022/04/12 17:42:10 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,15 +144,38 @@ t_list	*init_stack_a(int len,int *integer, t_list *stack_a)
 	i = 0;
 	while (i < (size_t)len)
 	{
-		ft_lstadd_back(&stack_a, ft_lstnew((void *)&integer[i]));
+		ft_lstadd_back(&stack_a, ft_lstnew(&integer[i]));
 		i++;
 	}
 	return (stack_a);
 }
 
-/*void	sa(t_list *stack_a)*/
-/*{*/
-	/*if (ft_lstsize(stack_a) < 2)*/
-		/*return ;*/
-	
-/*}*/
+bool	sa(t_list *stack_a)
+{
+	if (ft_lstsize(stack_a) < 2)
+		return (false);
+	ft_swap(stack_a->content, (*stack_a).next->content);
+	ft_putendl_fd("sa", 1);
+	return (true);
+}
+
+bool	sb(t_list *stack_b)
+{
+	if (ft_lstsize(stack_b) < 2)
+		return (false);
+	ft_swap(stack_b->content, (*stack_b).next->content);
+	ft_putendl_fd("sa", 1);
+	return (true);
+}
+
+bool	ss(t_list *stack_a, t_list *stack_b)
+{
+	if (ft_lstsize(stack_a) < 2)
+		return (false);
+	ft_swap(stack_a->content, (*stack_a).next->content);
+	if (ft_lstsize(stack_b) < 2)
+		return (false);
+	ft_swap(stack_b->content, (*stack_b).next->content);
+	ft_putendl_fd("ss", 1);
+	return (true);
+}

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                    .--.  _                 */
-/*   push_swap.h                                     |o_o || |                */
+/*   push_swap.h                                        :+:    :+:            */
 /*                                                   |:_/ || |_ _   ___  __   */
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2021/09/30 15:20:23 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/04/12 17:35:36 by safoh        \___)=(___/                 */
+/*   Updated: 2022/04/13 21:46:43 by saladuit      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # include <stddef.h>
 # include <stdlib.h>
 # include <stdbool.h>
-# include "/Users/safoh/Documents/Projects_Codam/push_swap/libs/libft/include/libft.h"
+# include "libft.h"
 
 bool	count_check(int argc);
 bool	var_check(int len, char **argv);

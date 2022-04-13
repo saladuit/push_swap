@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                    .--.  _                 */
-/*   push_swap_tester.c                              |o_o || |                */
+/*   push_swap_tester.c                                 :+:    :+:            */
 /*                                                   |:_/ || |_ _   ___  __   */
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/03/09 20:05:09 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/04/12 17:39:16 by safoh        \___)=(___/                 */
+/*   Updated: 2022/04/13 22:08:09 by saladuit      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "/Users/safoh/Documents/Projects_Codam/push_swap/unit_test/include/unit_push_swap.h"
-#include "/Users/safoh/Documents/Projects_Codam/push_swap/libs/libft/include/libft.h"
+#include "unit_push_swap.h"
+#include "libft.h"
 #include <criterion/criterion.h>
 #include <criterion/new/assert.h>
 #include <criterion/internal/assert.h>

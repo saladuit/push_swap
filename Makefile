@@ -1,70 +1,71 @@
 # **************************************************************************** #
 #                                                                              #
-#                                                     .--.  _                  #
-#    Makefile                                        |o_o || |                 #
-#                                                    |:_/ || |_ _   ___  __    #
-#    By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /    #
-#                                                  (|     | )|_| |_| |>  <     #
-#    Created: 2022/03/21 11:07:01 by safoh        /'\_   _/`\__|\__,_/_/\_\    #
-#    Updated: 2022/03/30 21:22:03 by safoh        \___)=(___/                  #
+#                                                         ::::::::             #
+#    Makefile                                           :+:    :+:             #
+#                                                      +:+                     #
+#    By: saladuit <safoh@student.codam.nl>            +#+                      #
+#                                                    +#+                       #
+#    Created: 2022/04/13 21:33:38 by saladuit      #+#    #+#                  #
+#    Updated: 2022/04/13 22:11:06 by saladuit      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
-include makerc/colours.mk
-include makerc/utils.mk
-include makerc/srcs.mk
 include makerc/main.mk
+include makerc/srcs.mk
+include makerc/colours.mk
+include makerc/unit_srcs.mk
 
-################################################################################
-PROJECT		=	Push-Swap
-NAME		=	push_swap
+PROJECT			:=	Push-Swap
+NAME			:=	push_swap
 
-CC			:=	gcc
-RM			:=	rm -rf
-CFLAGS		=	-Wall -Wextra -Werror $(if $(DEBUG), -g) \
-				$(if $(FSAN), -fsanitize=address -g)
+CC				:=	gcc
+RM				:=	rm -rfv
+CFLAGS			=	-Wall -Wextra -Werror $(if $(DEBUG), -g) \
+					$(if $(FSAN), -fsanitize=address -g)
 
-SRC_DIR		=	./src
-BUILD_DIR	=	./build
-OBJS		=	$(addprefix $(BUILD_DIR)/, $(SRCS:%.c=%.o))
-OBJS		+=	$(addprefix $(BUILD_DIR)/, $(MAIN:%.c=%.o))
+SRC_DIR			:=	./src
+BUILD_DIR		:=	./build
+OBJS			=	$(addprefix $(BUILD_DIR)/, $(SRCS:%.c=%.o))
+MAIN_OBJS		=	$(addprefix $(BUILD_DIR)/, $(MAIN:%.c=%.o))
 
-LIB_DIR		=	libs/libft
-LIBFT		:=  $(LIB_DIR)/libft.a
+LIB_DIR			=	./libs/libft
+LIBFT			:=  $(LIB_DIR)/libft.a
 HEADERS			=	$(LIB_DIR)/include/libft.h \
 					include/push_swap.h
-INCLUDE_FLAGS	+= $(addprefix -I, $(sort $(dir $(HEADERS))))
-LIB_FLAGS += $(addprefix -L, $(sort $(dir $(USER_LIBS))))
 
+INCLUDE_FLAGS	:= $(addprefix -I, $(sort $(dir $(HEADERS))))
+LIB_FLAGS		:= $(addprefix -L, $(sort $(dir $(USER_LIBS))))
+
+UNIT_TEST		:=	unit-test
+UNIT_DIR		:= ./unit_test
+UNIT_SRC_DIR	:=	$(UNIT_DIR)/src/
+
+UNIT_HEADERS	:=	unit_test/include/unit_push_swap.h
+UNIT_LFLAGS		:=	-lcriterion
+UNIT_OBJS		:=	$(addprefix $(BUILD_DIR)/, $(UNIT_SRCS:%.c=%.o))
 ################################################################################
-all: $(PRE_RULES) $(NAME)
+all: $(NAME)
 
 $(NAME): SHELL := /bin/bash
 
-$(NAME): $(OBJS) $(LIBFT)
-	@$(call print_prefix,"$(PROJECT)","make")
+$(NAME): $(OBJS) $(MAIN_OBJS) $(LIBFT)
 	$(CC) $(CFLAGS) $^ $(INCLUDE_FLAGS) $(LIB_FLAGS) -o $(NAME)
-	@$(call print_prefix,"$(PROJECT)","make")
 	@printf "$(BLUE_FG)$(NAME)$(RESET_COLOR) created\n"
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS)
 	@mkdir -p $(dir $@)
-	@$(call print_prefix,"$(PROJECT)","make")
-	@$(call exec_no_nl,$(CC) $(CFLAGS) $(INCLUDE_FLAGS) $(INCLUDES) -c $< -o $@)
-	@printf "$(CLEAR_REST_OF_LINE)\r"
+	$(CC) $(CFLAGS) $(INCLUDE_FLAGS) $(INCLUDES) -c $< -o $@
 
 $(LIBFT):
 	@$(MAKE) -C $(LIB_DIR)
 
 ################################################################################
 clean:
-	@$(call print_prefix,"$(PROJECT)","$@")
 	$(RM) $(OBJS)
 	@$(MAKE) clean -C $(LIB_DIR)
 
 fclean: clean
-	@$(call print_prefix,"$(PROJECT)","$@")
-	$(RM) $(NAME) push_swap_debug *.dSYM $(MAKE_TXT)
+	$(RM) $(NAME) push_swap_debug *.dSYM
 	@$(MAKE) fclean -C $(LIB_DIR)
 
 debug:
@@ -74,5 +75,11 @@ fsan:
 	@$(MAKE) FSAN=1
 
 re: fclean all
-.PHONY: all clean fclean push_swap_tester re debug fsan
+
+tests_run: CFLAGS +=-g -fsanitize=address --coverage## Launch tests
+tests_run: $(LIBFT) $(OBJS) $(UNIT_OBJS)
+	$(CC) $(CFLAGS) $(OBJS) $(UNIT_OBJS) -o $(UNIT_TEST) $(LIBFT) $(INCLUDE_FLAGS) $(UNIT_LFLAGS)
+	./$(UNIT_TEST) -j0
+
+.PHONY: all clean fclean re push_swap_tester debug fsan
 ################################################################################

@@ -1,17 +1,16 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                     .--.  _                  #
-#    Makefile                                        |o_o || |                 #
+#    Makefile                                           :+:    :+:             #
 #                                                    |:_/ || |_ _   ___  __    #
 #    By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /    #
 #                                                  (|     | )|_| |_| |>  <     #
 #    Created: 2022/02/09 17:06:29 by safoh        /'\_   _/`\__|\__,_/_/\_\    #
-#    Updated: 2022/03/30 21:27:31 by safoh        \___)=(___/                  #
+#    Updated: 2022/04/13 21:25:37 by saladuit      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 include ../../makerc/colours.mk
-include ../../makerc/utils.mk
 include ../../makerc/libftsrcs.mk
 
 ################################################################################
@@ -19,8 +18,9 @@ PROJECT			=	Libft
 NAME			=	libft.a
 
 CC				:=	gcc
-CFLAGS			=	-Wall -Wextra -Werror $(if $(DEBUG),-g) $(if $(FSAN),-fsanitize=address -g)
 RM				:=	rm -rf
+CFLAGS			=	-Wall -Wextra -Werror $(if $(DEBUG),-g) \
+					$(if $(FSAN),-fsanitize=address -g)
 
 SRC_DIR 		:=	./src
 BUILD_DIR		:=	./build
@@ -35,15 +35,12 @@ all: $(NAME)
 $(NAME): SHELL := /bin/bash
 
 $(NAME): $(OBJS)
-	@$(call print_prefix,"$(PROJECT)","make")
 	@ar rc $@ $^
-	@$(call print_prefix,"$(PROJECT)","make")
 	@printf "$(BLUE_FG)$(NAME)$(RESET_COLOR) created\n"
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS)
 	@mkdir -p $(dir $@)
-	@$(call print_prefix,"$(PROJECT)","make")
-	@$(call exec_no_nl,$(CC) $(CFLAGS) $(INCLUDE_FLAGS) $(INCLUDES) -c $< -o $@)
+	$(CC) $(CFLAGS) $(INCLUDE_FLAGS) $(INCLUDES) -c $< -o $@
 	@printf "$(CLEAR_REST_OF_LINE)\r"
 
 ################################################################################
@@ -72,5 +69,5 @@ main: all
 	$(CC) $(CFLAGS) src/main.c -lft_debug -o libft_gdb
 	./libft_gdb
 
-.PHONY: all clean fclean re libft_tester main
+.PHONY: all clean fclean re libft_tester main fsan debug
 ################################################################################

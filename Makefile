@@ -6,7 +6,7 @@
 #    By: saladuit <safoh@student.codam.nl>            +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/04/13 21:33:38 by saladuit      #+#    #+#                  #
-#    Updated: 2022/04/13 22:11:06 by saladuit      ########   odam.nl          #
+#    Updated: 2022/04/13 23:05:20 by saladuit      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ CFLAGS			=	-Wall -Wextra -Werror $(if $(DEBUG), -g) \
 SRC_DIR			:=	./src
 BUILD_DIR		:=	./build
 OBJS			=	$(addprefix $(BUILD_DIR)/, $(SRCS:%.c=%.o))
-MAIN_OBJS		=	$(addprefix $(BUILD_DIR)/, $(MAIN:%.c=%.o))
+MAIN_OBJ		=	$(addprefix $(BUILD_DIR)/, $(MAIN:%.c=%.o))
 
 LIB_DIR			=	./libs/libft
 LIBFT			:=  $(LIB_DIR)/libft.a
@@ -38,17 +38,24 @@ LIB_FLAGS		:= $(addprefix -L, $(sort $(dir $(USER_LIBS))))
 
 UNIT_TEST		:=	unit-test
 UNIT_DIR		:= ./unit_test
-UNIT_SRC_DIR	:=	$(UNIT_DIR)/src/
+UNIT_SRCS_DIR	:=	$(UNIT_DIR)/src/
 
 UNIT_HEADERS	:=	unit_test/include/unit_push_swap.h
 UNIT_LFLAGS		:=	-lcriterion
-UNIT_OBJS		:=	$(addprefix $(BUILD_DIR)/, $(UNIT_SRCS:%.c=%.o))
+UNIT_OBJS		=	$(UNIT_SRCS:.c=.o)
+UNIT_INCLUDE_FLAGS	:= $(addprefix -I, $(sort $(dir $(UNIT_HEADERS)))) $(INCLUDE_FLAGS)
+# COVERAGE	=	$(SRCS:.c=.gcda)	\
+				$(SRCS:.c=.gcno)	\
+				$(MAIN:.c=.gcda)	\
+				$(MAIN:.c=.gcno)	\
+				$(UNIT_SRCS:.c=.gcno)	\
+				$(UNIT_SRCS:.c=.gcda)	\
 ################################################################################
 all: $(NAME)
 
 $(NAME): SHELL := /bin/bash
 
-$(NAME): $(OBJS) $(MAIN_OBJS) $(LIBFT)
+$(NAME): $(OBJS) $(MAIN_OBJ) $(LIBFT)
 	$(CC) $(CFLAGS) $^ $(INCLUDE_FLAGS) $(LIB_FLAGS) -o $(NAME)
 	@printf "$(BLUE_FG)$(NAME)$(RESET_COLOR) created\n"
 
@@ -60,13 +67,6 @@ $(LIBFT):
 	@$(MAKE) -C $(LIB_DIR)
 
 ################################################################################
-clean:
-	$(RM) $(OBJS)
-	@$(MAKE) clean -C $(LIB_DIR)
-
-fclean: clean
-	$(RM) $(NAME) push_swap_debug *.dSYM
-	@$(MAKE) fclean -C $(LIB_DIR)
 
 debug:
 	@$(MAKE) DEBUG=1
@@ -74,12 +74,25 @@ debug:
 fsan:
 	@$(MAKE) FSAN=1
 
+clean:
+	$(RM) $(OBJS) $(MAIN_OBJ) $(UNIT_TEST_OBJS) $(COVERAGE)
+	@$(MAKE) clean -C $(LIB_DIR)
+
+fclean: clean
+	$(RM) $(NAME) $(UNIT_TEST)
+	@$(MAKE) fclean -C $(LIB_DIR)
+
 re: fclean all
 
 tests_run: CFLAGS +=-g -fsanitize=address --coverage## Launch tests
-tests_run: $(LIBFT) $(OBJS) $(UNIT_OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(UNIT_OBJS) -o $(UNIT_TEST) $(LIBFT) $(INCLUDE_FLAGS) $(UNIT_LFLAGS)
+tests_run: $(LIBFT) $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) $(addprefix $(UNIT_SRCS_DIR)/, $(UNIT_SRCS)) -o $(UNIT_TEST) $(LIBFT) $(UNIT_INCLUDE_FLAGS) $(UNIT_LFLAGS)
 	./$(UNIT_TEST) -j0
 
-.PHONY: all clean fclean re push_swap_tester debug fsan
+re_tests: fclean tests_run
+
+valgrind: all ## Launch valgrind
+	valgrind --leak-check=full ./$(TARGET)
+
+.PHONY: all clean fclean re tests_run debug fsan valgrind
 ################################################################################

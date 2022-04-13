@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                    .--.  _                 */
-/*   unit_push_swap.h                                |o_o || |                */
+/*   unit_push_swap.h                                   :+:    :+:            */
 /*                                                   |:_/ || |_ _   ___  __   */
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/03/25 17:34:35 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/03/29 17:20:04 by safoh        \___)=(___/                 */
+/*   Updated: 2022/04/13 22:45:11 by saladuit      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include <criterion/internal/redirect.h>
 # include <criterion/internal/test.h>
 # include <criterion/new/assert.h>
-# include "/Users/safoh/Documents/Projects_Codam/push_swap/include/push_swap.h"
-# include "/Users/safoh/Documents/Projects_Codam/push_swap/libs/libft/include/libft.h"
+# include "push_swap.h"
+# include "libft.h"
 
 void redirect_all_stdout(void);
 void assert_empty_stdout();

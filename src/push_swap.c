@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                    .--.  _                 */
-/*   push_swap.c                                     |o_o || |                */
+/*   push_swap.c                                        :+:    :+:            */
 /*                                                   |:_/ || |_ _   ___  __   */
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2021/09/22 11:47:31 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/04/12 17:42:10 by safoh        \___)=(___/                 */
+/*   Updated: 2022/04/16 13:32:57 by saladuit      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ bool	array_check(int len, int *integer)
 }
 
 /*handle conversion to int & INT_MINMAX before putting in to linked list*/
-t_list	*init_stack_a(int len,int *integer, t_list *stack_a)
+t_list	*init_stack(int len,int *integer, t_list *stack_a)
 {
 	size_t	i;
 

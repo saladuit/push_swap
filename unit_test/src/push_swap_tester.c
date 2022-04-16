@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/03/09 20:05:09 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/04/13 22:08:09 by saladuit      ########   odam.nl         */
+/*   Updated: 2022/04/16 13:42:34 by saladuit      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -510,9 +510,9 @@ Test(array_check, three_nemb_double_front)
 
 
 /* ************************************************************************** */
-TestSuite(init_stack_a, .init=redirect_all_stdout);
+TestSuite(init_stack, .init=redirect_all_stdout);
 /* ************************************************************************** */
-bool	test_init_stack_a(int *expected)
+bool	test_init_stack(int *expected)
 {
 	t_list	*stack_a = NULL;
 	int number;
@@ -522,7 +522,7 @@ bool	test_init_stack_a(int *expected)
 	if (expected)
 		while (expected[len])
 			len++;
-	stack_a = init_stack_a(len, expected, stack_a);
+	stack_a = init_stack(len, expected, stack_a);
 	if (stack_a == NULL)
 	{
 		if (expected)
@@ -541,81 +541,81 @@ bool	test_init_stack_a(int *expected)
 	return (true);
 }
 
-Test(init_stack_a, null_pointer)
+Test(init_stack, null_pointer)
 {
 	int *expected = NULL;
 	
-	cr_expect(test_init_stack_a(expected) == false);
+	cr_expect(test_init_stack(expected) == false);
 	stderr_contains_error();
 }
 
-Test(init_stack_a, one_valid_int)
+Test(init_stack, one_valid_int)
 {
 	int	expected[] = {1, '\0'};
-	cr_expect(test_init_stack_a(expected) == true);
+	cr_expect(test_init_stack(expected) == true);
 	stderr_is_empty();
 }
 
-Test(init_stack_a, MAX_int)
+Test(init_stack, MAX_int)
 {
 	int	expected[] = {2147483647, '\0'};
-	cr_expect(test_init_stack_a(expected) == true);
+	cr_expect(test_init_stack(expected) == true);
 	stderr_is_empty();
 }
 
-Test(init_stack_a, double_MAXMAX_int)
+Test(init_stack, double_MAXMAX_int)
 {
 	int	expected[] = {2147483647, -2147483648, '\0'};
-	cr_expect(test_init_stack_a(expected) == true);
+	cr_expect(test_init_stack(expected) == true);
 	stderr_is_empty();
 }
 
-Test(init_stack_a, double_MAX_int)
+Test(init_stack, double_MAX_int)
 {
 	int	expected[] = {2147483647, 2147483647, '\0'};
-	cr_expect(test_init_stack_a(expected) == true);
+	cr_expect(test_init_stack(expected) == true);
 	stderr_is_empty();
 }
 
-Test(init_stack_a, MIN_int)
+Test(init_stack, MIN_int)
 {
 	int	expected[] = {-2147483648, '\0'};
-	cr_expect(test_init_stack_a(expected) == true);
+	cr_expect(test_init_stack(expected) == true);
 	stderr_is_empty();
 }
 
-Test(init_stack_a, two_valid_int)
+Test(init_stack, two_valid_int)
 {
 	int	expected[] = {1, 2, '\0'};
-	cr_expect(test_init_stack_a(expected) == true);
+	cr_expect(test_init_stack(expected) == true);
 	stderr_is_empty();
 }
 
-Test(init_stack_a, three_valid_int)
+Test(init_stack, three_valid_int)
 {
 	int	expected[] = {1, 2, 3, '\0'};
-	cr_expect(test_init_stack_a(expected) == true);
+	cr_expect(test_init_stack(expected) == true);
 	stderr_is_empty();
 }
 
-Test(init_stack_a, three_valid_negint)
+Test(init_stack, three_valid_negint)
 {
 	int	expected[] = {-1, -2, -3, '\0'};
-	cr_expect(test_init_stack_a(expected) == true);
+	cr_expect(test_init_stack(expected) == true);
 	stderr_is_empty();
 }
 
-Test(init_stack_a, rev_three_valid_negint)
+Test(init_stack, rev_three_valid_negint)
 {
 	int	expected[] = {-3, -2, -1, '\0'};
-	cr_expect(test_init_stack_a(expected) == true);
+	cr_expect(test_init_stack(expected) == true);
 	stderr_is_empty();
 }
 
-Test(init_stack_a, 0_three_valid_negint)
+Test(init_stack, 0_three_valid_negint)
 {
 	int	expected[] = {-3, 0, -1, '\0'};
-	cr_expect(test_init_stack_a(expected) == true);
+	cr_expect(test_init_stack(expected) == true);
 	stderr_is_empty();
 }
 /* ************************************************************************** */
@@ -626,13 +626,11 @@ bool	check_sa(int *expected)
 {
 	t_list	*stack_a = NULL;
 	int len = 0;
-	int i = 0;
-	int number = 0;
 
 	if (expected)
 		while (expected[len])
 			len++;
-	stack_a = init_stack_a(len, expected, stack_a);
+	stack_a = init_stack(len, expected, stack_a);
 	if (stack_a == NULL)
 	{
 		cr_log_error("Stack_init_setup failed in sa\n");
@@ -640,17 +638,14 @@ bool	check_sa(int *expected)
 	}
 	if(sa(stack_a) == false)
 		return (false);
-	ft_swap(&expected[0], &expected[1]);
-	while(i < len)
+	if (*(int *)stack_a->content == expected[1] && \
+			*(int *)stack_a->next->content == expected[0])
 	{
-		number = *(int *)stack_a->content;
-		if(number != expected[i])
-			return (false);
-		stack_a = stack_a->next;
-		i++;
+	ft_lstclear(&stack_a, NULL);
+		return (true);
 	}
 	ft_lstclear(&stack_a, NULL);
-	return (true);
+	return (false);
 }
 
 Test(sa, basic_input)

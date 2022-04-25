@@ -1,6 +1,7 @@
 # Prerequisites
 *.d
-
+push_swap
+unit-test
 # Object files
 *.o
 *.ko

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                    .--.  _                 */
-/*   unit_push_swap.h                                   :+:    :+:            */
+/*   unit_push_swap.h                                |o_o || |                */
 /*                                                   |:_/ || |_ _   ___  __   */
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/03/25 17:34:35 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/04/13 22:45:11 by saladuit      ########   odam.nl         */
+/*   Updated: 2022/05/12 20:39:59 by saladuit     \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include "push_swap.h"
 # include "libft.h"
 
-void redirect_all_stdout(void);
+void redirect_stdout_to_stderr(void);
 void assert_empty_stdout();
 void assert_error_stdout();
 

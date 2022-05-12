@@ -6,7 +6,7 @@
 #    By: saladuit <safoh@student.codam.nl>            +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/04/13 21:33:38 by saladuit      #+#    #+#                  #
-#    Updated: 2022/05/04 18:43:05 by saladuit     \___)=(___/                  #
+#    Updated: 2022/05/12 21:06:23 by saladuit     \___)=(___/                  #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,9 +82,10 @@ fclean: clean
 	$(RM) $(NAME) $(UNIT_TEST)
 	@$(MAKE) fclean -C $(LIB_DIR)
 
-re: fclean all
+re: fclean
+	$(MAKE)
 
-tests_run: CFLAGS +=-g -fsanitize=address --coverage## Launch tests
+tests_run: CFLAGS +=-g -fsanitize=address## Launch tests
 tests_run: $(LIBFT) $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(addprefix $(UNIT_SRCS_DIR)/, $(UNIT_SRCS)) -o $(UNIT_TEST) $(LIBFT) $(UNIT_INCLUDE_FLAGS) $(UNIT_LFLAGS)
 	./$(UNIT_TEST) -j0

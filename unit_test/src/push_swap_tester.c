@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/03/09 20:05:09 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/05/12 21:12:40 by saladuit     \___)=(___/                 */
+/*   Updated: 2022/05/12 22:03:30 by saladuit     \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -606,44 +606,49 @@ Test(init_stack, 0_three_valid_negint)
 TestSuite(sa, .init=redirect_stdout_to_stderr);
 /* ************************************************************************** */
 
-bool	check_sa(int *expected)
+t_list*	setup_stack_a(const int* initial, size_t initial_len)
 {
-	t_list	*stack_a = NULL;
-	int len = 0;
+	t_list *stack_a = NULL;
+	cr_assert(initial != NULL);
+	stack_a = init_stack(initial_len, initial, stack_a);
+	cr_assert(stack_a != NULL);
+	return stack_a;
+}
 
-	if (expected)
-		while (expected[len])
-			len++;
-	stack_a = init_stack(len, expected, stack_a);
-	if (stack_a == NULL)
-	{
-		/*cr_log_error("Stack_init_setup failed in sa\n");*/
-		return (false);
-	}
-	if(sa(stack_a) == false)
-		return (false);
-	if (*(int *)stack_a->content == expected[1] && \
-			*(int *)stack_a->next->content == expected[0])
-	{
+void	destroy_stack_a(t_list* stack_a)
+{
 	ft_lstclear(&stack_a, NULL);
-		return (true);
+}
+
+bool	compare_stack_against_array(t_list* stack_a, const int *expected, size_t expected_len)
+{
+	size_t i = 0;
+	int number;
+	while(i < expected_len)
+	{
+		number = *(int *)stack_a->content;
+		if(number != expected[i])
+			return false;
+		stack_a = stack_a->next;
+		i++;
 	}
-	ft_lstclear(&stack_a, NULL);
-	return (false);
+	return true;
 }
 
 Test(sa, basic_input)
 {
-	int	expected[] = {1, 2, '\0'};
+	const int initial[] = {1, 2};
+	const int	expected[] = {2, 1};
 
-	cr_assert(check_sa(expected) == true);
-	cr_assert_stdout_eq_str("sa\n");
-}
+	const size_t initial_len = sizeof(initial) / sizeof(*initial);
+	const size_t expected_len = sizeof(expected) / sizeof(*expected);
 
-Test(sa, invalid_input)
-{
-	int	expected[] = {1, '\0'};
+	t_list* stack_a = setup_stack_a(initial, initial_len);
+	sa(stack_a);
 
-	cr_assert(check_sa(expected) == false);
-	cr_assert_stderr_eq_str("");
+	bool result = compare_stack_against_array(stack_a, expected, expected_len);
+	destroy_stack_a(stack_a);
+
+	cr_expect(result == true);
+	cr_expect_stdout_eq_str("sa\n");
 }

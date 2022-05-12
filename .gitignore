@@ -2,6 +2,8 @@
 *.d
 push_swap
 unit-test
+*.gcda
+*.gcno
 # Object files
 *.o
 *.ko

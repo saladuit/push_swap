@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                    .--.  _                 */
-/*   push_swap.c                                     |o_o || |                */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                   |:_/ || |_ _   ___  __   */
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2021/09/22 11:47:31 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/05/12 22:04:20 by saladuit     \___)=(___/                 */
+/*   Updated: 2022/06/11 17:07:22 by safoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 void	ft_error(void)
 {
 		ft_putendl_fd("Error", 2);
-
 }
 
 /*check whether the string is valid for atoi that should become a zero */
@@ -144,7 +143,7 @@ t_list	*init_stack(int len, const int *integer, t_list *stack_a)
 	i = 0;
 	while (i < (size_t)len)
 	{
-		ft_lstadd_back(&stack_a, ft_lstnew(&integer[i]));
+		/*ft_lstadd_back(&stack_a, ft_lstnew(&integer[i]));*/
 		i++;
 	}
 	return (stack_a);

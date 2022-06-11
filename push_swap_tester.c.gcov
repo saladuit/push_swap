@@ -1,0 +1,658 @@
+        -:    0:Source:./unit_test/src/push_swap_tester.c
+        -:    0:Graph:push_swap_tester.gcno
+        -:    0:Data:push_swap_tester.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/* ************************************************************************** */
+        -:    2:/*                                                                            */
+        -:    3:/*                                                    .--.  _                 */
+        -:    4:/*   push_swap_tester.c                                 :+:      :+:    :+:   */
+        -:    5:/*                                                   |:_/ || |_ _   ___  __   */
+        -:    6:/*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
+        -:    7:/*                                                 (|     | )|_| |_| |>  <    */
+        -:    8:/*   Created: 2022/03/09 20:05:09 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
+        -:    9:/*   Updated: 2022/06/11 18:59:58 by safoh            ###   ########.fr       */
+        -:   10:/*                                                                            */
+        -:   11:/* ************************************************************************** */
+        -:   12:
+        -:   13:#include "unit_push_swap.h"
+        -:   14:#include "push_swap.h"
+        -:   15:#include "libft.h"
+        -:   16:#include <criterion/criterion.h>
+        -:   17:#include <criterion/new/assert.h>
+        -:   18:#include <criterion/internal/assert.h>
+        -:   19:#include <criterion/logging.h>
+        -:   20:#include <string.h>
+        -:   21:
+        -:   22:/* ************************************************************************** */
+        -:   23:TestSuite(check_argc, .init=redirect_all_stdout);
+        -:   24:/* ************************************************************************** */
+        2:   25:Test(check_argc, possible_stac_)
+        -:   26:{
+        1:   27:	check_argc_test(1, false, "");
+        1:   28:}
+        2:   29:Test(check_argc, possible_stack_sizes)
+        -:   30:{
+        -:   31:	/*check_argc_test(1, false, "");*/
+        1:   32:	check_argc_test(2, false, "Error\n");
+        -:   33:	/*check_argc_test(3, true, "");*/
+        1:   34:}
+        -:   35:
+        2:   36:Test(check_argc, possible_stack_)
+        -:   37:{
+        1:   38:	check_argc_test(3, true, "");
+        1:   39:}
+        -:   40:
+        -:   41:/*[> ************************************************************************** <]*/
+        -:   42:/*TestSuite(check_argv, .init=redirect_stdout_to_stderr);*/
+        -:   43:/*[> ************************************************************************** <]*/
+        -:   44:
+        -:   45:/*Test(check_argv, NULL_pointer)*/
+        -:   46:/*{*/
+        -:   47:	/*cr_assert(var_check(0, NULL) == false);*/
+        -:   48:	/*cr_assert_stderr_eq_str("");*/
+        -:   49:/*}*/
+        -:   50:
+        -:   51:/*Test(check_argv, one_number)*/
+        -:   52:/*{*/
+        -:   53:	/*char *string[] = {"1", NULL};*/
+        -:   54:	/*cr_assert(var_check(1, string) == true);*/
+        -:   55:	/*cr_assert_stderr_eq_str("");*/
+        -:   56:/*}*/
+        -:   57:
+        -:   58:/*Test(check_argv, one_char)*/
+        -:   59:/*{*/
+        -:   60:	/*char *string[] = {"a", NULL};*/
+        -:   61:	/*cr_assert(var_check(1, string) == false);*/
+        -:   62:	/*cr_assert_stderr_eq_str("Error\n");*/
+        -:   63:/*}*/
+        -:   64:
+        -:   65:/*Test(check_argv, two_numbers_sorted)*/
+        -:   66:/*{*/
+        -:   67:	/*char *string[] = {"1", "2", NULL};*/
+        -:   68:	/*cr_assert(var_check(2, string) == true);*/
+        -:   69:	/*cr_assert_stderr_eq_str("");*/
+        -:   70:/*}*/
+        -:   71:
+        -:   72:/*Test(check_argv, two_numbers_unsorted)*/
+        -:   73:/*{*/
+        -:   74:	/*char *string[] = {"2", "1", NULL};*/
+        -:   75:	/*cr_assert(var_check(2, string) == true);*/
+        -:   76:	/*cr_assert_stderr_eq_str("");*/
+        -:   77:/*}*/
+        -:   78:
+        -:   79:/*Test(check_argv, invalid_char)*/
+        -:   80:/*{*/
+        -:   81:	/*char *string[] = {"a", "1", NULL};*/
+        -:   82:	/*cr_assert(var_check(2, string) == false);*/
+        -:   83:	/*cr_assert_stderr_eq_str("Error\n");*/
+        -:   84:/*}*/
+        -:   85:
+        -:   86:/*Test(check_argv, invalid_char_second_arg)*/
+        -:   87:/*{*/
+        -:   88:	/*char *string[] = {"1", "a", NULL};*/
+        -:   89:	/*cr_assert(var_check(2, string) == false);*/
+        -:   90:	/*cr_assert_stderr_eq_str("Error\n");*/
+        -:   91:/*}*/
+        -:   92:
+        -:   93:/*Test(check_argv, invalid_char_second_position)*/
+        -:   94:/*{*/
+        -:   95:	/*char *string[] = {"1a", "1", NULL};*/
+        -:   96:	/*cr_assert(var_check(2, string) == false);*/
+        -:   97:	/*cr_assert_stderr_eq_str("Error\n");*/
+        -:   98:/*}*/
+        -:   99:/*Test(check_argv, invalid_char_random_position)*/
+        -:  100:/*{*/
+        -:  101:	/*char *string[] = {"a1", "1234a", NULL};*/
+        -:  102:	/*cr_assert(var_check(2, string) == false);*/
+        -:  103:	/*cr_assert_stderr_eq_str("Error\n");*/
+        -:  104:/*}*/
+        -:  105:
+        -:  106:/*Test(check_argv, invalid_char_nl)*/
+        -:  107:/*{*/
+        -:  108:	/*char *string[] = {"\n", "2", NULL};*/
+        -:  109:	/*cr_assert(var_check(2, string) == false);*/
+        -:  110:	/*cr_assert_stderr_eq_str("Error\n");*/
+        -:  111:/*}*/
+        -:  112:
+        -:  113:/*Test(check_argv, invalid_char_specialchar)*/
+        -:  114:/*{*/
+        -:  115:	/*char *string[] = {"1", "-", NULL};*/
+        -:  116:	/*cr_assert(var_check(2, string) == true);*/
+        -:  117:	/*cr_assert_stderr_eq_str("");*/
+        -:  118:/*}*/
+        -:  119:
+        -:  120:/*Test(check_argv, invalid_char_tab)*/
+        -:  121:/*{*/
+        -:  122:	/*char *string[] = {"1", "\t", NULL};*/
+        -:  123:	/*cr_assert(var_check(2, string) == false);*/
+        -:  124:	/*cr_assert_stderr_eq_str("Error\n");*/
+        -:  125:/*}*/
+        -:  126:
+        -:  127:/*Test(check_argv, invalid_nullterminator)*/
+        -:  128:/*{*/
+        -:  129:	/*char *string[] = {"4", "\0", "3", NULL};*/
+        -:  130:	/*cr_assert(var_check(3, string) == true);*/
+        -:  131:	/*cr_assert_stderr_eq_str("");*/
+        -:  132:/*}*/
+        -:  133:
+        -:  134:/*Test(check_argv, invalid_nullterminator_check)*/
+        -:  135:/*{*/
+        -:  136:	/*char *string[] = {"4", "0", "3", NULL};*/
+        -:  137:	/*cr_assert(var_check(3, string) == true);*/
+        -:  138:	/*cr_assert_stderr_eq_str("");*/
+        -:  139:/*}*/
+        -:  140:
+        -:  141:/*Test(check_argv, invalid_3x_nullterminator)*/
+        -:  142:/*{*/
+        -:  143:	/*char *string[] = {"\\0", "2", "\0", NULL};*/
+        -:  144:	/*cr_assert(var_check(3, string) == false);*/
+        -:  145:	/*cr_assert_stderr_eq_str("Error\n");*/
+        -:  146:/*}*/
+        -:  147:
+        -:  148:/*Test(check_argv, invalid_nullterminator_afternum)*/
+        -:  149:/*{*/
+        -:  150:	/*char *string[] = {"4", "1\0", "0", NULL};*/
+        -:  151:	/*cr_assert(var_check(3, string) == true);*/
+        -:  152:	/*cr_assert_stderr_eq_str("");*/
+        -:  153:/*}*/
+        -:  154:
+        -:  155:/*Test(check_argv, atoi_v1)*/
+        -:  156:/*{*/
+        -:  157:	/*char *string[] = {"004", NULL};*/
+        -:  158:	/*cr_assert(var_check(1, string) == true);*/
+        -:  159:	/*cr_assert_stderr_eq_str("");*/
+        -:  160:/*}*/
+        -:  161:
+        -:  162:/*Test(check_argv, atoi_v2)*/
+        -:  163:/*{*/
+        -:  164:	/*char *string[] = {"+4", NULL};*/
+        -:  165:	/*cr_assert(var_check(1, string) == true);*/
+        -:  166:	/*cr_assert_stderr_eq_str("");*/
+        -:  167:/*}*/
+        -:  168:
+        -:  169:/*Test(check_argv, atoi_v3)*/
+        -:  170:/*{*/
+        -:  171:	/*char *string[] = {"-4", NULL};*/
+        -:  172:	/*cr_assert(var_check(1, string) == true);*/
+        -:  173:	/*cr_assert_stderr_eq_str("");*/
+        -:  174:/*}*/
+        -:  175:
+        -:  176:/*Test(check_argv, atoi_v4)*/
+        -:  177:/*{*/
+        -:  178:	/*char *string[] = {"-4", NULL};*/
+        -:  179:	/*cr_assert(var_check(1, string) == true);*/
+        -:  180:	/*cr_assert_stderr_eq_str("");*/
+        -:  181:/*}*/
+        -:  182:
+        -:  183:/*Test(check_argv, atoi_v5)*/
+        -:  184:/*{*/
+        -:  185:	/*char *string[] = {"4-", NULL};*/
+        -:  186:	/*cr_assert(var_check(1, string) == true);*/
+        -:  187:	/*cr_assert_stderr_eq_str("");*/
+        -:  188:/*}*/
+        -:  189:
+        -:  190:/*Test(check_argv, atoi_v6)*/
+        -:  191:/*{*/
+        -:  192:	/*char *string[] = {"4+", NULL};*/
+        -:  193:	/*cr_assert(var_check(1, string) == true);*/
+        -:  194:	/*cr_assert_stderr_eq_str("");*/
+        -:  195:/*}*/
+        -:  196:
+        -:  197:/*Test(check_argv, atoi_v7)*/
+        -:  198:/*{*/
+        -:  199:	/*char *string[] = {"000-4+", NULL};*/
+        -:  200:	/*cr_assert(var_check(1, string) == true);*/
+        -:  201:	/*cr_assert_stderr_eq_str("");*/
+        -:  202:/*}*/
+        -:  203:
+        -:  204:/*[> ************************************************************************** <]*/
+        -:  205:/*TestSuite(argvtoarray, .init=redirect_stdout_to_stderr);*/
+        -:  206:/*[> ************************************************************************** <]*/
+        -:  207:
+        -:  208:/*bool	setup_argvtoarray(char **argv)*/
+        -:  209:/*{*/
+        -:  210:	/*int	len;*/
+        -:  211:	/*int i;*/
+        -:  212:	/*int	*integer = NULL;*/
+        -:  213:	/*long	*expected = NULL;*/
+        -:  214:
+        -:  215:	/*len = 0;*/
+        -:  216:	/*i = 0;*/
+        -:  217:	/*if (argv)*/
+        -:  218:		/*while (argv[len])*/
+        -:  219:			/*len++;*/
+        -:  220:	/*expected = calloc(len + 1, sizeof(long));*/
+        -:  221:	/*integer = argvtoarray(len, argv);*/
+        -:  222:	/*if((!integer || !expected) && argv)*/
+        -:  223:	/*{*/
+        -:  224:		/*free(expected);*/
+        -:  225:		/*free(integer);*/
+        -:  226:		/*return (false);*/
+        -:  227:	/*}*/
+        -:  228:	/*if(integer && !argv)*/
+        -:  229:	/*{*/
+        -:  230:		/*free(expected);*/
+        -:  231:		/*free(integer);*/
+        -:  232:		/*[>cr_log_warn("Integer should be freed\n");<]*/
+        -:  233:		/*return (false);*/
+        -:  234:	/*}*/
+        -:  235:	/*while (i < len)*/
+        -:  236:	/*{*/
+        -:  237:
+        -:  238:		/*expected[i] = atol(argv[i]);*/
+        -:  239:		/*if (expected[i] != integer[i])*/
+        -:  240:			/*return (false);*/
+        -:  241:		/*i++;*/
+        -:  242:	/*}*/
+        -:  243:	/*free(expected);*/
+        -:  244:	/*free(integer);*/
+        -:  245:	/*return (true);*/
+        -:  246:/*}*/
+        -:  247:
+        -:  248:/*Test(argvtoarray, NULL_value)*/
+        -:  249:/*{*/
+        -:  250:
+        -:  251:	/*cr_assert(setup_argvtoarray(NULL) == true);*/
+        -:  252:	/*cr_assert_stderr_eq_str("Error\n");*/
+        -:  253:/*}*/
+        -:  254:
+        -:  255:/*Test(argvtoarray, zero_v1)*/
+        -:  256:/*{*/
+        -:  257:	/*char	*string[] = {"0", NULL};*/
+        -:  258:
+        -:  259:	/*cr_assert(setup_argvtoarray(string) == true);*/
+        -:  260:	/*cr_assert_stderr_eq_str("");*/
+        -:  261:/*}*/
+        -:  262:
+        -:  263:/*Test(argvtoarray, zero_v2)*/
+        -:  264:/*{*/
+        -:  265:	/*char	*string[] = {"-00000", NULL};*/
+        -:  266:
+        -:  267:	/*cr_assert(setup_argvtoarray(string) == true);*/
+        -:  268:	/*cr_assert_stderr_eq_str("");*/
+        -:  269:/*}*/
+        -:  270:
+        -:  271:/*Test(argvtoarray, zero_v3)*/
+        -:  272:/*{*/
+        -:  273:	/*char	*string[] = {"+00000", NULL};*/
+        -:  274:
+        -:  275:	/*cr_assert(setup_argvtoarray(string) == true);*/
+        -:  276:	/*cr_assert_stderr_eq_str("");*/
+        -:  277:/*}*/
+        -:  278:
+        -:  279:/*Test(argvtoarray, zero_v4)*/
+        -:  280:/*{*/
+        -:  281:	/*char	*string[] = {"+000010", NULL};*/
+        -:  282:
+        -:  283:	/*cr_assert(setup_argvtoarray(string) == true);*/
+        -:  284:	/*cr_assert_stderr_eq_str("");*/
+        -:  285:/*}*/
+        -:  286:
+        -:  287:/*Test(argvtoarray, extra_padding_only_one)*/
+        -:  288:/*{*/
+        -:  289:	/*char	*string[] = {"0001", NULL};*/
+        -:  290:
+        -:  291:	/*cr_assert(setup_argvtoarray(string) == true);*/
+        -:  292:	/*cr_assert_stderr_eq_str("");*/
+        -:  293:/*}*/
+        -:  294:
+        -:  295:/*Test(argvtoarray, extra_padding_only_one_min)*/
+        -:  296:/*{*/
+        -:  297:	/*char	*string[] = {"0001", NULL};*/
+        -:  298:
+        -:  299:	/*cr_assert(setup_argvtoarray(string) == true);*/
+        -:  300:	/*cr_assert_stderr_eq_str("");*/
+        -:  301:/*}*/
+        -:  302:
+        -:  303:/*Test(argvtoarray, MAX)*/
+        -:  304:/*{*/
+        -:  305:	/*char	*string[] = {"2147483647", NULL};*/
+        -:  306:
+        -:  307:	/*cr_assert(setup_argvtoarray(string) == true);*/
+        -:  308:	/*cr_assert_stderr_eq_str("");*/
+        -:  309:/*}*/
+        -:  310:
+        -:  311:/*Test(argvtoarray, MAX_plusone)*/
+        -:  312:/*{*/
+        -:  313:	/*char	*string[] = {"2147483648", NULL};*/
+        -:  314:
+        -:  315:	/*cr_assert(setup_argvtoarray(string) == false);*/
+        -:  316:	/*cr_assert_stderr_eq_str("Error\n");*/
+        -:  317:/*}*/
+        -:  318:
+        -:  319:/*Test(argvtoarray, MAX_plusone_pluspad)*/
+        -:  320:/*{*/
+        -:  321:	/*char	*string[] = {"+2147483648", NULL};*/
+        -:  322:
+        -:  323:	/*cr_assert(setup_argvtoarray(string) == false);*/
+        -:  324:	/*cr_assert_stderr_eq_str("Error\n");*/
+        -:  325:/*}*/
+        -:  326:/*Test(argvtoarray, MIN)*/
+        -:  327:/*{*/
+        -:  328:	/*char	*string[] = {"-2147483648", NULL};*/
+        -:  329:
+        -:  330:	/*cr_assert(setup_argvtoarray(string) == true);*/
+        -:  331:	/*cr_assert_stderr_eq_str("");*/
+        -:  332:/*}*/
+        -:  333:
+        -:  334:/*Test(argvtoarray, MIN_minpluspadding_v1)*/
+        -:  335:/*{*/
+        -:  336:	/*char	*string[] = {"-+-2147483648", NULL};*/
+        -:  337:
+        -:  338:	/*cr_assert(setup_argvtoarray(string) == false);*/
+        -:  339:	/*cr_assert_stderr_eq_str("Error\n");*/
+        -:  340:/*}*/
+        -:  341:
+        -:  342:/*Test(argvtoarray, MIN_minpluspadding_v2)*/
+        -:  343:/*{*/
+        -:  344:	/*char	*string[] = {"-+2147483648", NULL};*/
+        -:  345:
+        -:  346:	/*cr_assert(setup_argvtoarray(string) == false);*/
+        -:  347:	/*cr_assert_stderr_eq_str("Error\n");*/
+        -:  348:/*}*/
+        -:  349:
+        -:  350:/*Test(argvtoarray, MIN_minpluspadding_v3)*/
+        -:  351:/*{*/
+        -:  352:	/*char	*string[] = {"+-2147483648", NULL};*/
+        -:  353:
+        -:  354:	/*cr_assert(setup_argvtoarray(string) == false);*/
+        -:  355:	/*cr_assert_stderr_eq_str("Error\n");*/
+        -:  356:/*}*/
+        -:  357:
+        -:  358:/*Test(argvtoarray, MIN_minpluspadding_v4)*/
+        -:  359:/*{*/
+        -:  360:	/*char	*string[] = {"--2147483648", NULL};*/
+        -:  361:
+        -:  362:	/*cr_assert(setup_argvtoarray(string) == false);*/
+        -:  363:	/*cr_assert_stderr_eq_str("Error\n");*/
+        -:  364:/*}*/
+        -:  365:
+        -:  366:/*Test(argvtoarray, MIN_minpluspadding_v5)*/
+        -:  367:/*{*/
+        -:  368:	/*char	*string[] = {"++2147483648", NULL};*/
+        -:  369:
+        -:  370:	/*cr_assert(setup_argvtoarray(string) == false);*/
+        -:  371:	/*cr_assert_stderr_eq_str("Error\n");*/
+        -:  372:/*}*/
+        -:  373:
+        -:  374:/*Test(argvtoarray, MIN_minpluspadding_v6)*/
+        -:  375:/*{*/
+        -:  376:	/*char	*string[] = {"0+2147483648", NULL};*/
+        -:  377:
+        -:  378:	/*cr_assert(setup_argvtoarray(string) == false);*/
+        -:  379:	/*cr_assert_stderr_eq_str("Error\n");*/
+        -:  380:/*}*/
+        -:  381:
+        -:  382:/*Test(argvtoarray, MIN_minone)*/
+        -:  383:/*{*/
+        -:  384:	/*char	*string[] = {"-2147483649", NULL};*/
+        -:  385:
+        -:  386:	/*cr_assert(setup_argvtoarray(string) == false);*/
+        -:  387:	/*cr_assert_stderr_eq_str("Error\n");*/
+        -:  388:/*}*/
+        -:  389:
+        -:  390:/*Test(argvtoarray, extra_padding_MIN)*/
+        -:  391:/*{*/
+        -:  392:	/*char	*string[] = {"-002147483648", NULL};*/
+        -:  393:
+        -:  394:	/*cr_assert(setup_argvtoarray(string) == true);*/
+        -:  395:	/*cr_assert_stderr_eq_str("");*/
+        -:  396:/*}*/
+        -:  397:
+        -:  398:/*Test(argvtoarray, extra_padding_MAX)*/
+        -:  399:/*{*/
+        -:  400:	/*char	*string[] = {"002147483647", NULL};*/
+        -:  401:
+        -:  402:	/*cr_assert(setup_argvtoarray(string) == true);*/
+        -:  403:	/*cr_assert_stderr_eq_str("");*/
+        -:  404:/*}*/
+        -:  405:
+        -:  406:/*Test(argvtoarray, multiple_arguments_v1)*/
+        -:  407:/*{*/
+        -:  408:	/*char	*string[] = {"0001", "298347", NULL};*/
+        -:  409:
+        -:  410:	/*cr_assert(setup_argvtoarray(string) == true);*/
+        -:  411:	/*cr_assert_stderr_eq_str("");*/
+        -:  412:/*}*/
+        -:  413:
+        -:  414:/*Test(argvtoarray, multiple_arguments_v2)*/
+        -:  415:/*{*/
+        -:  416:	/*char	*string[] = {"0001", "298347", "-12304987", NULL};*/
+        -:  417:
+        -:  418:	/*cr_assert(setup_argvtoarray(string) == true);*/
+        -:  419:	/*cr_assert_stderr_eq_str("");*/
+        -:  420:/*}*/
+        -:  421:
+        -:  422:/*Test(argvtoarray, multiple_arguments_v3)*/
+        -:  423:/*{*/
+        -:  424:	/*char	*string[] = {"0001", "298347", "-12304987", "0", NULL};*/
+        -:  425:
+        -:  426:	/*cr_assert(setup_argvtoarray(string) == true);*/
+        -:  427:	/*cr_assert_stderr_eq_str("");*/
+        -:  428:/*}*/
+        -:  429:/*[>Is the list already sorted and does it contain double numbers<]*/
+        -:  430:/*[> ************************************************************************** <]*/
+        -:  431:/*TestSuite(array_check, .init=redirect_stdout_to_stderr);*/
+        -:  432:/*[> ************************************************************************** <]*/
+        -:  433:
+        -:  434:/*bool	test_array_check(int *expected)*/
+        -:  435:/*{*/
+        -:  436:	/*int len;*/
+        -:  437:
+        -:  438:	/*len = 0;*/
+        -:  439:	/*if (expected)*/
+        -:  440:		/*while (expected[len])*/
+        -:  441:			/*len++;*/
+        -:  442:	/*if (array_check(len, expected) == false)*/
+        -:  443:		/*return (false);*/
+        -:  444:	/*return (true);*/
+        -:  445:/*}*/
+        -:  446:
+        -:  447:/*Test(array_check, NULL_values)*/
+        -:  448:/*{*/
+        -:  449:	/*cr_assert(test_array_check(NULL) == false);*/
+        -:  450:	/*cr_assert_stderr_eq_str("Error\n");*/
+        -:  451:/*}*/
+        -:  452:
+        -:  453:/*Test(array_check, one_nemb_sorted)*/
+        -:  454:/*{*/
+        -:  455:	/*int	expected[] = {1, 2, '\0'};*/
+        -:  456:	/*cr_assert(test_array_check(expected) == false);*/
+        -:  457:	/*cr_assert_stderr_eq_str("Error\n");*/
+        -:  458:/*}*/
+        -:  459:
+        -:  460:/*Test(array_check, two_nemb_unsorted)*/
+        -:  461:/*{*/
+        -:  462:	/*int	expected[] = {2, 1, '\0'};*/
+        -:  463:	/*cr_assert(test_array_check(expected) == true);*/
+        -:  464:/*}*/
+        -:  465:
+        -:  466:/*Test(array_check, two_nemb_double)*/
+        -:  467:/*{*/
+        -:  468:	/*int	expected[] = {2, 2, '\0'};*/
+        -:  469:	/*cr_assert(test_array_check(expected) == false);*/
+        -:  470:	/*cr_assert_stderr_eq_str("Error\n");*/
+        -:  471:/*}*/
+        -:  472:
+        -:  473:/*Test(array_check, three_nemb_double_middle)*/
+        -:  474:/*{*/
+        -:  475:	/*int	expected[] = {2, 3, 2, '\0'};*/
+        -:  476:	/*cr_assert(test_array_check(expected) == false);*/
+        -:  477:	/*cr_assert_stderr_eq_str("Error\n");*/
+        -:  478:/*}*/
+        -:  479:
+        -:  480:/*Test(array_check, three_nemb_double_back)*/
+        -:  481:/*{*/
+        -:  482:	/*int	expected[] = {3, 2, 2, '\0'};*/
+        -:  483:	/*cr_assert(test_array_check(expected) == false);*/
+        -:  484:	/*cr_assert_stderr_eq_str("Error\n");*/
+        -:  485:/*}*/
+        -:  486:
+        -:  487:/*Test(array_check, three_nemb_double_front)*/
+        -:  488:/*{*/
+        -:  489:	/*int	expected[] = {2, 2, 3, '\0'};*/
+        -:  490:	/*cr_assert(test_array_check(expected) == false);*/
+        -:  491:	/*cr_assert_stderr_eq_str("Error\n");*/
+        -:  492:/*}*/
+        -:  493:
+        -:  494:
+        -:  495:/*[> ************************************************************************** <]*/
+        -:  496:/*TestSuite(init_stack, .init=redirect_stdout_to_stderr);*/
+        -:  497:/*[> ************************************************************************** <]*/
+        -:  498:/*bool	test_init_stack(int *expected)*/
+        -:  499:/*{*/
+        -:  500:	/*t_list	*stack_a = NULL;*/
+        -:  501:	/*int number;*/
+        -:  502:	/*int len = 0;*/
+        -:  503:	/*size_t i = 0;*/
+        -:  504:
+        -:  505:	/*if (expected)*/
+        -:  506:		/*while (expected[len])*/
+        -:  507:			/*len++;*/
+        -:  508:	/*stack_a = init_stack(len, expected, stack_a);*/
+        -:  509:	/*if (stack_a == NULL)*/
+        -:  510:	/*{*/
+        -:  511:		/*if (expected)*/
+        -:  512:			/*cr_log_error("Stack_init_setup failed\n");*/
+        -:  513:		/*return (false);*/
+        -:  514:	/*}*/
+        -:  515:	/*while(i < (size_t)len)*/
+        -:  516:	/*{*/
+        -:  517:		/*number = *(int *)stack_a->content;*/
+        -:  518:		/*if(number != expected[i])*/
+        -:  519:			/*return (false);*/
+        -:  520:		/*stack_a = stack_a->next;*/
+        -:  521:		/*i++;*/
+        -:  522:	/*}*/
+        -:  523:	/*ft_lstclear(&stack_a, NULL);*/
+        -:  524:	/*return (true);*/
+        -:  525:/*}*/
+        -:  526:
+        -:  527:/*Test(init_stack, null_pointer)*/
+        -:  528:/*{*/
+        -:  529:	/*int *expected = NULL;*/
+        -:  530:	
+        -:  531:	/*cr_assert(test_init_stack(expected) == false);*/
+        -:  532:	/*cr_assert_stderr_eq_str("Error\n");*/
+        -:  533:/*}*/
+        -:  534:
+        -:  535:/*Test(init_stack, one_valid_int)*/
+        -:  536:/*{*/
+        -:  537:	/*int	expected[] = {1, '\0'};*/
+        -:  538:	/*cr_assert(test_init_stack(expected) == true);*/
+        -:  539:	/*cr_assert_stderr_eq_str("");*/
+        -:  540:/*}*/
+        -:  541:
+        -:  542:/*Test(init_stack, MAX_int)*/
+        -:  543:/*{*/
+        -:  544:	/*int	expected[] = {2147483647, '\0'};*/
+        -:  545:	/*cr_assert(test_init_stack(expected) == true);*/
+        -:  546:	/*cr_assert_stderr_eq_str("");*/
+        -:  547:/*}*/
+        -:  548:
+        -:  549:/*Test(init_stack, double_MAXMAX_int)*/
+        -:  550:/*{*/
+        -:  551:	/*int	expected[] = {2147483647, -2147483648, '\0'};*/
+        -:  552:	/*cr_assert(test_init_stack(expected) == true);*/
+        -:  553:	/*cr_assert_stderr_eq_str("");*/
+        -:  554:/*}*/
+        -:  555:
+        -:  556:/*Test(init_stack, double_MAX_int)*/
+        -:  557:/*{*/
+        -:  558:	/*int	expected[] = {2147483647, 2147483647, '\0'};*/
+        -:  559:	/*cr_assert(test_init_stack(expected) == true);*/
+        -:  560:	/*cr_assert_stderr_eq_str("");*/
+        -:  561:/*}*/
+        -:  562:
+        -:  563:/*Test(init_stack, MIN_int)*/
+        -:  564:/*{*/
+        -:  565:	/*int	expected[] = {-2147483648, '\0'};*/
+        -:  566:	/*cr_assert(test_init_stack(expected) == true);*/
+        -:  567:	/*cr_assert_stderr_eq_str("");*/
+        -:  568:/*}*/
+        -:  569:
+        -:  570:/*Test(init_stack, two_valid_int)*/
+        -:  571:/*{*/
+        -:  572:	/*int	expected[] = {1, 2, '\0'};*/
+        -:  573:	/*cr_assert(test_init_stack(expected) == true);*/
+        -:  574:	/*cr_assert_stderr_eq_str("");*/
+        -:  575:/*}*/
+        -:  576:
+        -:  577:/*Test(init_stack, three_valid_int)*/
+        -:  578:/*{*/
+        -:  579:	/*int	expected[] = {1, 2, 3, '\0'};*/
+        -:  580:	/*cr_assert(test_init_stack(expected) == true);*/
+        -:  581:	/*cr_assert_stderr_eq_str("");*/
+        -:  582:/*}*/
+        -:  583:
+        -:  584:/*Test(init_stack, three_valid_negint)*/
+        -:  585:/*{*/
+        -:  586:	/*int	expected[] = {-1, -2, -3, '\0'};*/
+        -:  587:	/*cr_assert(test_init_stack(expected) == true);*/
+        -:  588:	/*cr_assert_stderr_eq_str("");*/
+        -:  589:/*}*/
+        -:  590:
+        -:  591:/*Test(init_stack, rev_three_valid_negint)*/
+        -:  592:/*{*/
+        -:  593:	/*int	expected[] = {-3, -2, -1, '\0'};*/
+        -:  594:	/*cr_assert(test_init_stack(expected) == true);*/
+        -:  595:	/*cr_assert_stderr_eq_str("");*/
+        -:  596:/*}*/
+        -:  597:
+        -:  598:/*Test(init_stack, 0_three_valid_negint)*/
+        -:  599:/*{*/
+        -:  600:	/*int	expected[] = {-3, 0, -1, '\0'};*/
+        -:  601:	/*cr_assert(test_init_stack(expected) == true);*/
+        -:  602:	/*cr_assert_stderr_eq_str("");*/
+        -:  603:/*}*/
+        -:  604:/*[> ************************************************************************** <]*/
+        -:  605:/*TestSuite(sa, .init=redirect_stdout_to_stderr);*/
+        -:  606:/*[> ************************************************************************** <]*/
+        -:  607:
+        -:  608:/*t_list*	setup_stack_a(const int* initial, size_t initial_len)*/
+        -:  609:/*{*/
+        -:  610:	/*t_list *stack_a = NULL;*/
+        -:  611:	/*cr_assert(initial != NULL);*/
+        -:  612:	/*stack_a = init_stack(initial_len, initial, stack_a);*/
+        -:  613:	/*cr_assert(stack_a != NULL);*/
+        -:  614:	/*return stack_a;*/
+        -:  615:/*}*/
+        -:  616:
+        -:  617:/*void	destroy_stack_a(t_list* stack_a)*/
+        -:  618:/*{*/
+        -:  619:	/*ft_lstclear(&stack_a, NULL);*/
+        -:  620:/*}*/
+        -:  621:
+        -:  622:/*bool	compare_stack_against_array(t_list* stack_a, const int *expected, size_t expected_len)*/
+        -:  623:/*{*/
+        -:  624:	/*size_t i = 0;*/
+        -:  625:	/*int number;*/
+        -:  626:	/*while(i < expected_len)*/
+        -:  627:	/*{*/
+        -:  628:		/*number = *(int *)stack_a->content;*/
+        -:  629:		/*if(number != expected[i])*/
+        -:  630:			/*return false;*/
+        -:  631:		/*stack_a = stack_a->next;*/
+        -:  632:		/*i++;*/
+        -:  633:	/*}*/
+        -:  634:	/*return true;*/
+        -:  635:/*}*/
+        -:  636:
+        -:  637:/*Test(sa, basic_input)*/
+        -:  638:/*{*/
+        -:  639:	/*const int initial[] = {1, 2};*/
+        -:  640:	/*const int	expected[] = {2, 1};*/
+        -:  641:
+        -:  642:	/*const size_t initial_len = sizeof(initial) / sizeof(*initial);*/
+        -:  643:	/*const size_t expected_len = sizeof(expected) / sizeof(*expected);*/
+        -:  644:
+        -:  645:	/*t_list* stack_a = setup_stack_a(initial, initial_len);*/
+        -:  646:	/*sa(stack_a);*/
+        -:  647:
+        -:  648:	/*bool result = compare_stack_against_array(stack_a, expected, expected_len);*/
+        -:  649:	/*destroy_stack_a(stack_a);*/
+        -:  650:
+        -:  651:	/*cr_expect(result == true);*/
+        -:  652:	/*cr_expect_stdout_eq_str("sa\n");*/
+        -:  653:/*}*/

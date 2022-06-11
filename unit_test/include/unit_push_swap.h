@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                    .--.  _                 */
-/*   unit_push_swap.h                                |o_o || |                */
+/*   unit_push_swap.h                                   :+:      :+:    :+:   */
 /*                                                   |:_/ || |_ _   ___  __   */
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/03/25 17:34:35 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/05/12 20:39:59 by saladuit     \___)=(___/                 */
+/*   Updated: 2022/06/11 19:14:50 by safoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,10 @@
 # include <criterion/internal/redirect.h>
 # include <criterion/internal/test.h>
 # include <criterion/new/assert.h>
-# include "push_swap.h"
-# include "libft.h"
 
-void redirect_stdout_to_stderr(void);
-void assert_empty_stdout();
-void assert_error_stdout();
+void	redirect_all_std(void);
+void	assert_empty_stdout();
+void	assert_error_stdout();
 
+void	check_argc_test(const int argc, const bool expected, const char *error_output);
 #endif

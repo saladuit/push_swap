@@ -1,0 +1,41 @@
+        -:    0:Source:./unit_test/src/check_argc_test.c
+        -:    0:Graph:check_argc_test.gcno
+        -:    0:Data:check_argc_test.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/* ************************************************************************** */
+        -:    2:/*                                                                            */
+        -:    3:/*                                                        :::      ::::::::   */
+        -:    4:/*   check_argc_test.c                                  :+:      :+:    :+:   */
+        -:    5:/*                                                    +:+ +:+         +:+     */
+        -:    6:/*   By: safoh <safoh@student.codam.nl>             +#+  +:+       +#+        */
+        -:    7:/*                                                +#+#+#+#+#+   +#+           */
+        -:    8:/*   Created: 2022/06/11 14:14:47 by safoh             #+#    #+#             */
+        -:    9:/*   Updated: 2022/06/11 19:04:53 by safoh            ###   ########.fr       */
+        -:   10:/*                                                                            */
+        -:   11:/* ************************************************************************** */
+        -:   12:
+        -:   13:#include <criterion/criterion.h>
+        -:   14:#include <criterion/new/assert.h>
+        -:   15:#include <criterion/redirect.h>
+        -:   16:#include "push_swap.h"
+        -:   17:#include <stdbool.h>
+        -:   18:#include <fcntl.h>
+        -:   19:#include "unit_push_swap.h"
+        -:   20:
+        -:   21:#define formatBool(b) ((b) ? "true" : "false")
+        -:   22:
+        3:   23:void	check_argc_test(const int argc, const bool expected, const char *error_output)
+        -:   24:{
+        -:   25:	bool submitted;
+        -:   26:
+        3:   27:	submitted = count_check(argc);
+        3:   28:	cr_assert(submitted == expected,
+        -:   29:			"Called:\tcheck_argc_test()\nargc:\t\t%d\nexpected:\t%s \nsubmitted:\t%s\n",
+        -:   30:			argc,
+        -:   31:			formatBool(expected),
+        -:   32:			formatBool(submitted));
+        3:   33:	fflush(stderr);
+        3:   34:	cr_assert_stderr_eq_str(error_output);
+        3:   35:	return ;
+        -:   36:}

@@ -1,0 +1,25 @@
+        -:    0:Source:./unit_test/src/redirect_stdout_to_stderr.c
+        -:    0:Graph:redirect_stdout_to_stderr.gcno
+        -:    0:Data:redirect_stdout_to_stderr.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/* ************************************************************************** */
+        -:    2:/*                                                                            */
+        -:    3:/*                                                    .--.  _                 */
+        -:    4:/*   redirect_stdout_to_stderr.c                        :+:      :+:    :+:   */
+        -:    5:/*                                                   |:_/ || |_ _   ___  __   */
+        -:    6:/*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
+        -:    7:/*                                                 (|     | )|_| |_| |>  <    */
+        -:    8:/*   Created: 2022/03/25 17:46:31 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
+        -:    9:/*   Updated: 2022/06/11 16:38:07 by safoh            ###   ########.fr       */
+        -:   10:/*                                                                            */
+        -:   11:/* ************************************************************************** */
+        -:   12:
+        -:   13:#include <criterion/criterion.h>
+        -:   14:#include <criterion/redirect.h>
+        -:   15:
+       22:   16:void redirect_all_stdout(void)
+        -:   17:{
+       22:   18:        cr_redirect_stdout();
+       22:   19:        cr_redirect_stderr();
+       22:   20:}

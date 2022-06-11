@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                    .--.  _                 */
-/*   push_swap.h                                        :+:    :+:            */
+/*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                   |:_/ || |_ _   ___  __   */
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2021/09/30 15:20:23 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/04/16 13:31:00 by saladuit      ########   odam.nl         */
+/*   Updated: 2022/06/11 14:30:25 by safoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ bool	count_check(int argc);
 bool	var_check(int len, char **argv);
 bool	array_check(int len, int *integer);
 int		*argvtoarray(int len, char **argv);
-t_list	*init_stack(int len, int *integers, t_list *stack);
+t_list	*init_stack(int len, const int *integers, t_list *stack);
 
 //actions
 bool	sa(t_list *stack_a);

@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
-#                                                         ::::::::             #
-#    Makefile                                        |o_o || |                 #
-#                                                      +:+                     #
-#    By: saladuit <safoh@student.codam.nl>            +#+                      #
-#                                                    +#+                       #
-#    Created: 2022/04/13 21:33:38 by saladuit      #+#    #+#                  #
-#    Updated: 2022/05/12 21:06:23 by saladuit     \___)=(___/                  #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: safoh <safoh@student.codam.nl>             +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/06/11 13:49:39 by safoh             #+#    #+#              #
+#    Updated: 2022/06/11 20:01:52 by safoh            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,29 +34,26 @@ HEADERS			=	$(LIB_DIR)/include/libft.h \
 					include/push_swap.h
 
 INCLUDE_FLAGS	:= $(addprefix -I, $(sort $(dir $(HEADERS))))
-LIB_FLAGS		:= $(addprefix -L, $(sort $(dir $(USER_LIBS))))
 
 UNIT_TEST		:=	unit-test
 UNIT_DIR		:= ./unit_test
-UNIT_SRCS_DIR	:=	$(UNIT_DIR)/src/
+UNIT_SRCS_DIR	:=	$(UNIT_DIR)/src
 
 UNIT_HEADERS	:=	unit_test/include/unit_push_swap.h
 UNIT_LFLAGS		:=	-lcriterion
 UNIT_OBJS		=	$(UNIT_SRCS:.c=.o)
 UNIT_INCLUDE_FLAGS	:= $(addprefix -I, $(sort $(dir $(UNIT_HEADERS)))) $(INCLUDE_FLAGS)
-# COVERAGE	=	$(SRCS:.c=.gcda)	\
-				$(SRCS:.c=.gcno)	\
-				$(MAIN:.c=.gcda)	\
-				$(MAIN:.c=.gcno)	\
+COVERAGE	=	$(SRCS:.c=.gcda)		\
+				$(SRCS:.c=.gcno)		\
 				$(UNIT_SRCS:.c=.gcno)	\
-				$(UNIT_SRCS:.c=.gcda)	\
+				$(UNIT_SRCS:.c=.gcda)
 ################################################################################
 all: $(NAME)
 
 $(NAME): SHELL := /bin/bash
 
 $(NAME): $(OBJS) $(MAIN_OBJ) $(LIBFT)
-	$(CC) $(CFLAGS) $^ $(INCLUDE_FLAGS) $(LIB_FLAGS) -o $(NAME)
+	$(CC) $(CFLAGS) $^ $(INCLUDE_FLAGS) -o $(NAME)
 	@printf "$(BLUE_FG)$(NAME)$(RESET_COLOR) created\n"
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS)
@@ -85,12 +82,14 @@ fclean: clean
 re: fclean
 	$(MAKE)
 
-tests_run: CFLAGS +=-g -fsanitize=address## Launch tests
+tests_run: CFLAGS += --coverage ## Launch tests
 tests_run: $(LIBFT) $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(addprefix $(UNIT_SRCS_DIR)/, $(UNIT_SRCS)) -o $(UNIT_TEST) $(LIBFT) $(UNIT_INCLUDE_FLAGS) $(UNIT_LFLAGS)
 	./$(UNIT_TEST) -j0
+	gcov $(COVERAGE)
 
-re_tests: fclean tests_run
+re_tests: fclean
+	@$(MAKE) tests_run
 
 valgrind: all ## Launch valgrind
 	valgrind --leak-check=full ./$(TARGET)

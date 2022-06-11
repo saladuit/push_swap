@@ -11,7 +11,7 @@
         -:    6:/*   By: safoh <safoh@student.codam.nl>             +#+  +:+       +#+        */
         -:    7:/*                                                +#+#+#+#+#+   +#+           */
         -:    8:/*   Created: 2022/06/11 14:14:47 by safoh             #+#    #+#             */
-        -:    9:/*   Updated: 2022/06/11 19:04:53 by safoh            ###   ########.fr       */
+        -:    9:/*   Updated: 2022/06/11 21:11:35 by safoh            ###   ########.fr       */
         -:   10:/*                                                                            */
         -:   11:/* ************************************************************************** */
         -:   12:
@@ -25,17 +25,21 @@
         -:   20:
         -:   21:#define formatBool(b) ((b) ? "true" : "false")
         -:   22:
-        3:   23:void	check_argc_test(const int argc, const bool expected, const char *error_output)
+        5:   23:void	check_argc_test(const int argc, const bool expected, const char *error_output)
         -:   24:{
         -:   25:	bool submitted;
         -:   26:
-        3:   27:	submitted = count_check(argc);
-        3:   28:	cr_assert(submitted == expected,
-        -:   29:			"Called:\tcheck_argc_test()\nargc:\t\t%d\nexpected:\t%s \nsubmitted:\t%s\n",
-        -:   30:			argc,
-        -:   31:			formatBool(expected),
-        -:   32:			formatBool(submitted));
-        3:   33:	fflush(stderr);
-        3:   34:	cr_assert_stderr_eq_str(error_output);
-        3:   35:	return ;
-        -:   36:}
+        5:   27:	if (fork() == 0)
+        -:   28:	{
+        4:   29:	submitted = count_check(argc);
+        4:   30:	fflush(stderr);
+        4:   31:	cr_assert(submitted == expected,
+        -:   32:			"Called:\tcheck_argc_test()\nargc:\t\t%d\nexpected:\t%s \nsubmitted:\t%s\n",
+        -:   33:			argc,
+        -:   34:			formatBool(expected),
+        -:   35:			formatBool(submitted));
+        4:   36:	cr_assert_stderr_eq_str(error_output);
+        4:   37:	exit(0);
+        -:   38:	}
+        5:   39:	return ;
+        -:   40:}

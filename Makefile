@@ -6,7 +6,7 @@
 #    By: safoh <safoh@student.codam.nl>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/11 13:49:39 by safoh             #+#    #+#              #
-#    Updated: 2022/06/12 20:36:30 by safoh            ###   ########.fr        #
+#    Updated: 2022/06/12 21:16:24 by safoh            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ $(NAME): $(OBJS) $(MAIN_OBJ) $(LIBFT)
 	$(CC) $(CFLAGS) $^ $(INCLUDE_FLAGS) -o $(NAME)
 	@printf "$(BLUE_FG)$(NAME)$(RESET_COLOR) created\n"
 
-$(BUILD_DIR)%.o: $(SRC_DIR)%.c $(HEADERS)
+$(OBJS): $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c | $(HEADER)
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(INCLUDE_FLAGS) $(INCLUDES) -c $< -o $@
 
@@ -48,7 +48,7 @@ fsan:
 	@$(MAKE) FSAN=1
 
 clean:
-	$(RM) $(OBJS) $(MAIN_OBJ) $(addprefix $(BUILD_DIR),$(COVERAGE))
+	$(RM) $(OBJS) $(MAIN_OBJ) $(addprefix $(BUILD_DIR)/,$(COVERAGE))
 	@$(MAKE) clean -C $(LIBFT_DIR)
 	@$(MAKE) clean -C $(UNIT_DIR)
 
@@ -61,13 +61,13 @@ re: fclean
 	$(MAKE)
 
 tests_run: CFLAGS +=-g --coverage ## Launch tests
-tests_run: $(LIBFT) $(OBJS)
+tests_run: $(OBJS) $(LIBFT)
 	$(MAKE) -C $(UNIT_DIR)
 	./$(UNIT_TEST)
 	gcov -n $(COVERAGE) -o=$(BUILD_DIR)
 
 re_tests: fclean
-	@$(MAKE) tests_run
+	$(MAKE) tests_run
 
 valgrind: all ## Launch valgrind
 	valgrind --leak-check=full ./$(TARGET)

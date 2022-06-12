@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/03/09 20:05:09 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/12 19:37:13 by safoh            ###   ########.fr       */
+/*   Updated: 2022/06/12 21:20:52 by safoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ TestSuite(check_argc, .init=redirect_all_std);
 
 Test(count_check, fixed_tests)
 {
-	argc_check_tester(1, false);
+	argc_check_tester(1, true);
 	argc_check_tester(2, false);
 	argc_check_tester(3, true);
 }

@@ -1,7 +1,6 @@
 # Prerequisites
 *.d
-push_swap
-unit-test
+*_unit_test
 *.gcda
 *.gcno
 # Object files

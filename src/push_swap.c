@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2021/09/22 11:47:31 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/11 17:07:22 by safoh            ###   ########.fr       */
+/*   Updated: 2022/06/12 16:32:07 by safoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,8 @@ bool	ft_isatoi(int c)
 	return (false);
 }
 /*Make sure size of arguments is at least 3 to make it sortable*/
-bool	count_check(int argc)
+bool	argc_check(int argc)
 {
-	if (argc == 2)
-		ft_error();
 	if (argc < 3)
 		return (false);
 	return (true);

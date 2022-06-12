@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2021/09/30 15:20:23 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/11 14:30:25 by safoh            ###   ########.fr       */
+/*   Updated: 2022/06/12 16:35:48 by safoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdbool.h>
 # include "libft.h"
 
-bool	count_check(int argc);
+bool	argc_check(int argc);
 bool	var_check(int len, char **argv);
 bool	array_check(int len, int *integer);
 int		*argvtoarray(int len, char **argv);

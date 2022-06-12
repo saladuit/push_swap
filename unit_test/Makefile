@@ -6,7 +6,7 @@
 #    By: safoh <safoh@student.codam.nl>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/12 17:00:28 by safoh             #+#    #+#              #
-#    Updated: 2022/06/12 19:17:15 by safoh            ###   ########.fr        #
+#    Updated: 2022/06/12 19:29:22 by safoh            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,9 @@ include ../makerc/unit_makefile.mk
 
 NAME			:= ../$(UNIT_TEST)
 
-CC				:=	gcc
-RM				:=	rm -rfv
-CFLAGS			=	-Wall -Wextra -Werror --coverage -g
+CC				:=gcc
+RM				:=rm -rfv
+CFLAGS			:=-Wall -Wextra -Werror --coverage -g
 UNIT_LFLAGS		:=-lcriterion
 
 all: $(NAME)

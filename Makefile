@@ -6,7 +6,7 @@
 #    By: safoh <safoh@student.codam.nl>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/11 13:49:39 by safoh             #+#    #+#              #
-#    Updated: 2022/06/12 19:20:47 by safoh            ###   ########.fr        #
+#    Updated: 2022/06/12 19:32:07 by safoh            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ fsan:
 	@$(MAKE) FSAN=1
 
 clean:
-	$(RM) $(OBJS) $(MAIN_OBJ) *.gcda *.gcno *.gcov
+	$(RM) $(OBJS) $(MAIN_OBJ) $(addprefix $(BUILD_DIR)/,$(COVERAGE))
 	@$(MAKE) clean -C $(LIB_DIR)
 	@$(MAKE) clean -C $(UNIT_DIR)
 

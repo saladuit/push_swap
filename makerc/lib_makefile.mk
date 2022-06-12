@@ -12,5 +12,3 @@ SRCS  := ft_memset.c ft_bzero.c ft_memcpy.c ft_strlen.c ft_atoi.c \
 		 ft_lstiter.c ft_lstmap.c ft_strbapi.c ft_isspace.c ft_strtol.c \
 		 ft_arrint.c ft_swap.c
 
-LIB_DIR			=	libs/libft
-LIBFT			:=  $(LIB_DIR)/libft.a

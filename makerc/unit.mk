@@ -8,6 +8,7 @@ UNIT_LFLAGS			:=-lcriterion
 UNIT_OBJS			=$(UNIT_SRCS:.c=.o)
 UNIT_INCLUDE_FLAGS	:=$(addprefix -I, $(sort $(dir $(UNIT_HEADERS))))
 
+COVERAGE_DIR		:=./coverage
 COVERAGE			=$(SRCS:.c=.gcda)			\
 						$(SRCS:.c=.gcno)		\
 						$(UNIT_SRCS:.c=.gcno)	\

@@ -6,7 +6,7 @@
 #    By: safoh <safoh@student.codam.nl>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/11 13:49:39 by safoh             #+#    #+#              #
-#    Updated: 2022/06/12 16:28:12 by safoh            ###   ########.fr        #
+#    Updated: 2022/06/12 16:47:11 by safoh            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,6 +64,7 @@ re: fclean
 
 tests_run: CFLAGS += --coverage ## Launch tests
 tests_run: $(LIBFT) $(OBJS)
+	@mkdir -p $(COVERAGE_DIR)
 	$(CC) $(CFLAGS) $(OBJS) $(addprefix $(UNIT_SRCS_DIR)/, $(UNIT_SRCS)) -o $(UNIT_TEST) $(LIBFT) $(UNIT_INCLUDE_FLAGS) $(INCLUDE_FLAGS) $(UNIT_LFLAGS)
 	./$(UNIT_TEST) -j0
 	gcov --no-output $(COVERAGE)

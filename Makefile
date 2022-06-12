@@ -6,16 +6,13 @@
 #    By: safoh <safoh@student.codam.nl>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/11 13:49:39 by safoh             #+#    #+#              #
-#    Updated: 2022/06/12 16:47:11 by safoh            ###   ########.fr        #
+#    Updated: 2022/06/12 19:20:47 by safoh            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 include makerc/colours.mk
-include makerc/main.mk
-include makerc/srcs.mk
-include makerc/lib.mk
-include makerc/headers.mk
-include makerc/unit.mk
+include makerc/makefile.mk
+include makerc/unit_makefile.mk
 
 ################################################################################
 
@@ -52,22 +49,23 @@ fsan:
 	@$(MAKE) FSAN=1
 
 clean:
-	$(RM) $(OBJS) $(MAIN_OBJ) $(UNIT_TEST_OBJS) $(COVERAGE)
+	$(RM) $(OBJS) $(MAIN_OBJ) *.gcda *.gcno *.gcov
 	@$(MAKE) clean -C $(LIB_DIR)
+	@$(MAKE) clean -C $(UNIT_DIR)
 
 fclean: clean
-	$(RM) $(NAME) $(UNIT_TEST) *.gcda *.gcno *.gcov
+	$(RM) $(NAME) $(UNIT_TEST)
 	@$(MAKE) fclean -C $(LIB_DIR)
+	@$(MAKE) fclean -C $(UNIT_DIR)
 
 re: fclean
 	$(MAKE)
 
-tests_run: CFLAGS += --coverage ## Launch tests
+tests_run: CFLAGS +=-g --coverage ## Launch tests
 tests_run: $(LIBFT) $(OBJS)
-	@mkdir -p $(COVERAGE_DIR)
-	$(CC) $(CFLAGS) $(OBJS) $(addprefix $(UNIT_SRCS_DIR)/, $(UNIT_SRCS)) -o $(UNIT_TEST) $(LIBFT) $(UNIT_INCLUDE_FLAGS) $(INCLUDE_FLAGS) $(UNIT_LFLAGS)
-	./$(UNIT_TEST) -j0
-	gcov --no-output $(COVERAGE)
+	$(MAKE) -C $(UNIT_DIR)
+	./$(UNIT_TEST)
+	gcov -n $(COVERAGE) -o=build
 
 re_tests: fclean
 	@$(MAKE) tests_run

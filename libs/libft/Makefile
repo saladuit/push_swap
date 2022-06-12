@@ -6,7 +6,7 @@
 #    By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /    #
 #                                                  (|     | )|_| |_| |>  <     #
 #    Created: 2022/02/09 17:06:29 by safoh        /'\_   _/`\__|\__,_/_/\_\    #
-#    Updated: 2022/06/12 19:27:41 by safoh            ###   ########.fr        #
+#    Updated: 2022/06/12 20:31:04 by safoh            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,20 +14,18 @@ include ../../makerc/colours.mk
 include ../../makerc/lib_makefile.mk
 
 ################################################################################
-PROJECT			=	Libft
-NAME			=	libft.a
+NAME			=libft.a
 
-CC				:=	gcc
-RM				:=	rm -rf
-CFLAGS			=	-Wall -Wextra -Werror $(if $(DEBUG),-g) \
+CC				:=gcc
+RM				:=rm -rf
+CFLAGS			=-Wall -Wextra -Werror $(if $(DEBUG),-g) \
 					$(if $(FSAN),-fsanitize=address -g)
 
-SRC_DIR 		:=	./src
-BUILD_DIR		:=	./build
-OBJS			=	$(addprefix $(BUILD_DIR)/, $(SRCS:%.c=%.o))
-HEADERS			=	include/libft.h
-INCLUDE_FLAGS	=	$(addprefix -I, $(sort $(dir $(HEADERS))))
-LIB_FLAGS		+=	$(addprefix -L, $(sort $(dir $(USER_LIBS))))
+SRC_DIR 		:=./src
+BUILD_DIR		:=./build
+OBJS			=$(addprefix $(BUILD_DIR)/, $(SRCS:%.c=%.o))
+HEADERS			=include/libft.h
+INCLUDE_FLAGS	=$(addprefix -I, $(sort $(dir $(HEADERS))))
 
 ################################################################################
 all: $(NAME)
@@ -45,10 +43,10 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS)
 
 ################################################################################
 clean:
-	$(RM) $(BUILD_DIR)
+	@$(RM) $(OBJS)
 
 fclean: clean
-	$(RM) *.a *.dSYM
+	@$(RM) $(NAME) *.a *.dSYM
 
 re: fclean all
 

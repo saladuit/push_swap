@@ -6,18 +6,11 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/03/09 20:05:09 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/12 16:33:47 by safoh            ###   ########.fr       */
+/*   Updated: 2022/06/12 19:37:13 by safoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "unit_push_swap.h"
-#include "push_swap.h"
-#include "libft.h"
-#include <criterion/criterion.h>
-#include <criterion/new/assert.h>
-#include <criterion/internal/assert.h>
-#include <criterion/logging.h>
-#include <string.h>
+#include "unit_test.h"
 
 /* ************************************************************************** */
 TestSuite(check_argc, .init=redirect_all_std);

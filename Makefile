@@ -6,7 +6,7 @@
 #    By: safoh <safoh@student.codam.nl>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/11 13:49:39 by safoh             #+#    #+#              #
-#    Updated: 2022/06/12 19:32:07 by safoh            ###   ########.fr        #
+#    Updated: 2022/06/12 20:36:30 by safoh            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,6 @@ include makerc/unit_makefile.mk
 
 ################################################################################
 
-PROJECT			:=	Push_Swap_Project
 NAME			:=	push_swap
 
 CC				:=	gcc
@@ -33,12 +32,12 @@ $(NAME): $(OBJS) $(MAIN_OBJ) $(LIBFT)
 	$(CC) $(CFLAGS) $^ $(INCLUDE_FLAGS) -o $(NAME)
 	@printf "$(BLUE_FG)$(NAME)$(RESET_COLOR) created\n"
 
-$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS)
+$(BUILD_DIR)%.o: $(SRC_DIR)%.c $(HEADERS)
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(INCLUDE_FLAGS) $(INCLUDES) -c $< -o $@
 
 $(LIBFT):
-	@$(MAKE) -C $(LIB_DIR)
+	@$(MAKE) -C $(LIBFT_DIR)
 
 ################################################################################
 
@@ -49,13 +48,13 @@ fsan:
 	@$(MAKE) FSAN=1
 
 clean:
-	$(RM) $(OBJS) $(MAIN_OBJ) $(addprefix $(BUILD_DIR)/,$(COVERAGE))
-	@$(MAKE) clean -C $(LIB_DIR)
+	$(RM) $(OBJS) $(MAIN_OBJ) $(addprefix $(BUILD_DIR),$(COVERAGE))
+	@$(MAKE) clean -C $(LIBFT_DIR)
 	@$(MAKE) clean -C $(UNIT_DIR)
 
 fclean: clean
 	$(RM) $(NAME) $(UNIT_TEST)
-	@$(MAKE) fclean -C $(LIB_DIR)
+	@$(MAKE) fclean -C $(LIBFT_DIR)
 	@$(MAKE) fclean -C $(UNIT_DIR)
 
 re: fclean
@@ -65,7 +64,7 @@ tests_run: CFLAGS +=-g --coverage ## Launch tests
 tests_run: $(LIBFT) $(OBJS)
 	$(MAKE) -C $(UNIT_DIR)
 	./$(UNIT_TEST)
-	gcov -n $(COVERAGE) -o=build
+	gcov -n $(COVERAGE) -o=$(BUILD_DIR)
 
 re_tests: fclean
 	@$(MAKE) tests_run

@@ -6,7 +6,7 @@
 #    By: safoh <safoh@student.codam.nl>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/11 13:49:39 by safoh             #+#    #+#              #
-#    Updated: 2022/06/12 21:16:24 by safoh            ###   ########.fr        #
+#    Updated: 2022/06/12 21:31:16 by safoh            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,7 @@ NAME			:=	push_swap
 
 CC				:=	gcc
 RM				:=	rm -rfv
-CFLAGS			=	-Wall -Wextra -Werror $(if $(DEBUG), -g) \
-					$(if $(FSAN), -fsanitize=address -g)
+CFLAGS			=	-Wall -Wextra -Werror $(if $(DEBUG),-g -fsanitize=address) \
 
 ################################################################################
 all: $(NAME)
@@ -40,12 +39,6 @@ $(LIBFT):
 	@$(MAKE) -C $(LIBFT_DIR)
 
 ################################################################################
-
-debug:
-	@$(MAKE) DEBUG=1
-
-fsan:
-	@$(MAKE) FSAN=1
 
 clean:
 	$(RM) $(OBJS) $(MAIN_OBJ) $(addprefix $(BUILD_DIR)/,$(COVERAGE))
@@ -69,9 +62,12 @@ tests_run: $(OBJS) $(LIBFT)
 re_tests: fclean
 	$(MAKE) tests_run
 
+debug:
+	@$(MAKE) DEBUG=1
+
 valgrind: all ## Launch valgrind
 	valgrind --leak-check=full ./$(TARGET)
 
-.PHONY: all clean fclean re tests_run debug fsan valgrind
+.PHONY: all clean fclean re tests_run debug valgrind
 
 ################################################################################

@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2021/09/22 11:47:31 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/13 15:06:13 by safoh            ###   ########.fr       */
+/*   Updated: 2022/06/13 17:59:07 by safoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "push_swap.h"
 
 /*Make sure size of arguments is at least 3 to make it sortable*/
-bool	argc_check(int argc)
+bool	argc_checker(int argc)
 {
 	if (argc < 3)
 		return (false);
@@ -23,7 +23,7 @@ bool	argc_check(int argc)
 }
 
 /*Make sure arguments contain digits*/
-bool	var_check(int len, char **argv)
+bool	argv_checker(int len, char **argv)
 {
 	size_t i;
 

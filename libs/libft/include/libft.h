@@ -6,7 +6,7 @@
 /*   By: saladin <saladin@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/10 17:29:41 by saladin       #+#    #+#                 */
-/*   Updated: 2022/06/13 15:18:10 by safoh            ###   ########.fr       */
+/*   Updated: 2022/06/13 17:37:46 by safoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putuint_fd(unsigned int nb, int fd);
+void	ft_put2d_fd(char **s2d, int fd, size_t len);
 void	ft_error(void);
 
 //CHECK FUNCTIONS

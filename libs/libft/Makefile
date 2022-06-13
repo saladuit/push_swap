@@ -6,7 +6,7 @@
 #    By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /    #
 #                                                  (|     | )|_| |_| |>  <     #
 #    Created: 2022/02/09 17:06:29 by safoh        /'\_   _/`\__|\__,_/_/\_\    #
-#    Updated: 2022/06/12 20:31:04 by safoh            ###   ########.fr        #
+#    Updated: 2022/06/13 18:20:32 by safoh            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,7 @@ NAME			=libft.a
 
 CC				:=gcc
 RM				:=rm -rf
-CFLAGS			=-Wall -Wextra -Werror $(if $(DEBUG),-g) \
-					$(if $(FSAN),-fsanitize=address -g)
+CFLAGS			=-Wall -Wextra -Werror$(if $(DEBUG),-g -fsanitize=address)
 
 SRC_DIR 		:=./src
 BUILD_DIR		:=./build
@@ -30,7 +29,7 @@ INCLUDE_FLAGS	=$(addprefix -I, $(sort $(dir $(HEADERS))))
 ################################################################################
 all: $(NAME)
 
-$(NAME): SHELL := /bin/bash
+$(NAME): SHELL :=/bin/bash
 
 $(NAME): $(OBJS)
 	@ar rc $@ $^
@@ -38,8 +37,7 @@ $(NAME): $(OBJS)
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS)
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) $(INCLUDE_FLAGS) $(INCLUDES) -c $< -o $@
-	@printf "$(CLEAR_REST_OF_LINE)\r"
+	$(CC) $(CFLAGS) $(INCLUDE_FLAGS) -c $< -o $@
 
 ################################################################################
 clean:
@@ -48,13 +46,11 @@ clean:
 fclean: clean
 	@$(RM) $(NAME) *.a *.dSYM
 
-re: fclean all
+re: all
+	@$(MAKE) fclean
 
 debug:
 	@$(MAKE) DEBUG=1
-
-fsan:
-	@$(MAKE) FSAN=1
 
 libft_tester: re
 	bash tests/libft-war-machine/grademe.sh -d -u $(FILE)
@@ -67,5 +63,5 @@ main: all
 	$(CC) $(CFLAGS) src/main.c -lft_debug -o libft_gdb
 	./libft_gdb
 
-.PHONY: all clean fclean re libft_tester main fsan debug
+.PHONY: all clean fclean re libft_tester main debug
 ################################################################################

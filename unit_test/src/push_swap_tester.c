@@ -6,21 +6,21 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/03/09 20:05:09 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/12 21:20:52 by safoh            ###   ########.fr       */
+/*   Updated: 2022/06/13 18:00:26 by safoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "unit_test.h"
 
 /* ************************************************************************** */
-TestSuite(check_argc, .init=redirect_all_std);
+TestSuite(argc_checker, .init=redirect_all_std);
 /* ************************************************************************** */
 
 Test(count_check, fixed_tests)
 {
-	argc_check_tester(1, true);
-	argc_check_tester(2, false);
-	argc_check_tester(3, true);
+	argc_checker_test(1, false);
+	argc_checker_test(2, false);
+	argc_checker_test(3, true);
 }
 
 /* ************************************************************************** */

@@ -6,7 +6,7 @@
 #    By: safoh <safoh@student.codam.nl>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/11 13:49:39 by safoh             #+#    #+#              #
-#    Updated: 2022/06/13 16:09:11 by safoh            ###   ########.fr        #
+#    Updated: 2022/06/13 18:21:18 by safoh            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ NAME			:=push_swap
 
 CC				:=gcc
 RM				:=rm -rfv
-CFLAGS			=-Wall -Wextra -Werror $(if $(DEBUG),-g -fsanitize=address) \
+CFLAGS			=-Wall -Wextra -Werror$(if $(DEBUG),-g -fsanitize=address)
 
 ################################################################################
 all: $(NAME)
@@ -33,7 +33,7 @@ $(NAME): $(OBJS) $(MAIN_OBJ) $(LIBFT)
 
 $(MAIN_OBJ) $(OBJS): $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c | $(HEADER)
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) $(INCLUDE_FLAGS) $(INCLUDES) -c $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDE_FLAGS) -c $< -o $@
 
 $(LIBFT):
 	@$(MAKE) -C $(LIBFT_DIR)
@@ -41,26 +41,27 @@ $(LIBFT):
 ################################################################################
 
 clean:
-	$(RM) $(OBJS) $(MAIN_OBJ) $(addprefix $(BUILD_DIR)/,$(COVERAGE))
+	@$(RM) $(OBJS) $(MAIN_OBJ) $(addprefix $(BUILD_DIR)/,$(COVERAGE))
 	@$(MAKE) clean -C $(LIBFT_DIR)
 	@$(MAKE) clean -C $(UNIT_DIR)
 
 fclean: clean
-	$(RM) $(NAME) $(UNIT_TEST)
+	@$(RM) $(NAME) $(UNIT_TEST)
 	@$(MAKE) fclean -C $(LIBFT_DIR)
 	@$(MAKE) fclean -C $(UNIT_DIR)
 
 re: fclean
-	$(MAKE)
+	@$(MAKE) -C $(LIBFT_DIR)
+	@$(MAKE)
 
 tests_run: CFLAGS +=-g --coverage ## Launch tests
 tests_run: $(OBJS) $(LIBFT)
-	$(MAKE) -C $(UNIT_DIR)
-	./$(UNIT_TEST)
-	gcov -n $(COVERAGE) -o=$(BUILD_DIR)
+	@$(MAKE) -C $(UNIT_DIR)
+	@./$(UNIT_TEST)
+	@gcov -n $(COVERAGE) -o=$(BUILD_DIR)
 
 re_tests: fclean
-	$(MAKE) tests_run
+	@$(MAKE) tests_run
 
 debug:
 	@$(MAKE) DEBUG=1

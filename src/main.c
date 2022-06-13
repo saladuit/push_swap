@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 15:21:24 by safoh             #+#    #+#             */
-/*   Updated: 2022/06/13 16:09:54 by safoh            ###   ########.fr       */
+/*   Updated: 2022/06/13 18:15:25 by safoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ bool	push_swap(int argc, char **argv)
 	/*int *integer;*/
 	/*t_list *stack_a;*/
 
-	if(count_check(argc) == false || var_check(argc - 1, &argv[1]) == false)
+	if(argc_checker(argc) == false || argv_checker(argc - 1, &argv[1]) == false)
 		return (-1);
 	/*stack_a = NULL;*/
 	/*integer = NULL;*/
@@ -32,11 +32,11 @@ bool	push_swap(int argc, char **argv)
 int	main(int argc, char **argv)
 {
 	if (argc == 1)
-		return (EXIT_SUCCES);
+		return (EXIT_SUCCESS);
 	if (push_swap(argc, argv) == false)
 	{
 		ft_error();
 		return (EXIT_FAILURE);
 	}
-	return (EXIT_SUCCES);
+	return (EXIT_SUCCESS);
 }

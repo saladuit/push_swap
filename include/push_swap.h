@@ -6,19 +6,18 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2021/09/30 15:20:23 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/13 15:38:46 by safoh            ###   ########.fr       */
+/*   Updated: 2022/06/13 17:40:56 by safoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-# include <stddef.h>
 # include <stdlib.h>
 # include <stdbool.h>
 # include "libft.h"
 
-bool	argc_check(int argc);
-bool	var_check(int len, char **argv);
+bool	argc_checker(int argc);
+bool	argv_checker(int len, char **argv);
 bool	array_check(int len, int *integer);
 int		*argvtoarray(int len, char **argv);
 t_list	*init_stack(int len, const int *integers, t_list *stack);

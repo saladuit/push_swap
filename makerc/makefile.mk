@@ -15,13 +15,12 @@ LIBFT_INCLUDE_DIR	:=$(LIBFT_DIR)/$(INCLUDE_DIR)
 OBJS			=$(addprefix $(BUILD_DIR)/, $(SRCS:%.c=%.o))
 MAIN_OBJ		=$(addprefix $(BUILD_DIR)/, $(MAIN:%.c=%.o))
 
-HEADERS			=$(LIBFT_INCLUDE_DIR)/libft.h \
-					$(INCLUDE_DIR)/push_swap.h
+HEADERS			=$(LIBFT_INCLUDE_DIR)/libft.h $(INCLUDE_DIR)/push_swap.h
 INCLUDE_FLAGS	:=$(addprefix -I, $(sort $(dir $(HEADERS))))
 
 LIBFT			:=$(LIBFT_DIR)/libft.a
 
-COVERAGE		=$(SRCS:.c=.gcda) \
-	$(SRCS:.c=.gcno) \
-	$(UNIT_SRCS:.c=.gcno) \
-	$(UNIT_SRCS:.c=.gcda)
+COVERAGE		=$(SRCS:.c=.gcda) $(SRCS:.c=.gcno) \
+	#$(UNIT_SRCS:.c=.gcno) \
+		#$(UNIT_SRCS:.c=.gcda)
+# is it necessary to check the unit test coverage?

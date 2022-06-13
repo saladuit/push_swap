@@ -10,4 +10,5 @@ SRCS  := ft_memset.c ft_bzero.c ft_memcpy.c ft_strlen.c ft_atoi.c \
 		 ft_lstadd_front.c ft_lstnew.c ft_memdel.c ft_strdel.c ft_lstsize.c \
 		 ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c \
 		 ft_lstiter.c ft_lstmap.c ft_strbapi.c ft_isspace.c ft_strtol.c \
-		 ft_arrint.c ft_swap.c ft_error.c ft_iszero.c ft_isatoi.c
+		 ft_arrint.c ft_swap.c ft_error.c ft_iszero.c ft_isatoi.c \
+		 ft_put2d_fd.c

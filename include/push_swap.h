@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2021/09/30 15:20:23 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/13 17:40:56 by safoh            ###   ########.fr       */
+/*   Updated: 2022/06/13 23:10:31 by safoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@
 # include <stdbool.h>
 # include "libft.h"
 
-bool	argc_checker(int argc);
-bool	argv_checker(int len, char **argv);
+bool	argc_checker(const int argc);
+bool	argv_checker(const int len, const char **argv);
+int		*init_pre_stack_a(const int len, const char **argv);
+
 bool	array_check(int len, int *integer);
-int		*argvtoarray(int len, char **argv);
 t_list	*init_stack(int len, const int *integers, t_list *stack);
 
 //actions

@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2021/09/22 11:47:31 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/13 23:01:14 by safoh            ###   ########.fr       */
+/*   Updated: 2022/06/13 23:07:20 by safoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "push_swap.h"
 
 /*Make sure size of arguments is at least 3 to make it sortable*/
-bool	argc_checker(int argc)
+bool	argc_checker(const int argc)
 {
 	if (argc < 3)
 		return (false);
@@ -23,7 +23,7 @@ bool	argc_checker(int argc)
 }
 
 /*Make sure arguments contain digits*/
-bool	argv_checker(int len, char **argv)
+bool	argv_checker(const int len, const char **argv)
 {
 	size_t i;
 
@@ -39,8 +39,8 @@ bool	argv_checker(int len, char **argv)
 	return (true);
 }
 
-/*Initialize int array*/
-int	*argvtoarray(int len, char **argv)
+/*We want to check whether the values inside are correct*/
+int	*init_pre_stack_a(const int len, const char **argv)
 {
 	size_t i;
 	int *integer;

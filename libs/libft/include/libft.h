@@ -6,7 +6,7 @@
 /*   By: saladin <saladin@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/10 17:29:41 by saladin       #+#    #+#                 */
-/*   Updated: 2022/06/13 17:37:46 by safoh            ###   ########.fr       */
+/*   Updated: 2022/06/13 23:11:00 by safoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ bool	ft_isdigit(int c);
 bool	ft_isprint(int c);
 bool	ft_isspace(int c);
 bool	ft_isatoi(int c);
-bool	ft_iszero(char *string);
+bool	ft_iszero(const char *string);
 
 //MEMORY FUNCTIONS
 void	ft_bzero(void *s, size_t n);

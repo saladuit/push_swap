@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 17:20:07 by safoh             #+#    #+#             */
-/*   Updated: 2022/06/13 22:44:37 by safoh            ###   ########.fr       */
+/*   Updated: 2022/06/13 23:13:26 by safoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #define formatBool(b) ((b) ? "true" : "false")
 
-void	argv_checker_test(const int len, char **argv, const bool expected)
+void	argv_checker_test(const int len, const char **argv, const bool expected)
 {
 	bool submitted;
 	size_t i;

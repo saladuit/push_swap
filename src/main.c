@@ -6,13 +6,13 @@
 /*   By: safoh <safoh@student.codam.nl>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 15:21:24 by safoh             #+#    #+#             */
-/*   Updated: 2022/06/13 18:15:25 by safoh            ###   ########.fr       */
+/*   Updated: 2022/06/13 23:12:22 by safoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-bool	push_swap(int argc, char **argv)
+bool	push_swap(int argc, const char **argv)
 {
 	/*int *integer;*/
 	/*t_list *stack_a;*/
@@ -33,7 +33,7 @@ int	main(int argc, char **argv)
 {
 	if (argc == 1)
 		return (EXIT_SUCCESS);
-	if (push_swap(argc, argv) == false)
+	if (push_swap(argc, (const char **)argv) == false)
 	{
 		ft_error();
 		return (EXIT_FAILURE);

@@ -6,13 +6,13 @@
 /*   By: safoh <safoh@student.codam.nl>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 15:03:05 by safoh             #+#    #+#             */
-/*   Updated: 2022/06/13 15:03:29 by safoh            ###   ########.fr       */
+/*   Updated: 2022/06/13 23:12:52 by safoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-bool	ft_iszero(char *string)
+bool	ft_iszero(const char *string)
 {
 	int i;
 

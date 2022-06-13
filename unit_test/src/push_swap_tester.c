@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/03/09 20:05:09 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/13 22:52:17 by safoh            ###   ########.fr       */
+/*   Updated: 2022/06/13 23:15:20 by safoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,17 @@ Test(argc_checker, fixed_tests)
 Test(argv_checker, fixed_tests)
 {
 	argv_checker_test(0, NULL, false);
-	argv_checker_test(0, ((char *[]){""}), false);
-	argv_checker_test(1, ((char *[]){"1"}), true);
-	argv_checker_test(1, ((char *[]){"a"}), false);
+	argv_checker_test(0, ((const char *[]){""}), false);
+	argv_checker_test(1, ((const char *[]){"1"}), true);
+	argv_checker_test(1, ((const char *[]){"a"}), false);
 /*tests that don't fail the project */
-	argv_checker_test(2, ((char *[]){"1", "2"}), true);
-	argv_checker_test(2, ((char *[]){"10+-"}), true);
-	argv_checker_test(9, ((char *[]){"1", "2", "3", "4", "5", "6", "7", "8", "9"}), true);
-	argv_checker_test(2, ((char *[]){"1", "a"}), false);
-	argv_checker_test(2, ((char *[]){"1", "1a"}), false);
-	argv_checker_test(2, ((char *[]){"1", "\n"}), false);
+	argv_checker_test(2, ((const char *[]){"1", "2"}), true);
+	argv_checker_test(2, ((const char *[]){"10+-"}), true);
+	argv_checker_test(9, ((const char *[]){"1", "2", "3", "4", "5", "6", "7", "8", "9"}), true);
+	argv_checker_test(2, ((const char *[]){"1", "a"}), false);
+	argv_checker_test(2, ((const char *[]){"1", "1a"}), false);
+	argv_checker_test(2, ((const char *[]){"1", "\n"}), false);
 }
-/*[> ************************************************************************** <]*/
-/*TestSuite(argvtoarray, .init=redirect_stdout_to_stderr);*/
-/*[> ************************************************************************** <]*/
 
 /*bool	setup_argvtoarray(char **argv)*/
 /*{*/

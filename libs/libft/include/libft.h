@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   libft.h                                            :+:    :+:            */
+/*   libft.h                                            :+:      :+:    :+:   */
 /*                                                     +:+                    */
 /*   By: saladin <saladin@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/10 17:29:41 by saladin       #+#    #+#                 */
-/*   Updated: 2022/04/12 14:24:29 by safoh        \___)=(___/                 */
+/*   Updated: 2022/06/13 15:18:10 by safoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putuint_fd(unsigned int nb, int fd);
+void	ft_error(void);
 
 //CHECK FUNCTIONS
 bool	ft_isalnum(int c);
@@ -32,6 +33,8 @@ bool	ft_isascii(int c);
 bool	ft_isdigit(int c);
 bool	ft_isprint(int c);
 bool	ft_isspace(int c);
+bool	ft_isatoi(int c);
+bool	ft_iszero(char *string);
 
 //MEMORY FUNCTIONS
 void	ft_bzero(void *s, size_t n);

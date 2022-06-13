@@ -6,7 +6,7 @@
 #    By: safoh <safoh@student.codam.nl>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/11 13:49:39 by safoh             #+#    #+#              #
-#    Updated: 2022/06/12 21:31:16 by safoh            ###   ########.fr        #
+#    Updated: 2022/06/13 16:09:11 by safoh            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,22 +16,22 @@ include makerc/unit_makefile.mk
 
 ################################################################################
 
-NAME			:=	push_swap
+NAME			:=push_swap
 
-CC				:=	gcc
-RM				:=	rm -rfv
-CFLAGS			=	-Wall -Wextra -Werror $(if $(DEBUG),-g -fsanitize=address) \
+CC				:=gcc
+RM				:=rm -rfv
+CFLAGS			=-Wall -Wextra -Werror $(if $(DEBUG),-g -fsanitize=address) \
 
 ################################################################################
 all: $(NAME)
 
-$(NAME): SHELL := /bin/bash
+$(NAME): SHELL :=/bin/bash
 
 $(NAME): $(OBJS) $(MAIN_OBJ) $(LIBFT)
 	$(CC) $(CFLAGS) $^ $(INCLUDE_FLAGS) -o $(NAME)
 	@printf "$(BLUE_FG)$(NAME)$(RESET_COLOR) created\n"
 
-$(OBJS): $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c | $(HEADER)
+$(MAIN_OBJ) $(OBJS): $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c | $(HEADER)
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(INCLUDE_FLAGS) $(INCLUDES) -c $< -o $@
 

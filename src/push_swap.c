@@ -6,43 +6,14 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2021/09/22 11:47:31 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/12 16:32:07 by safoh            ###   ########.fr       */
+/*   Updated: 2022/06/13 15:06:13 by safoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 #include <stdio.h>
-#include "../include/push_swap.h"
+#include "push_swap.h"
 
-void	ft_error(void)
-{
-		ft_putendl_fd("Error", 2);
-}
-
-/*check whether the string is valid for atoi that should become a zero */
-bool	ft_iszero(char *string)
-{
-	int i;
-
-	i = 0;
-	if (string[i] == '-' || string[i] == '+')
-		i++;
-	while (string[i])
-	{
-		if (string[i] != '0')	
-			return (false);
-		i++;
-	}
-	return (true);
-}
-
-/* check whether char is atoi valid*/
-bool	ft_isatoi(int c)
-{
-	if ((c >= '0' && c <= '9') || c == '-' || c == '+')
-		return (true);
-	return (false);
-}
 /*Make sure size of arguments is at least 3 to make it sortable*/
 bool	argc_check(int argc)
 {

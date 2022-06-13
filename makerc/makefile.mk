@@ -1,6 +1,6 @@
 
 SRCS			=push_swap.c
-MAIN 			:=main.c
+MAIN 			=main.c
 
 SRC_DIR			:=src
 INCLUDE_DIR		:=include

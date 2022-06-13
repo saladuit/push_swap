@@ -6,7 +6,7 @@
 #    By: safoh <safoh@student.codam.nl>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/11 13:49:39 by safoh             #+#    #+#              #
-#    Updated: 2022/06/13 18:21:18 by safoh            ###   ########.fr        #
+#    Updated: 2022/06/13 22:32:42 by safoh            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ $(LIBFT):
 ################################################################################
 
 clean:
-	@$(RM) $(OBJS) $(MAIN_OBJ) $(addprefix $(BUILD_DIR)/,$(COVERAGE))
+	@$(RM) $(OBJS) $(MAIN_OBJ) $(addprefix $(BUILD_DIR)/, $(COVERAGE))
 	@$(MAKE) clean -C $(LIBFT_DIR)
 	@$(MAKE) clean -C $(UNIT_DIR)
 
@@ -51,15 +51,14 @@ fclean: clean
 	@$(MAKE) fclean -C $(UNIT_DIR)
 
 re: fclean
-	@$(MAKE) -C $(LIBFT_DIR)
 	@$(MAKE)
 
 tests_run: CFLAGS +=-g --coverage ## Launch tests
 tests_run: $(OBJS) $(LIBFT)
 	@$(MAKE) -C $(UNIT_DIR)
-	@./$(UNIT_TEST)
-	@gcov -n $(COVERAGE) -o=$(BUILD_DIR)
-
+	@./$(UNIT_TEST) -j0
+	@llvm-cov gcov -color -n -b -f -a $(SRCS) -o=$(BUILD_DIR)/
+  
 re_tests: fclean
 	@$(MAKE) tests_run
 

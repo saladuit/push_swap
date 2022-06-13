@@ -6,15 +6,11 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/03/09 20:05:09 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/13 18:56:53 by safoh            ###   ########.fr       */
+/*   Updated: 2022/06/13 22:52:17 by safoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "unit_test.h"
-
-/* ************************************************************************** */
-TestSuite(argc_checker, .init=redirect_all_std);
-/* ************************************************************************** */
 
 Test(argc_checker, fixed_tests)
 {
@@ -25,172 +21,18 @@ Test(argc_checker, fixed_tests)
 
 Test(argv_checker, fixed_tests)
 {
-	argv_checker_test(1, NULL, false);
+	argv_checker_test(0, NULL, false);
+	argv_checker_test(0, ((char *[]){""}), false);
 	argv_checker_test(1, ((char *[]){"1"}), true);
 	argv_checker_test(1, ((char *[]){"a"}), false);
+/*tests that don't fail the project */
+	argv_checker_test(2, ((char *[]){"1", "2"}), true);
+	argv_checker_test(2, ((char *[]){"10+-"}), true);
+	argv_checker_test(9, ((char *[]){"1", "2", "3", "4", "5", "6", "7", "8", "9"}), true);
+	argv_checker_test(2, ((char *[]){"1", "a"}), false);
+	argv_checker_test(2, ((char *[]){"1", "1a"}), false);
+	argv_checker_test(2, ((char *[]){"1", "\n"}), false);
 }
-/* ************************************************************************** */
-/*TestSuite(check_argv, .init=redirect_all_std);*/
-/* ************************************************************************** */
-
-/*Test(check_argv, NULL_pointer)*/
-/*{*/
-	/*check_argv_test(0, NULL, false, "");*/
-/*}*/
-
-/*Test(check_argv, one_number)*/
-/*{*/
-	/*char *string[] = {"1", NULL};*/
-	/*cr_assert(var_check(1, string) == true);*/
-	/*cr_assert_stderr_eq_str("");*/
-/*}*/
-
-/*Test(check_argv, one_char)*/
-/*{*/
-	/*char *string[] = {"a", NULL};*/
-	/*cr_assert(var_check(1, string) == false);*/
-	/*cr_assert_stderr_eq_str("Error\n");*/
-/*}*/
-
-/*Test(check_argv, two_numbers_sorted)*/
-/*{*/
-	/*char *string[] = {"1", "2", NULL};*/
-	/*cr_assert(var_check(2, string) == true);*/
-	/*cr_assert_stderr_eq_str("");*/
-/*}*/
-
-/*Test(check_argv, two_numbers_unsorted)*/
-/*{*/
-	/*char *string[] = {"2", "1", NULL};*/
-	/*cr_assert(var_check(2, string) == true);*/
-	/*cr_assert_stderr_eq_str("");*/
-/*}*/
-
-/*Test(check_argv, invalid_char)*/
-/*{*/
-	/*char *string[] = {"a", "1", NULL};*/
-	/*cr_assert(var_check(2, string) == false);*/
-	/*cr_assert_stderr_eq_str("Error\n");*/
-/*}*/
-
-/*Test(check_argv, invalid_char_second_arg)*/
-/*{*/
-	/*char *string[] = {"1", "a", NULL};*/
-	/*cr_assert(var_check(2, string) == false);*/
-	/*cr_assert_stderr_eq_str("Error\n");*/
-/*}*/
-
-/*Test(check_argv, invalid_char_second_position)*/
-/*{*/
-	/*char *string[] = {"1a", "1", NULL};*/
-	/*cr_assert(var_check(2, string) == false);*/
-	/*cr_assert_stderr_eq_str("Error\n");*/
-/*}*/
-/*Test(check_argv, invalid_char_random_position)*/
-/*{*/
-	/*char *string[] = {"a1", "1234a", NULL};*/
-	/*cr_assert(var_check(2, string) == false);*/
-	/*cr_assert_stderr_eq_str("Error\n");*/
-/*}*/
-
-/*Test(check_argv, invalid_char_nl)*/
-/*{*/
-	/*char *string[] = {"\n", "2", NULL};*/
-	/*cr_assert(var_check(2, string) == false);*/
-	/*cr_assert_stderr_eq_str("Error\n");*/
-/*}*/
-
-/*Test(check_argv, invalid_char_specialchar)*/
-/*{*/
-	/*char *string[] = {"1", "-", NULL};*/
-	/*cr_assert(var_check(2, string) == true);*/
-	/*cr_assert_stderr_eq_str("");*/
-/*}*/
-
-/*Test(check_argv, invalid_char_tab)*/
-/*{*/
-	/*char *string[] = {"1", "\t", NULL};*/
-	/*cr_assert(var_check(2, string) == false);*/
-	/*cr_assert_stderr_eq_str("Error\n");*/
-/*}*/
-
-/*Test(check_argv, invalid_nullterminator)*/
-/*{*/
-	/*char *string[] = {"4", "\0", "3", NULL};*/
-	/*cr_assert(var_check(3, string) == true);*/
-	/*cr_assert_stderr_eq_str("");*/
-/*}*/
-
-/*Test(check_argv, invalid_nullterminator_check)*/
-/*{*/
-	/*char *string[] = {"4", "0", "3", NULL};*/
-	/*cr_assert(var_check(3, string) == true);*/
-	/*cr_assert_stderr_eq_str("");*/
-/*}*/
-
-/*Test(check_argv, invalid_3x_nullterminator)*/
-/*{*/
-	/*char *string[] = {"\\0", "2", "\0", NULL};*/
-	/*cr_assert(var_check(3, string) == false);*/
-	/*cr_assert_stderr_eq_str("Error\n");*/
-/*}*/
-
-/*Test(check_argv, invalid_nullterminator_afternum)*/
-/*{*/
-	/*char *string[] = {"4", "1\0", "0", NULL};*/
-	/*cr_assert(var_check(3, string) == true);*/
-	/*cr_assert_stderr_eq_str("");*/
-/*}*/
-
-/*Test(check_argv, atoi_v1)*/
-/*{*/
-	/*char *string[] = {"004", NULL};*/
-	/*cr_assert(var_check(1, string) == true);*/
-	/*cr_assert_stderr_eq_str("");*/
-/*}*/
-
-/*Test(check_argv, atoi_v2)*/
-/*{*/
-	/*char *string[] = {"+4", NULL};*/
-	/*cr_assert(var_check(1, string) == true);*/
-	/*cr_assert_stderr_eq_str("");*/
-/*}*/
-
-/*Test(check_argv, atoi_v3)*/
-/*{*/
-	/*char *string[] = {"-4", NULL};*/
-	/*cr_assert(var_check(1, string) == true);*/
-	/*cr_assert_stderr_eq_str("");*/
-/*}*/
-
-/*Test(check_argv, atoi_v4)*/
-/*{*/
-	/*char *string[] = {"-4", NULL};*/
-	/*cr_assert(var_check(1, string) == true);*/
-	/*cr_assert_stderr_eq_str("");*/
-/*}*/
-
-/*Test(check_argv, atoi_v5)*/
-/*{*/
-	/*char *string[] = {"4-", NULL};*/
-	/*cr_assert(var_check(1, string) == true);*/
-	/*cr_assert_stderr_eq_str("");*/
-/*}*/
-
-/*Test(check_argv, atoi_v6)*/
-/*{*/
-	/*char *string[] = {"4+", NULL};*/
-	/*cr_assert(var_check(1, string) == true);*/
-	/*cr_assert_stderr_eq_str("");*/
-/*}*/
-
-/*Test(check_argv, atoi_v7)*/
-/*{*/
-	/*char *string[] = {"000-4+", NULL};*/
-	/*cr_assert(var_check(1, string) == true);*/
-	/*cr_assert_stderr_eq_str("");*/
-/*}*/
-
 /*[> ************************************************************************** <]*/
 /*TestSuite(argvtoarray, .init=redirect_stdout_to_stderr);*/
 /*[> ************************************************************************** <]*/

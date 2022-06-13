@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    makefile.mk                                        :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: safoh <safoh@student.codam.nl>             +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/06/13 21:19:17 by safoh             #+#    #+#              #
+#    Updated: 2022/06/13 21:19:59 by safoh            ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 
 SRCS			=push_swap.c
 MAIN 			=main.c
@@ -20,7 +32,5 @@ INCLUDE_FLAGS	:=$(addprefix -I, $(sort $(dir $(HEADERS))))
 
 LIBFT			:=$(LIBFT_DIR)/libft.a
 
-COVERAGE		=$(SRCS:.c=.gcda) $(SRCS:.c=.gcno) \
-	#$(UNIT_SRCS:.c=.gcno) \
-		#$(UNIT_SRCS:.c=.gcda)
-# is it necessary to check the unit test coverage?
+COVERAGE		=$(SRCS:.c=.gcda) $(SRCS:.c=.gcno) $(UNIT_SRCS:.c=.gcno) \
+	$(UNIT_SRCS:.c=.gcda)

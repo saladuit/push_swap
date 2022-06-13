@@ -6,7 +6,7 @@
 #    By: safoh <safoh@student.codam.nl>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/12 17:00:28 by safoh             #+#    #+#              #
-#    Updated: 2022/06/12 21:18:03 by safoh            ###   ########.fr        #
+#    Updated: 2022/06/13 21:18:44 by safoh            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ NAME			:= ../$(UNIT_TEST)
 
 CC				:=gcc
 RM				:=rm -rfv
-CFLAGS			:=-Wall -Wextra -Werror --coverage -g
+CFLAGS			:=-Wall -Wextra -Werror -g --coverage
 UNIT_LFLAGS		:=-lcriterion
 
 all: $(NAME)

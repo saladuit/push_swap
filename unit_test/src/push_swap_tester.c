@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/03/09 20:05:09 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/13 18:00:26 by safoh            ###   ########.fr       */
+/*   Updated: 2022/06/13 18:56:53 by safoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,19 @@
 TestSuite(argc_checker, .init=redirect_all_std);
 /* ************************************************************************** */
 
-Test(count_check, fixed_tests)
+Test(argc_checker, fixed_tests)
 {
 	argc_checker_test(1, false);
 	argc_checker_test(2, false);
 	argc_checker_test(3, true);
 }
 
+Test(argv_checker, fixed_tests)
+{
+	argv_checker_test(1, NULL, false);
+	argv_checker_test(1, ((char *[]){"1"}), true);
+	argv_checker_test(1, ((char *[]){"a"}), false);
+}
 /* ************************************************************************** */
 /*TestSuite(check_argv, .init=redirect_all_std);*/
 /* ************************************************************************** */

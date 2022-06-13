@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2021/09/22 11:47:31 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/13 17:59:07 by safoh            ###   ########.fr       */
+/*   Updated: 2022/06/13 18:48:57 by safoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ bool	argv_checker(int len, char **argv)
 	size_t i;
 
 	i = 0;
-	if (argv == NULL)
+	if (argv == NULL || *argv == NULL)
 		return (false);
 	while(i < (size_t)len)
 	{

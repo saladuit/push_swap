@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2021/09/22 11:47:31 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/14 21:54:03 by saladuit     \___)=(___/                 */
+/*   Updated: 2022/06/14 22:20:17 by saladuit     \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ bool	argv_checker(const int len, const char **argv)
 }
 
 /*We want to check whether the values inside are correct*/
-int	*init_pre_stack_a(const int len, const char **argv)
+int	*init_integer_array(const int len, const char **argv)
 {
 	size_t i;
 	int *integer;

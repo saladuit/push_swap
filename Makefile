@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    Makefile                                        |o_o || |                 #
 #                                                     +:+ +:+         +:+      #
 #    By: safoh <safoh@student.codam.nl>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/11 13:49:39 by safoh             #+#    #+#              #
-#    Updated: 2022/06/13 22:32:42 by safoh            ###   ########.fr        #
+#    Updated: 2022/06/14 22:09:24 by saladuit     \___)=(___/                  #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,7 @@ tests_run: CFLAGS +=-g --coverage ## Launch tests
 tests_run: $(OBJS) $(LIBFT)
 	@$(MAKE) -C $(UNIT_DIR)
 	@./$(UNIT_TEST) -j0
-	@llvm-cov gcov -color -n -b -f -a $(SRCS) -o=$(BUILD_DIR)/
+	@gcov $(addprefix build/, $(SRCS)) -n -b -f -a 
   
 re_tests: fclean
 	@$(MAKE) tests_run

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   argv_checker_test.c                                :+:      :+:    :+:   */
+/*   argv_checker_test.c                             |o_o || |                */
 /*                                                    +:+ +:+         +:+     */
 /*   By: safoh <safoh@student.codam.nl>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 17:20:07 by safoh             #+#    #+#             */
-/*   Updated: 2022/06/13 23:13:26 by safoh            ###   ########.fr       */
+/*   Updated: 2022/06/14 20:44:36 by saladuit     \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@
 void	argv_checker_test(const int len, const char **argv, const bool expected)
 {
 	bool submitted;
-	size_t i;
 
-	i = 0;
 	/*can I add a macro to print the 2d ARray?*/
 	submitted = argv_checker(len, argv);
 	cr_assert(submitted == expected,

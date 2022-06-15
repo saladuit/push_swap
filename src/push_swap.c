@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2021/09/22 11:47:31 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/14 22:20:17 by saladuit     \___)=(___/                 */
+/*   Updated: 2022/06/15 18:49:22 by saladuit     \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,20 +43,18 @@ int	*init_integer_array(const int len, const char **argv)
 	size_t i;
 	int *integer;
 
-	integer = ft_calloc(len + 1, sizeof(int));
-	if (integer == NULL || argv == NULL || **argv == '\0')
-	{
-		free(integer);
-		ft_error();
+	if (argv == NULL || **argv == '\0')
 		return (NULL);
-	}
+	integer = ft_calloc(len + 1, sizeof(int));
+	if (integer == NULL)
+		return (NULL);
 	i = 0;
 	while (i < (size_t)len)
 	{
 		integer[i] = ft_atoi(argv[i]);
 		if (integer[i] == 0 && ft_iszero(argv[i]) == false)
 		{
-			ft_error();
+			free(integer);
 			return (NULL);
 		}
 		i++;

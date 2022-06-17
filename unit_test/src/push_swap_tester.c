@@ -1,12 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                    .--.  _                 */
-/*   push_swap_tester.c                                 :+:      :+:    :+:   */
+/*   push_swap_tester.c                              |o_o || |                */
 /*                                                   |:_/ || |_ _   ___  __   */
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/03/09 20:05:09 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
+<<<<<<< HEAD
 /*   Updated: 2022/06/14 16:21:03 by safoh            ###   ########.fr       */
+=======
+/*   Updated: 2022/06/15 18:55:14 by saladuit     \___)=(___/                 */
+>>>>>>> refs/remotes/origin/master
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +26,7 @@ Test(argc_checker, fixed_tests)
 Test(argv_checker, fixed_tests)
 {
 	argv_checker_test(0, NULL, false);
-	argv_checker_test(0, ((const char *[]){""}), false);
+	argv_checker_test(1, ((const char *[]){""}), false);
 	argv_checker_test(1, ((const char *[]){"1"}), true);
 	argv_checker_test(1, ((const char *[]){"a"}), false);
 /*tests that don't fail the project */
@@ -34,45 +38,12 @@ Test(argv_checker, fixed_tests)
 	argv_checker_test(2, ((const char *[]){"1", "\n"}), false);
 }
 
-/*bool	setup_argvtoarray(char **argv)*/
-/*{*/
-	/*int	len;*/
-	/*int i;*/
-	/*int	*integer = NULL;*/
-	/*long	*expected = NULL;*/
-
-	/*len = 0;*/
-	/*i = 0;*/
-	/*if (argv)*/
-		/*while (argv[len])*/
-			/*len++;*/
-	/*expected = calloc(len + 1, sizeof(long));*/
-	/*integer = argvtoarray(len, argv);*/
-	/*if((!integer || !expected) && argv)*/
-	/*{*/
-		/*free(expected);*/
-		/*free(integer);*/
-		/*return (false);*/
-	/*}*/
-	/*if(integer && !argv)*/
-	/*{*/
-		/*free(expected);*/
-		/*free(integer);*/
-		/*[>cr_log_warn("Integer should be freed\n");<]*/
-		/*return (false);*/
-	/*}*/
-	/*while (i < len)*/
-	/*{*/
-
-		/*expected[i] = atol(argv[i]);*/
-		/*if (expected[i] != integer[i])*/
-			/*return (false);*/
-		/*i++;*/
-	/*}*/
-	/*free(expected);*/
-	/*free(integer);*/
-	/*return (true);*/
-/*}*/
+Test(init_pre_stack_a, fixed_tests)
+{
+	init_integer_array_tester(0, NULL, NULL);
+	init_integer_array_tester(1, ((const char *[]){""}), NULL);
+	init_integer_array_tester(1, ((const char *[]){"1"}), ((const int []){1}));
+}
 
 /*Test(argvtoarray, NULL_value)*/
 /*{*/
@@ -255,6 +226,46 @@ Test(argv_checker, fixed_tests)
 	/*cr_assert(setup_argvtoarray(string) == true);*/
 	/*cr_assert_stderr_eq_str("");*/
 /*}*/
+/*bool	setup_argvtoarray(char **argv)*/
+/*{*/
+	/*int	len;*/
+	/*int i;*/
+	/*int	*integer = NULL;*/
+	/*long	*expected = NULL;*/
+
+	/*len = 0;*/
+	/*i = 0;*/
+	/*if (argv)*/
+		/*while (argv[len])*/
+			/*len++;*/
+	/*expected = calloc(len + 1, sizeof(long));*/
+	/*integer = argvtoarray(len, argv);*/
+	/*if((!integer || !expected) && argv)*/
+	/*{*/
+		/*free(expected);*/
+		/*free(integer);*/
+		/*return (false);*/
+	/*}*/
+	/*if(integer && !argv)*/
+	/*{*/
+		/*free(expected);*/
+		/*free(integer);*/
+		/*[>cr_log_warn("Integer should be freed\n");<]*/
+		/*return (false);*/
+	/*}*/
+	/*while (i < len)*/
+	/*{*/
+
+		/*expected[i] = atol(argv[i]);*/
+		/*if (expected[i] != integer[i])*/
+			/*return (false);*/
+		/*i++;*/
+	/*}*/
+	/*free(expected);*/
+	/*free(integer);*/
+	/*return (true);*/
+/*}*/
+
 /*[>Is the list already sorted and does it contain double numbers<]*/
 /*[> ************************************************************************** <]*/
 /*TestSuite(array_check, .init=redirect_stdout_to_stderr);*/

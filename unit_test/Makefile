@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    Makefile                                        |o_o || |                 #
 #                                                     +:+ +:+         +:+      #
 #    By: safoh <safoh@student.codam.nl>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/12 17:00:28 by safoh             #+#    #+#              #
-#    Updated: 2022/06/13 21:18:44 by safoh            ###   ########.fr        #
+#    Updated: 2022/06/14 21:58:16 by saladuit     \___)=(___/                  #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ all: $(NAME)
 $(NAME): SHELL := /bin/bash
 
 $(NAME): $(UNIT_OBJS)
-	$(CC) $(CFLAGS) $^ $(UNIT_LIBS) $(PRODUCTION_OBJS) $(UNIT_LFLAGS) $(UNIT_INCLUDE_FLAGS) -o $(NAME)
+	$(CC) $(CFLAGS) $^ $(PRODUCTION_OBJS) $(UNIT_LFLAGS) $(UNIT_INCLUDE_FLAGS) $(UNIT_LIBS) -o $(NAME)
 
 $(UNIT_OBJS): ../$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)

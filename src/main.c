@@ -6,7 +6,7 @@
 /*   By: saladuit <safoh@student.codam.nl>          //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/15 18:40:38 by saladuit     /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/15 19:51:32 by saladuit     \___)=(___/                 */
+/*   Updated: 2022/06/17 16:38:21 by safoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ bool	push_swap(int argc, const char **argv)
 	int *integer;
 	t_list *stack_a;
 
-	if(argc_checker(argc) == false || argv_checker(argc - 1, &argv[1]) == false)
-		return (-1);
+	if(argv_checker(argc - 1, &argv[1]) == false)
+		return (false);
 	stack_a = NULL;
 	integer = NULL;
-	integer = argvtoarray(argc - 1, &argv[1]);
+	integer = init_integer_array(argc - 1, &argv[1]);
 	if (integer == NULL)
 		return (false);
 	/*if (array_check(argc - 1, integer))*/

@@ -1,24 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                    .--.  _                 */
-/*   push_swap.c                                     |o_o || |                */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                   |:_/ || |_ _   ___  __   */
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2021/09/22 11:47:31 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/15 18:49:22 by saladuit     \___)=(___/                 */
+/*   Updated: 2022/06/17 16:36:42 by safoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-/*Make sure size of arguments is at least 3 to make it sortable*/
-bool	argc_checker(const int argc)
-{
-	if (argc < 3)
-		return (false);
-	return (true);
-}
 
 /*Make sure arguments contain digits*/
 bool	argv_checker(const int len, const char **argv)

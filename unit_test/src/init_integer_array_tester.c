@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                    .--.  _                 */
-/*   init_integer_array_tester.c                        :+:      :+:    :+:   */
+/*   init_integer_array_tester.c                     |o_o || |                */
 /*                                                   |:_/ || |_ _   ___  __   */
-/*   By: saladuit <safoh@student.codam.nl>          //   \ \ __| | | \ \/ /   */
+/*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
-/*   Created: 2022/06/14 22:22:05 by saladuit     /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/17 14:46:40 by safoh            ###   ########.fr       */
+/*   Created: 2022/06/20 17:03:35 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
+/*   Updated: 2022/06/20 17:08:49 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "unit_test.h"
 
-void init_integer_array_tester(const int len, const char **argv, const int *expected)
+void init_integer_array_test(const int len, const char **argv, const int *expected)
 {
 	int *submitted;
 

@@ -1,14 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                    .--.  _                 */
-/*   unit_test.h                                        :+:      :+:    :+:   */
+/*   unit_test.h                                     |o_o || |                */
 /*                                                   |:_/ || |_ _   ___  __   */
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
-/*   Created: 2022/03/25 17:34:35 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/17 16:34:57 by safoh            ###   ########.fr       */
+/*   Created: 2022/06/20 17:04:51 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
+/*   Updated: 2022/06/20 17:08:16 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef UNIT_PUSH_SWAP
 # define UNIT_PUSH_SWAP
@@ -23,5 +24,5 @@ void	assert_error_stdout();
 
 void	argv_checker_test(const int len, const char **argv, const bool expected);
 
-void	init_integer_array_tester(const int len, const char **argv, const int *expected);
+void	init_integer_array_test(const int len, const char **argv, const int *expected);
 #endif

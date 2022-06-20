@@ -1,14 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                    .--.  _                 */
-/*   push_swap_tester.c                                 :+:      :+:    :+:   */
+/*   push_swap_tester.c                              |o_o || |                */
 /*                                                   |:_/ || |_ _   ___  __   */
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
-/*   Created: 2022/03/09 20:05:09 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/17 16:32:55 by safoh            ###   ########.fr       */
+/*   Created: 2022/06/20 17:03:44 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
+/*   Updated: 2022/06/20 17:08:51 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "unit_test.h"
 
@@ -29,12 +30,12 @@ Test(argv_checker, fixed_tests)
 
 Test(init_pre_stack_a, fixed_tests)
 {
-	init_integer_array_tester(0, NULL, NULL);
-	init_integer_array_tester(1, ((const char *[]){""}), NULL);
-	init_integer_array_tester(1, ((const char *[]){"1"}), ((const int []){1}));
+	init_integer_array_test(0, NULL, NULL);
+	init_integer_array_test(1, ((const char *[]){""}), NULL);
+	init_integer_array_test(1, ((const char *[]){"1"}), ((const int []){1}));
 /*tests that don't fail the project */
-	init_integer_array_tester(2, ((const char *[]){"1", "2"}), ((const int []){1, 2}));
-	init_integer_array_tester(3, ((const char *[]){"1", "", "2"}), ((const int []){1, 2}));
+	init_integer_array_test(2, ((const char *[]){"1", "2"}), ((const int []){1, 2}));
+	init_integer_array_test(3, ((const char *[]){"1", "", "2"}), ((const int []){1, 2}));
 }
 
 /*Test(argvtoarray, NULL_value)*/

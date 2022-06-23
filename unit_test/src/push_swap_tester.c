@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/20 17:03:44 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/20 17:08:51 by safoh        \___)=(___/                 */
+/*   Updated: 2022/06/23 14:03:28 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,101 +28,25 @@ Test(argv_checker, fixed_tests)
 	argv_checker_test(2, ((const char *[]){"1", "\n"}), false);
 }
 
-Test(init_pre_stack_a, fixed_tests)
+Test(init_integer_array_test, fixed_tests)
 {
 	init_integer_array_test(0, NULL, NULL);
 	init_integer_array_test(1, ((const char *[]){""}), NULL);
 	init_integer_array_test(1, ((const char *[]){"1"}), ((const int []){1}));
+	init_integer_array_test(1, ((const char *[]){"+2147483648"}), NULL);
 /*tests that don't fail the project */
+	init_integer_array_test(1, ((const char *[]){"0"}), ((const int []){0}));
+	init_integer_array_test(1, ((const char *[]){"-00"}), ((const int []){0}));
+	init_integer_array_test(1, ((const char *[]){"+00"}), ((const int []){0}));
+	init_integer_array_test(1, ((const char *[]){"+2147483647"}), ((const int []){2147483647}));
+	init_integer_array_test(1, ((const char *[]){"--+2147483647"}), ((const int []){2147483647}));
+	init_integer_array_test(1, ((const char *[]){"-2147483648"}), ((const int []){-2147483648}));
+//	init_integer_array_test(1, ((const char *[]){"+-2147483648"}), ((const int []){-2147483648}));
+	init_integer_array_test(1, ((const char *[]){"2147483648"}), NULL);
 	init_integer_array_test(2, ((const char *[]){"1", "2"}), ((const int []){1, 2}));
 	init_integer_array_test(3, ((const char *[]){"1", "", "2"}), ((const int []){1, 2}));
 }
 
-/*Test(argvtoarray, NULL_value)*/
-/*{*/
-
-	/*cr_assert(setup_argvtoarray(NULL) == true);*/
-	/*cr_assert_stderr_eq_str("Error\n");*/
-/*}*/
-
-/*Test(argvtoarray, zero_v1)*/
-/*{*/
-	/*char	*string[] = {"0", NULL};*/
-
-	/*cr_assert(setup_argvtoarray(string) == true);*/
-	/*cr_assert_stderr_eq_str("");*/
-/*}*/
-
-/*Test(argvtoarray, zero_v2)*/
-/*{*/
-	/*char	*string[] = {"-00000", NULL};*/
-
-	/*cr_assert(setup_argvtoarray(string) == true);*/
-	/*cr_assert_stderr_eq_str("");*/
-/*}*/
-
-/*Test(argvtoarray, zero_v3)*/
-/*{*/
-	/*char	*string[] = {"+00000", NULL};*/
-
-	/*cr_assert(setup_argvtoarray(string) == true);*/
-	/*cr_assert_stderr_eq_str("");*/
-/*}*/
-
-/*Test(argvtoarray, zero_v4)*/
-/*{*/
-	/*char	*string[] = {"+000010", NULL};*/
-
-	/*cr_assert(setup_argvtoarray(string) == true);*/
-	/*cr_assert_stderr_eq_str("");*/
-/*}*/
-
-/*Test(argvtoarray, extra_padding_only_one)*/
-/*{*/
-	/*char	*string[] = {"0001", NULL};*/
-
-	/*cr_assert(setup_argvtoarray(string) == true);*/
-	/*cr_assert_stderr_eq_str("");*/
-/*}*/
-
-/*Test(argvtoarray, extra_padding_only_one_min)*/
-/*{*/
-	/*char	*string[] = {"0001", NULL};*/
-
-	/*cr_assert(setup_argvtoarray(string) == true);*/
-	/*cr_assert_stderr_eq_str("");*/
-/*}*/
-
-/*Test(argvtoarray, MAX)*/
-/*{*/
-	/*char	*string[] = {"2147483647", NULL};*/
-
-	/*cr_assert(setup_argvtoarray(string) == true);*/
-	/*cr_assert_stderr_eq_str("");*/
-/*}*/
-
-/*Test(argvtoarray, MAX_plusone)*/
-/*{*/
-	/*char	*string[] = {"2147483648", NULL};*/
-
-	/*cr_assert(setup_argvtoarray(string) == false);*/
-	/*cr_assert_stderr_eq_str("Error\n");*/
-/*}*/
-
-/*Test(argvtoarray, MAX_plusone_pluspad)*/
-/*{*/
-	/*char	*string[] = {"+2147483648", NULL};*/
-
-	/*cr_assert(setup_argvtoarray(string) == false);*/
-	/*cr_assert_stderr_eq_str("Error\n");*/
-/*}*/
-/*Test(argvtoarray, MIN)*/
-/*{*/
-	/*char	*string[] = {"-2147483648", NULL};*/
-
-	/*cr_assert(setup_argvtoarray(string) == true);*/
-	/*cr_assert_stderr_eq_str("");*/
-/*}*/
 
 /*Test(argvtoarray, MIN_minpluspadding_v1)*/
 /*{*/

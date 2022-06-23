@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/20 17:04:51 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/23 15:20:55 by safoh        \___)=(___/                 */
+/*   Updated: 2022/06/23 16:21:52 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	assert_empty_stdout();
 void	assert_error_stdout();
 
 void	argv_checker_test(const int len, const char **argv, const bool expected);
+void	array_check_test(const int len, const int *integer, const bool expected);
 
 void	init_integer_array_test(const int len, const char **argv, const int *expected);
 #endif

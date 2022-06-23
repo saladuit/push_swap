@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/20 17:04:19 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/23 15:17:44 by safoh        \___)=(___/                 */
+/*   Updated: 2022/06/23 16:23:41 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,34 +55,34 @@ int	*init_integer_array(const int len, const char **argv)
 }
 
 /*Integer shouldn't be sorted or contain duplicate integer values*/
-/*bool	array_check(int len, int *integer)*/
-/*{*/
-	/*bool issorted;*/
-	/*size_t i;*/
+bool	array_check(const int len, const int *integer)
+{
+	bool issorted;
+	size_t i;
 
-	/*if (!integer || len == 0)*/
-	/*{*/
-		/*ft_error();*/
-		/*return (false);*/
-	/*}*/
-	/*i = 0;*/
-	/*issorted = true;*/
-	/*while (i < (size_t)len)*/
-	/*{*/
-		/*if (integer[i] > integer[i + 1] && i != (size_t)len - 1)*/
-			/*issorted = false;*/
-		/*if (ft_arrint(integer, integer[i], i))*/
-		/*{*/
-			/*ft_error();*/
-			/*return (false);*/
-		/*}*/
-		/*i++;*/
-	/*}*/
-	/*if (issorted == false)*/
-		/*return (true);*/
-	/*ft_error();*/
-	/*return (false);*/
-/*}*/
+	if (!integer || len == 0)
+	{
+		ft_error();
+		return (false);
+	}
+	i = 0;
+	issorted = true;
+	while (i < (size_t)len)
+	{
+		if (integer[i] > integer[i + 1] && i != (size_t)len - 1)
+			issorted = false;
+		if (ft_arrint(integer, integer[i], i))
+		{
+			ft_error();
+			return (false);
+		}
+		i++;
+	}
+	if (issorted == false)
+		return (true);
+	ft_error();
+	return (false);
+}
 
 /*handle conversion to int & INT_MINMAX before putting in to linked list*/
 /*t_list	*init_stack(int len, const int *integer, t_list *stack_a)*/

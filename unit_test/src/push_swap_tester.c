@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/23 15:18:40 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/23 15:19:02 by safoh        \___)=(___/                 */
+/*   Updated: 2022/06/23 16:28:35 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,155 +34,25 @@ Test(init_integer_array_test, fixed_tests)
 	init_integer_array_test(1, ((const char *[]){"1"}), ((const int []){1}));
 	init_integer_array_test(1, ((const char *[]){"+2147483648"}), NULL);
 /*tests that don't fail the project */
+/*I wasn't able to test the existance of integer array */
 	init_integer_array_test(1, ((const char *[]){"0"}), ((const int []){0}));
 	init_integer_array_test(1, ((const char *[]){"-00"}), ((const int []){0}));
 	init_integer_array_test(1, ((const char *[]){"+00"}), ((const int []){0}));
 	init_integer_array_test(1, ((const char *[]){"+2147483647"}), ((const int []){2147483647}));
-	init_integer_array_test(1, ((const char *[]){"--+2147483647"}), ((const int []){2147483647}));
+	init_integer_array_test(1, ((const char *[]){"--+2147483647"}), NULL);
 	init_integer_array_test(1, ((const char *[]){"-2147483648"}), ((const int []){-2147483648}));
-//	init_integer_array_test(1, ((const char *[]){"+-2147483648"}), ((const int []){-2147483648}));
+	init_integer_array_test(1, ((const char *[]){"+-2147483648"}), NULL);
 	init_integer_array_test(1, ((const char *[]){"2147483648"}), NULL);
 	init_integer_array_test(2, ((const char *[]){"1", "2"}), ((const int []){1, 2}));
 	init_integer_array_test(3, ((const char *[]){"1", "", "2"}), ((const int []){1, 2}));
 }
 
-
-/*Test(argvtoarray, MIN_minpluspadding_v1)*/
-/*{*/
-	/*char	*string[] = {"-+-2147483648", NULL};*/
-
-	/*cr_assert(setup_argvtoarray(string) == false);*/
-	/*cr_assert_stderr_eq_str("Error\n");*/
-/*}*/
-
-/*Test(argvtoarray, MIN_minpluspadding_v2)*/
-/*{*/
-	/*char	*string[] = {"-+2147483648", NULL};*/
-
-	/*cr_assert(setup_argvtoarray(string) == false);*/
-	/*cr_assert_stderr_eq_str("Error\n");*/
-/*}*/
-
-/*Test(argvtoarray, MIN_minpluspadding_v3)*/
-/*{*/
-	/*char	*string[] = {"+-2147483648", NULL};*/
-
-	/*cr_assert(setup_argvtoarray(string) == false);*/
-	/*cr_assert_stderr_eq_str("Error\n");*/
-/*}*/
-
-/*Test(argvtoarray, MIN_minpluspadding_v4)*/
-/*{*/
-	/*char	*string[] = {"--2147483648", NULL};*/
-
-	/*cr_assert(setup_argvtoarray(string) == false);*/
-	/*cr_assert_stderr_eq_str("Error\n");*/
-/*}*/
-
-/*Test(argvtoarray, MIN_minpluspadding_v5)*/
-/*{*/
-	/*char	*string[] = {"++2147483648", NULL};*/
-
-	/*cr_assert(setup_argvtoarray(string) == false);*/
-	/*cr_assert_stderr_eq_str("Error\n");*/
-/*}*/
-
-/*Test(argvtoarray, MIN_minpluspadding_v6)*/
-/*{*/
-	/*char	*string[] = {"0+2147483648", NULL};*/
-
-	/*cr_assert(setup_argvtoarray(string) == false);*/
-	/*cr_assert_stderr_eq_str("Error\n");*/
-/*}*/
-
-/*Test(argvtoarray, MIN_minone)*/
-/*{*/
-	/*char	*string[] = {"-2147483649", NULL};*/
-
-	/*cr_assert(setup_argvtoarray(string) == false);*/
-	/*cr_assert_stderr_eq_str("Error\n");*/
-/*}*/
-
-/*Test(argvtoarray, extra_padding_MIN)*/
-/*{*/
-	/*char	*string[] = {"-002147483648", NULL};*/
-
-	/*cr_assert(setup_argvtoarray(string) == true);*/
-	/*cr_assert_stderr_eq_str("");*/
-/*}*/
-
-/*Test(argvtoarray, extra_padding_MAX)*/
-/*{*/
-	/*char	*string[] = {"002147483647", NULL};*/
-
-	/*cr_assert(setup_argvtoarray(string) == true);*/
-	/*cr_assert_stderr_eq_str("");*/
-/*}*/
-
-/*Test(argvtoarray, multiple_arguments_v1)*/
-/*{*/
-	/*char	*string[] = {"0001", "298347", NULL};*/
-
-	/*cr_assert(setup_argvtoarray(string) == true);*/
-	/*cr_assert_stderr_eq_str("");*/
-/*}*/
-
-/*Test(argvtoarray, multiple_arguments_v2)*/
-/*{*/
-	/*char	*string[] = {"0001", "298347", "-12304987", NULL};*/
-
-	/*cr_assert(setup_argvtoarray(string) == true);*/
-	/*cr_assert_stderr_eq_str("");*/
-/*}*/
-
-/*Test(argvtoarray, multiple_arguments_v3)*/
-/*{*/
-	/*char	*string[] = {"0001", "298347", "-12304987", "0", NULL};*/
-
-	/*cr_assert(setup_argvtoarray(string) == true);*/
-	/*cr_assert_stderr_eq_str("");*/
-/*}*/
-/*bool	setup_argvtoarray(char **argv)*/
-/*{*/
-	/*int	len;*/
-	/*int i;*/
-	/*int	*integer = NULL;*/
-	/*long	*expected = NULL;*/
-
-	/*len = 0;*/
-	/*i = 0;*/
-	/*if (argv)*/
-		/*while (argv[len])*/
-			/*len++;*/
-	/*expected = calloc(len + 1, sizeof(long));*/
-	/*integer = argvtoarray(len, argv);*/
-	/*if((!integer || !expected) && argv)*/
-	/*{*/
-		/*free(expected);*/
-		/*free(integer);*/
-		/*return (false);*/
-	/*}*/
-	/*if(integer && !argv)*/
-	/*{*/
-		/*free(expected);*/
-		/*free(integer);*/
-		/*[>cr_log_warn("Integer should be freed\n");<]*/
-		/*return (false);*/
-	/*}*/
-	/*while (i < len)*/
-	/*{*/
-
-		/*expected[i] = atol(argv[i]);*/
-		/*if (expected[i] != integer[i])*/
-			/*return (false);*/
-		/*i++;*/
-	/*}*/
-	/*free(expected);*/
-	/*free(integer);*/
-	/*return (true);*/
-/*}*/
-
-/*[>Is the list already sorted and does it contain double numbers<]*/
+// Is the list already sorted and does it contain double numbers
+Test(array_check, NULL_values)
+{
+	array_check_test(0, NULL, false);
+	array_check_test(1, ((const int []){0}), true);
+}
 /*[> ************************************************************************** <]*/
 /*TestSuite(array_check, .init=redirect_stdout_to_stderr);*/
 /*[> ************************************************************************** <]*/
@@ -200,11 +70,6 @@ Test(init_integer_array_test, fixed_tests)
 	/*return (true);*/
 /*}*/
 
-/*Test(array_check, NULL_values)*/
-/*{*/
-	/*cr_assert(test_array_check(NULL) == false);*/
-	/*cr_assert_stderr_eq_str("Error\n");*/
-/*}*/
 
 /*Test(array_check, one_nemb_sorted)*/
 /*{*/

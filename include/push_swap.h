@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/23 15:17:07 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/23 15:17:09 by safoh        \___)=(___/                 */
+/*   Updated: 2022/06/23 16:23:54 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 bool	argv_checker(const int len, const char **argv);
 int		*init_integer_array(const int len, const char **argv);
 
-bool	array_check(int len, int *integer);
+bool	array_check(const int len, const int *integer);
 t_list	*init_stack(int len, const int *integers, t_list *stack);
 
 //actions

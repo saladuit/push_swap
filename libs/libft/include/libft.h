@@ -6,10 +6,12 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/23 15:15:24 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/23 15:15:27 by safoh        \___)=(___/                 */
+/*   Updated: 2022/06/23 16:27:12 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef LIBFT_H
+# define LIBFT_H
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdbool.h>
@@ -83,7 +85,7 @@ int		ft_tolower(int c);
 char	*ft_uitoa(unsigned int n);
 char	*ft_uitoh(unsigned int n);
 char	*ft_ultoh(unsigned long n);
-int		*ft_arrint(int *array, int num, int len);
+const int		*ft_arrint(const int *array, const int num, const int len);
 void	ft_swap(int *x, int *y);
 
 //LIST FUNCTIONS

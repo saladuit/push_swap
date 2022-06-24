@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/20 17:04:19 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/24 14:27:23 by safoh        \___)=(___/                 */
+/*   Updated: 2022/06/24 17:11:43 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	array_check(const int len, const int *integer)
 		if (integer[i] > integer[i + 1] && i != (size_t)len - 1)
 			return (NOT_SORTED);
 		if (ft_arrint(integer, integer[i], i))
-			return (ERROR);
+			return (DOUBLE);
 		i++;
 	}
 	return (SORTED);

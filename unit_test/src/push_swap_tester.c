@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/23 15:18:40 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/24 15:38:35 by safoh        \___)=(___/                 */
+/*   Updated: 2022/06/24 17:10:29 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,73 +48,13 @@ Test(init_integer_array_test, fixed_tests)
 }
 
 // Is the list already sorted and does it contain double numbers
-Test(array_check, NULL_values)
+Test(array_check, fixed_tests)
 {
 	array_check_test(1, ((const int []){0}), SORTED);
 	array_check_test(2, ((const int []){0, 1}), SORTED);
 	array_check_test(2, ((const int []){1, 0}), NOT_SORTED);
-	array_check_test(2, ((const int []){0, 0}), ERROR);
+	array_check_test(2, ((const int []){0, 0}), DOUBLE);
 }
-
-/*[> ************************************************************************** <]*/
-/*TestSuite(array_check, .init=redirect_stdout_to_stderr);*/
-/*[> ************************************************************************** <]*/
-
-/*bool	test_array_check(int *expected)*/
-/*{*/
-	/*int len;*/
-
-	/*len = 0;*/
-	/*if (expected)*/
-		/*while (expected[len])*/
-			/*len++;*/
-	/*if (array_check(len, expected) == false)*/
-		/*return (false);*/
-	/*return (true);*/
-/*}*/
-
-
-/*Test(array_check, one_nemb_sorted)*/
-/*{*/
-	/*int	expected[] = {1, 2, '\0'};*/
-	/*cr_assert(test_array_check(expected) == false);*/
-	/*cr_assert_stderr_eq_str("Error\n");*/
-/*}*/
-
-/*Test(array_check, two_nemb_unsorted)*/
-/*{*/
-	/*int	expected[] = {2, 1, '\0'};*/
-	/*cr_assert(test_array_check(expected) == true);*/
-/*}*/
-
-/*Test(array_check, two_nemb_double)*/
-/*{*/
-	/*int	expected[] = {2, 2, '\0'};*/
-	/*cr_assert(test_array_check(expected) == false);*/
-	/*cr_assert_stderr_eq_str("Error\n");*/
-/*}*/
-
-/*Test(array_check, three_nemb_double_middle)*/
-/*{*/
-	/*int	expected[] = {2, 3, 2, '\0'};*/
-	/*cr_assert(test_array_check(expected) == false);*/
-	/*cr_assert_stderr_eq_str("Error\n");*/
-/*}*/
-
-/*Test(array_check, three_nemb_double_back)*/
-/*{*/
-	/*int	expected[] = {3, 2, 2, '\0'};*/
-	/*cr_assert(test_array_check(expected) == false);*/
-	/*cr_assert_stderr_eq_str("Error\n");*/
-/*}*/
-
-/*Test(array_check, three_nemb_double_front)*/
-/*{*/
-	/*int	expected[] = {2, 2, 3, '\0'};*/
-	/*cr_assert(test_array_check(expected) == false);*/
-	/*cr_assert_stderr_eq_str("Error\n");*/
-/*}*/
-
 
 /*[> ************************************************************************** <]*/
 /*TestSuite(init_stack, .init=redirect_stdout_to_stderr);*/

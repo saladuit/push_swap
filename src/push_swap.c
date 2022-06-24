@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/20 17:04:19 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/23 17:05:41 by safoh        \___)=(___/                 */
+/*   Updated: 2022/06/24 14:27:23 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,25 +55,20 @@ int	*init_integer_array(const int len, const char **argv)
 }
 
 /*Integer shouldn't be sorted or contain duplicate integer values*/
-bool	array_check(const int len, const int *integer)
+int	array_check(const int len, const int *integer)
 {
-	bool issorted;
 	size_t i;
 
 	i = 0;
-	issorted = true;
 	while (i < (size_t)len)
 	{
 		if (integer[i] > integer[i + 1] && i != (size_t)len - 1)
-			issorted = false;
+			return (NOT_SORTED);
 		if (ft_arrint(integer, integer[i], i))
-			return (false);
+			return (ERROR);
 		i++;
 	}
-	if (issorted == false)
-		return (true);
-	ft_error();
-	return (false);
+	return (SORTED);
 }
 
 /*handle conversion to int & INT_MINMAX before putting in to linked list*/

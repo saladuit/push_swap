@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/20 17:04:09 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/23 17:06:43 by safoh        \___)=(___/                 */
+/*   Updated: 2022/06/24 15:28:39 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 bool	push_swap(int argc, const char **argv)
 {
 	int *integer;
+	int k;
 	t_list *stack_a;
 
 	if(argv_checker(argc - 1, &argv[1]) == false)
@@ -23,6 +24,11 @@ bool	push_swap(int argc, const char **argv)
 	integer = NULL;
 	integer = init_integer_array(argc - 1, &argv[1]);
 	if (integer == NULL)
+		return (false);
+	k = array_check(argc - 1, integer);
+	if (k == SORTED)
+		return (true);
+	else if (k == ERROR)
 		return (false);
 	if (array_check(argc - 1, integer) == false)
 		return (false);

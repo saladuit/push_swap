@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/23 15:18:40 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/23 16:48:45 by safoh        \___)=(___/                 */
+/*   Updated: 2022/06/24 15:38:35 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,10 @@ Test(init_integer_array_test, fixed_tests)
 // Is the list already sorted and does it contain double numbers
 Test(array_check, NULL_values)
 {
-	array_check_test(0, NULL, false);
-	array_check_test(1, ((const int []){0}), true);
+	array_check_test(1, ((const int []){0}), SORTED);
+	array_check_test(2, ((const int []){0, 1}), SORTED);
+	array_check_test(2, ((const int []){1, 0}), NOT_SORTED);
+	array_check_test(2, ((const int []){0, 0}), ERROR);
 }
 
 /*[> ************************************************************************** <]*/

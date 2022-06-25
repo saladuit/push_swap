@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                    .--.  _                 */
-/*   push_swap.c                                     |o_o || |                */
-/*                                                   |:_/ || |_ _   ___  __   */
-/*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
-/*                                                 (|     | )|_| |_| |>  <    */
-/*   Created: 2022/06/20 17:04:19 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/24 17:11:43 by safoh        \___)=(___/                 */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: saladuit <safoh@student.codam.nl>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/25 01:11:50 by saladuit          #+#    #+#             */
+/*   Updated: 2022/06/25 02:05:13 by saladuit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,13 @@ int	*init_integer_array(const int len, const char **argv)
 	return (integer);
 }
 
+int	*parse_argv_to_array(int len, const char **stack_a)
+{
+	if(argv_checker(len, stack_a) == false)
+		return (NULL);
+	return (init_integer_array(len, stack_a));
+}
+
 /*Integer shouldn't be sorted or contain duplicate integer values*/
 int	array_check(const int len, const int *integer)
 {
@@ -69,6 +76,29 @@ int	array_check(const int len, const int *integer)
 		i++;
 	}
 	return (SORTED);
+}
+
+
+bool	push_swap(int len, const char **argv)
+{
+	int *integer;
+	int sort_state;
+//	t_list *stack_a;
+
+	integer = parse_argv_to_array(len, &argv[1]);
+	if (integer == NULL)
+		return (false);
+	sort_state = array_check(len, integer);
+	if (sort_state == SORTED)
+		return (true);
+	else if (sort_state == DOUBLE)
+		return (false);
+	if (array_check(len, integer) == false)
+		return (false);
+//	stack_a = NULL;
+	/*stack_a = init_stack(len - 1, integer, stack_a);*/
+	free(integer);
+	return (true);
 }
 
 /*handle conversion to int & INT_MINMAX before putting in to linked list*/

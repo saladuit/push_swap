@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                    .--.  _                 */
-/*   push_swap.h                                     |o_o || |                */
+/*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                   |:_/ || |_ _   ___  __   */
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/23 15:17:07 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/24 17:07:04 by safoh        \___)=(___/                 */
+/*   Updated: 2022/06/25 01:05:03 by saladuit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,18 @@ enum arrayCheck {
 	SORTED = 0,
 	NOT_SORTED = 1,
 };
+
+// Parsing Functions
 bool	argv_checker(const int len, const char **argv);
 int		*init_integer_array(const int len, const char **argv);
 
+
 int	array_check(const int len, const int *integer);
 t_list	*init_stack(int len, const int *integers, t_list *stack);
+
+// Main logic functions
+int	*parse_argv_to_array(int len, const char **argv);
+bool	push_swap(int argc, const char **argv);
 
 //actions
 void	sa(t_list *stack_a);

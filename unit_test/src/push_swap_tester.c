@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                    .--.  _                 */
-/*   push_swap_tester.c                              |o_o || |                */
+/*   push_swap_tester.c                                 :+:      :+:    :+:   */
 /*                                                   |:_/ || |_ _   ___  __   */
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/23 15:18:40 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/24 17:10:29 by safoh        \___)=(___/                 */
+/*   Updated: 2022/06/25 01:53:15 by saladuit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,12 @@ Test(array_check, fixed_tests)
 	array_check_test(2, ((const int []){1, 0}), NOT_SORTED);
 	array_check_test(2, ((const int []){0, 0}), DOUBLE);
 }
+
+Test(parse_argv_to_array, fixed_tests)
+{
+	parse_argv_to_array_test(0, NULL, NULL);
+}
+
 
 /*[> ************************************************************************** <]*/
 /*TestSuite(init_stack, .init=redirect_stdout_to_stderr);*/

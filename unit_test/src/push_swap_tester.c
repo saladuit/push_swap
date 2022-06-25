@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/23 15:18:40 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/25 01:53:15 by saladuit         ###   ########.fr       */
+/*   Updated: 2022/06/25 02:08:28 by saladuit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ Test(array_check, fixed_tests)
 Test(parse_argv_to_array, fixed_tests)
 {
 	parse_argv_to_array_test(0, NULL, NULL);
+	parse_argv_to_array_test(1, (const char *[]){"1"}, (const int []{1});
 }
 
 

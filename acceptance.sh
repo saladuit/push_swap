@@ -15,6 +15,7 @@ rm ERROR
 check_pass() {
 
 	./push_swap $1 2>| PASS
+	echo "input: $1"
 	if [[ $(cat PASS) == "" ]]; 
 then
 	echo ok

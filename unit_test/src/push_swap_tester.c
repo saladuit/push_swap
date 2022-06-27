@@ -1,36 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                    .--.  _                 */
-/*   push_swap_tester.c                                 :+:      :+:    :+:   */
+/*   push_swap_tester.c                              |o_o || |                */
 /*                                                   |:_/ || |_ _   ___  __   */
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
-/*   Created: 2022/06/23 15:18:40 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/25 02:09:24 by saladuit         ###   ########.fr       */
+/*   Created: 2022/06/27 14:45:57 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
+/*   Updated: 2022/06/27 18:35:27 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "unit_test.h"
 
-Test(argv_checker, fixed_tests)
+//Test(crashes, fixed, .signal = SIGSEGV)
+//{
+//	argv_checker_test(0, NULL, false);
+//	init_integer_array_test(0, NULL, NULL);
+//	array_check_test(0, NULL, SORTED);
+//	parse_argv_to_array_test(0, NULL, NULL);
+//}
+
+Test(argv_checker, fixed)
 {
-	argv_checker_test(0, NULL, false);
 	argv_checker_test(1, ((const char *[]){""}), false);
 	argv_checker_test(1, ((const char *[]){"1"}), true);
 	argv_checker_test(1, ((const char *[]){"a"}), false);
 /*tests that don't fail the project */
 	argv_checker_test(2, ((const char *[]){"1", "2"}), true);
-	argv_checker_test(2, ((const char *[]){"10+-"}), true);
+	argv_checker_test(1, ((const char *[]){"10+-"}), true);
 	argv_checker_test(9, ((const char *[]){"1", "2", "3", "4", "5", "6", "7", "8", "9"}), true);
 	argv_checker_test(2, ((const char *[]){"1", "a"}), false);
 	argv_checker_test(2, ((const char *[]){"1", "1a"}), false);
 	argv_checker_test(2, ((const char *[]){"1", "\n"}), false);
 }
 
-Test(init_integer_array_test, fixed_tests)
+Test(init_integer_array_test, fixed)
 {
-	init_integer_array_test(0, NULL, NULL);
-	init_integer_array_test(1, ((const char *[]){""}), NULL);
+//	init_integer_array_test(1, ((const char *[]){""}), NULL);
 	init_integer_array_test(1, ((const char *[]){"1"}), ((const int []){1}));
 	init_integer_array_test(1, ((const char *[]){"+2147483648"}), NULL);
 /*tests that don't fail the project */
@@ -44,11 +50,11 @@ Test(init_integer_array_test, fixed_tests)
 	init_integer_array_test(1, ((const char *[]){"+-2147483648"}), NULL);
 	init_integer_array_test(1, ((const char *[]){"2147483648"}), NULL);
 	init_integer_array_test(2, ((const char *[]){"1", "2"}), ((const int []){1, 2}));
-	init_integer_array_test(3, ((const char *[]){"1", "", "2"}), ((const int []){1, 2}));
+	init_integer_array_test(3, ((const char *[]){"1", "", "2"}), NULL);
 }
 
 // Is the list already sorted and does it contain double numbers
-Test(array_check, fixed_tests)
+Test(array_check, fixed)
 {
 	array_check_test(1, ((const int []){0}), SORTED);
 	array_check_test(2, ((const int []){0, 1}), SORTED);
@@ -56,122 +62,25 @@ Test(array_check, fixed_tests)
 	array_check_test(2, ((const int []){0, 0}), DOUBLE);
 }
 
-Test(parse_argv_to_array, fixed_tests)
+Test(parse_argv_to_array, fixed)
 {
-	parse_argv_to_array_test(0, NULL, NULL);
 	parse_argv_to_array_test(1, (const char *[]){"1"}, (const int []){1});
+	parse_argv_to_array_test(1, (const char *[]){"a"}, NULL);
 }
 
+Test(push_swap, fixed)
+{
+	push_swap_test(0, NULL, false);
+	push_swap_test(1, ((const char *[]){"1"}), true);
+	push_swap_test(2, ((const char *[]){"1", "1"}), false);
+	push_swap_test(2, ((const char *[]){"99999999999999999999", "1"}), false);
+}
 
-/*[> ************************************************************************** <]*/
-/*TestSuite(init_stack, .init=redirect_stdout_to_stderr);*/
-/*[> ************************************************************************** <]*/
-/*bool	test_init_stack(int *expected)*/
-/*{*/
-	/*t_list	*stack_a = NULL;*/
-	/*int number;*/
-	/*int len = 0;*/
-	/*size_t i = 0;*/
+Test(init_stack_a, fixed)
+{
+	init_stack_test(2, ((const int []){1, 2}));
+}
 
-	/*if (expected)*/
-		/*while (expected[len])*/
-			/*len++;*/
-	/*stack_a = init_stack(len, expected, stack_a);*/
-	/*if (stack_a == NULL)*/
-	/*{*/
-		/*if (expected)*/
-			/*cr_log_error("Stack_init_setup failed\n");*/
-		/*return (false);*/
-	/*}*/
-	/*while(i < (size_t)len)*/
-	/*{*/
-		/*number = *(int *)stack_a->content;*/
-		/*if(number != expected[i])*/
-			/*return (false);*/
-		/*stack_a = stack_a->next;*/
-		/*i++;*/
-	/*}*/
-	/*ft_lstclear(&stack_a, NULL);*/
-	/*return (true);*/
-/*}*/
-
-/*Test(init_stack, null_pointer)*/
-/*{*/
-	/*int *expected = NULL;*/
-	
-	/*cr_assert(test_init_stack(expected) == false);*/
-	/*cr_assert_stderr_eq_str("Error\n");*/
-/*}*/
-
-/*Test(init_stack, one_valid_int)*/
-/*{*/
-	/*int	expected[] = {1, '\0'};*/
-	/*cr_assert(test_init_stack(expected) == true);*/
-	/*cr_assert_stderr_eq_str("");*/
-/*}*/
-
-/*Test(init_stack, MAX_int)*/
-/*{*/
-	/*int	expected[] = {2147483647, '\0'};*/
-	/*cr_assert(test_init_stack(expected) == true);*/
-	/*cr_assert_stderr_eq_str("");*/
-/*}*/
-
-/*Test(init_stack, double_MAXMAX_int)*/
-/*{*/
-	/*int	expected[] = {2147483647, -2147483648, '\0'};*/
-	/*cr_assert(test_init_stack(expected) == true);*/
-	/*cr_assert_stderr_eq_str("");*/
-/*}*/
-
-/*Test(init_stack, double_MAX_int)*/
-/*{*/
-	/*int	expected[] = {2147483647, 2147483647, '\0'};*/
-	/*cr_assert(test_init_stack(expected) == true);*/
-	/*cr_assert_stderr_eq_str("");*/
-/*}*/
-
-/*Test(init_stack, MIN_int)*/
-/*{*/
-	/*int	expected[] = {-2147483648, '\0'};*/
-	/*cr_assert(test_init_stack(expected) == true);*/
-	/*cr_assert_stderr_eq_str("");*/
-/*}*/
-
-/*Test(init_stack, two_valid_int)*/
-/*{*/
-	/*int	expected[] = {1, 2, '\0'};*/
-	/*cr_assert(test_init_stack(expected) == true);*/
-	/*cr_assert_stderr_eq_str("");*/
-/*}*/
-
-/*Test(init_stack, three_valid_int)*/
-/*{*/
-	/*int	expected[] = {1, 2, 3, '\0'};*/
-	/*cr_assert(test_init_stack(expected) == true);*/
-	/*cr_assert_stderr_eq_str("");*/
-/*}*/
-
-/*Test(init_stack, three_valid_negint)*/
-/*{*/
-	/*int	expected[] = {-1, -2, -3, '\0'};*/
-	/*cr_assert(test_init_stack(expected) == true);*/
-	/*cr_assert_stderr_eq_str("");*/
-/*}*/
-
-/*Test(init_stack, rev_three_valid_negint)*/
-/*{*/
-	/*int	expected[] = {-3, -2, -1, '\0'};*/
-	/*cr_assert(test_init_stack(expected) == true);*/
-	/*cr_assert_stderr_eq_str("");*/
-/*}*/
-
-/*Test(init_stack, 0_three_valid_negint)*/
-/*{*/
-	/*int	expected[] = {-3, 0, -1, '\0'};*/
-	/*cr_assert(test_init_stack(expected) == true);*/
-	/*cr_assert_stderr_eq_str("");*/
-/*}*/
 /*[> ************************************************************************** <]*/
 /*TestSuite(sa, .init=redirect_stdout_to_stderr);*/
 /*[> ************************************************************************** <]*/

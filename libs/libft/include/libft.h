@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/23 15:15:24 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/23 16:27:12 by safoh        \___)=(___/                 */
+/*   Updated: 2022/06/27 16:20:52 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ char	*ft_strtrim(char const *s1, char const *set);
 void	ft_strtoupper(char *string);
 void	ft_strtolower(char *string);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
+size_t	ft_matrixlen(const	char **matrix, size_t count);
+char	*ft_joinmatrix(const char **matrix, size_t count);
 
 // strclr
 // striter

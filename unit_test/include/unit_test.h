@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                    .--.  _                 */
-/*   unit_test.h                                        :+:      :+:    :+:   */
+/*   unit_test.h                                     |o_o || |                */
 /*                                                   |:_/ || |_ _   ___  __   */
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/20 17:04:51 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/25 01:18:22 by saladuit         ###   ########.fr       */
+/*   Updated: 2022/06/27 18:12:20 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,7 @@ void	array_check_test(const int len, const int *integer, const int expected);
 
 void	init_integer_array_test(const int len, const char **argv, const int *expected);
 void	parse_argv_to_array_test(const int len, const char **argv, const int *expected);
+void	init_stack_test(const int len, const int *array);
 
+void	push_swap_test(const int len, const char **argv, const bool expected);
 #endif

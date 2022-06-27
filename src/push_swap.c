@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: saladuit <safoh@student.codam.nl>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/25 01:11:50 by saladuit          #+#    #+#             */
-/*   Updated: 2022/06/25 02:05:13 by saladuit         ###   ########.fr       */
+/*                                                    .--.  _                 */
+/*   push_swap.c                                     |o_o || |                */
+/*                                                   |:_/ || |_ _   ___  __   */
+/*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
+/*                                                 (|     | )|_| |_| |>  <    */
+/*   Created: 2022/06/27 14:46:15 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
+/*   Updated: 2022/06/27 18:36:35 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,9 @@ bool	argv_checker(const int len, const char **argv)
 	size_t i;
 
 	i = 0;
-	if (argv == NULL || **argv == '\0')
-		return (false);
 	while(i < (size_t)len)
 	{
-		if (ft_strbapi(argv[i], ft_isatoi) == false)
+		if (ft_strbapi(argv[i], ft_isatoi) == false || *argv[i] == '\0')
 			return (false);
 		i++;
 	}
@@ -35,7 +33,7 @@ int	*init_integer_array(const int len, const char **argv)
 	size_t i;
 	int *integer;
 
-	if (argv == NULL || **argv == '\0')
+	if (**argv == '\0')
 		return (NULL);
 	integer = ft_calloc(len + 1, sizeof(int));
 	if (integer == NULL)
@@ -44,9 +42,10 @@ int	*init_integer_array(const int len, const char **argv)
 	while (i < (size_t)len)
 	{
 		integer[i] = ft_atoi(argv[i]);
-		if (integer[i] == 0 && ft_iszero(argv[i]) == false)
+		if ((integer[i] == 0 && ft_iszero(argv[i]) == false) || *argv[i] == '\0')
 		{
 			free(integer);
+			integer = NULL;
 			return (NULL);
 		}
 		i++;
@@ -54,7 +53,7 @@ int	*init_integer_array(const int len, const char **argv)
 	return (integer);
 }
 
-int	*parse_argv_to_array(int len, const char **stack_a)
+int	*parse_argv_to_array(const int len, const char **stack_a)
 {
 	if(argv_checker(len, stack_a) == false)
 		return (NULL);
@@ -78,14 +77,31 @@ int	array_check(const int len, const int *integer)
 	return (SORTED);
 }
 
+// handle conversion to int & INT_MINMAX before putting in to linked list
+t_list	*init_stack(const int len, const int *integer)
+{
+	t_list *stack;
+	size_t	i;
+
+	i = 0;
+	stack = NULL;
+	while (i < (size_t)len)
+	{
+		ft_lstadd_back(&stack, ft_lstnew((void *)&integer[i])); 
+		i++;
+	}
+	return (stack);
+}
 
 bool	push_swap(int len, const char **argv)
 {
 	int *integer;
 	int sort_state;
-//	t_list *stack_a;
+	t_list *stack_a;
 
-	integer = parse_argv_to_array(len, &argv[1]);
+	if (argv == NULL || len == 0)
+		return (NULL);
+	integer = parse_argv_to_array(len, argv);
 	if (integer == NULL)
 		return (false);
 	sort_state = array_check(len, integer);
@@ -95,31 +111,12 @@ bool	push_swap(int len, const char **argv)
 		return (false);
 	if (array_check(len, integer) == false)
 		return (false);
-//	stack_a = NULL;
-	/*stack_a = init_stack(len - 1, integer, stack_a);*/
+	stack_a = NULL;
+	stack_a = init_stack(len, integer);
 	free(integer);
 	return (true);
 }
 
-/*handle conversion to int & INT_MINMAX before putting in to linked list*/
-/*t_list	*init_stack(int len, const int *integer, t_list *stack_a)*/
-/*{*/
-	/*size_t	i;*/
-
-	/*if (integer == NULL)*/
-	/*{*/
-		/*ft_error();*/
-		/*return (NULL);*/
-	/*}*/
-	/*i = 0;*/
-	/*while (i < (size_t)len)*/
-	/*{*/
-
-/* this line should be readded ft_lstadd_back(&stack_a, ft_lstnew(&integer[i])); */
-		/*i++;*/
-	/*}*/
-	/*return (stack_a);*/
-/*}*/
 
 /*bool	sa(t_list *stack_a)*/
 /*{*/

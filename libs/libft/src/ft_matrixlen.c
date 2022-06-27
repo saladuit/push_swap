@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                    .--.  _                 */
-/*   main.c                                          |o_o || |                */
+/*   ft_matrixlen.c                                  |o_o || |                */
 /*                                                   |:_/ || |_ _   ___  __   */
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
-/*   Created: 2022/06/27 15:07:11 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/27 15:11:46 by safoh        \___)=(___/                 */
+/*   Created: 2022/06/27 15:37:10 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
+/*   Updated: 2022/06/27 16:20:25 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+size_t	ft_matrixlen(const	char **matrix, size_t count)
 {
-	if (argc == 1)
-		return (EXIT_SUCCESS);
-	if (push_swap(argc - 1, (const char **)&argv[1]) == false)
+	size_t total_len;
+	size_t i;
+
+	total_len = 0;
+	i = 0;
+	while (i < count)
 	{
-		ft_error();
-		return (EXIT_FAILURE);
+		total_len = ft_strlen(matrix[i]);
+		i++;
 	}
-	return (EXIT_SUCCESS);
+	return (total_len);
 }

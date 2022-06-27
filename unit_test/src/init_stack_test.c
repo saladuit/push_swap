@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                    .--.  _                 */
-/*   argv_checker_test.c                             |o_o || |                */
+/*   init_stack_test.c                               |o_o || |                */
 /*                                                   |:_/ || |_ _   ___  __   */
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
-/*   Created: 2022/06/20 17:04:40 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/27 16:54:58 by safoh        \___)=(___/                 */
+/*   Created: 2022/06/27 18:00:18 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
+/*   Updated: 2022/06/27 18:13:14 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "unit_test.h"
 
-#define formatBool(b) ((b) ? "true" : "false")
-
-void	argv_checker_test(const int len, const char **argv, const bool expected)
+void	init_stack_test(const int len, const int *array)
 {
-	bool submitted;
-	char *input;
+	t_list	*stack = NULL;
+	int number;
+	size_t i = 0;
 
-	input = ft_joinmatrix(argv, len);
-	submitted = argv_checker(len, argv);
-	cr_assert(submitted == expected,
-			"Called:\targv_checker()\ninput:\t\t%s\nlen:\t\t%d\nexpected:\t%s \nsubmitted:\t%s\n",
-			input,
-			len,
-			formatBool(expected),
-			formatBool(submitted));
+	stack = init_stack(len, array);
+	while(i < (size_t)len)
+	{
+		number = *(int *)stack->content;
+		cr_assert_eq(number, array[i]);
+		stack = stack->next;
+		i++;
+	}
+	ft_lstclear(&stack, NULL);
 	return ;
 }

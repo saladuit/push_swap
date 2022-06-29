@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/27 14:46:15 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/27 18:36:35 by safoh        \___)=(___/                 */
+/*   Updated: 2022/06/29 22:04:42 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,6 @@ bool	push_swap(int len, const char **argv)
 	int sort_state;
 	t_list *stack_a;
 
-	if (argv == NULL || len == 0)
-		return (NULL);
 	integer = parse_argv_to_array(len, argv);
 	if (integer == NULL)
 		return (false);
@@ -108,8 +106,6 @@ bool	push_swap(int len, const char **argv)
 	if (sort_state == SORTED)
 		return (true);
 	else if (sort_state == DOUBLE)
-		return (false);
-	if (array_check(len, integer) == false)
 		return (false);
 	stack_a = NULL;
 	stack_a = init_stack(len, integer);

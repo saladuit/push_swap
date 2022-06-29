@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                     .--.  _                  #
-#    Makefile                                           :+:      :+:    :+:    #
+#    Makefile                                        |o_o || |                 #
 #                                                    |:_/ || |_ _   ___  __    #
 #    By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /    #
 #                                                  (|     | )|_| |_| |>  <     #
 #    Created: 2022/02/09 17:06:29 by safoh        /'\_   _/`\__|\__,_/_/\_\    #
-#    Updated: 2022/06/13 18:20:32 by safoh            ###   ########.fr        #
+#    Updated: 2022/06/29 21:20:46 by safoh        \___)=(___/                  #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ NAME			=libft.a
 
 CC				:=gcc
 RM				:=rm -rf
-CFLAGS			=-Wall -Wextra -Werror$(if $(DEBUG),-g -fsanitize=address)
+CFLAGS			=-Wall -Wextra -Werror$(if $(DEBUG), -g -fsanitize=address)
 
 SRC_DIR 		:=./src
 BUILD_DIR		:=./build

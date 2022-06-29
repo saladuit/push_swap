@@ -6,7 +6,7 @@
 #    By: safoh <safoh@student.codam.nl>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/11 13:49:39 by safoh             #+#    #+#              #
-#    Updated: 2022/06/24 15:34:46 by safoh        \___)=(___/                  #
+#    Updated: 2022/06/29 21:20:14 by safoh        \___)=(___/                  #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ NAME			:=push_swap
 
 CC				:=gcc
 RM				:=rm -rfv
-CFLAGS			=-Wall -Wextra -Werror$(if $(DEBUG),-g -fsanitize=address)
+CFLAGS			=-Wall -Wextra -Werror$(if $(DEBUG), -g -fsanitize=address)
 
 ################################################################################
 all: $(NAME)

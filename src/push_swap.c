@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/27 14:46:15 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/29 22:04:42 by safoh        \___)=(___/                 */
+/*   Updated: 2022/06/30 17:14:16 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,27 @@ t_list	*init_stack(const int len, const int *integer)
 	return (stack);
 }
 
+
+void	swap_top_two_nodes(t_list *stack, char *action)
+{
+	ft_swap(stack->content, stack->next->content);
+	ft_putendl_fd(action, 1);
+}
+
+void	push_top_node_to_stack(t_list **dest, t_list **src, char *action)
+{
+	t_list *tmp;
+
+	if (*src == NULL)
+		return ;
+	tmp = *src;
+	tmp = tmp->next;
+	ft_lstadd_front(dest, *src);
+	ft_putendl_fd(action, 1);
+}
+//void	rotate_stack(t_list *stack);
+//void	rev_rotate_stack(t_list *stack);
+
 bool	push_swap(int len, const char **argv)
 {
 	int *integer;
@@ -112,34 +133,3 @@ bool	push_swap(int len, const char **argv)
 	free(integer);
 	return (true);
 }
-
-
-/*bool	sa(t_list *stack_a)*/
-/*{*/
-	/*if (ft_lstsize(stack_a) < 2)*/
-		/*return (false);*/
-	/*ft_swap(stack_a->content, (*stack_a).next->content);*/
-	/*ft_putendl_fd("sa", 1);*/
-	/*return (true);*/
-/*}*/
-
-/*bool	sb(t_list *stack_b)*/
-/*{*/
-	/*if (ft_lstsize(stack_b) < 2)*/
-		/*return (false);*/
-	/*ft_swap(stack_b->content, (*stack_b).next->content);*/
-	/*ft_putendl_fd("sa", 1);*/
-	/*return (true);*/
-/*}*/
-
-/*bool	ss(t_list *stack_a, t_list *stack_b)*/
-/*{*/
-	/*if (ft_lstsize(stack_a) < 2)*/
-		/*return (false);*/
-	/*ft_swap(stack_a->content, (*stack_a).next->content);*/
-	/*if (ft_lstsize(stack_b) < 2)*/
-		/*return (false);*/
-	/*ft_swap(stack_b->content, (*stack_b).next->content);*/
-	/*ft_putendl_fd("ss", 1);*/
-	/*return (true);*/
-/*}*/

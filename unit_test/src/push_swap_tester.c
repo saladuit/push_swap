@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/27 14:45:57 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/29 22:07:33 by safoh        \___)=(___/                 */
+/*   Updated: 2022/06/30 17:21:22 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,78 @@ Test(push_swap, fixed)
 	push_swap_test(2, ((const char *[]){"99999999999999999999", "1"}), false);
 }
 
-Test(init_stack_a, fixed)
+Test(init_stack, fixed)
 {
 	init_stack_test(2, ((const int []){1, 2}));
 }
 
+void	swap_top_two_nodes_test(const size_t size, const int *input, const int *expected)
+{
+	t_list *stack;
+
+	stack = init_stack(size, input);
+	swap_top_two_nodes(stack, "");
+	cr_assert(eq(int[size], (int *)input,(int *)expected));
+	return ;
+}
+
+//void	push_top_top_node_to_stack(const size_t size, const int *input, const int *expected)
+//{
+//	t_list *stack;
+//
+//	stack = init_stack(size, input);
+//	swap_top_two_nodes(stack, "");
+//	cr_assert(eq(int[size], (int *)input,(int *)expected));
+//	return ;
+//}
+
+TestSuite(actions, .init=redirect_all_std);
+
+Test(actions, fixed_swap)
+{
+	swap_top_two_nodes_test(2, ((const int []){10, 1}), ((const int []){1, 10}));
+	swap_top_two_nodes_test(3, ((const int []){1, 10, 1}), ((const int []){10, 1, 1}));
+}
+
+static void	check_stack(size_t size, t_list *stack, const int *expected)
+{
+	int number;
+	size_t i = 0;
+
+	while(i < (size_t)size)
+	{
+		number = *(int *)stack->content;
+		cr_assert(eq(int, number, expected[i]));
+		stack = stack->next;
+		i++;
+	}
+	return ;
+}
+void	push_top_node_to_stack_test(const size_t size_a, const size_t size_b, \
+		const int *input_a, const int *input_b, \
+		const int *expected_a, const int *expected_b)
+{
+	t_list *stack_a = NULL;
+	t_list *stack_b = NULL;
+
+	stack_a = init_stack(size_a, input_a);
+	if (size_b != 0)
+		stack_b = init_stack(size_b, input_b);
+	push_top_node_to_stack(&stack_b, &stack_a, "");
+	check_stack(size_a - 1, stack_a, expected_a);
+	check_stack(size_b + 1, stack_b, expected_b);
+	return ;
+}
+
+Test(push_top_node_to_stack, fixed_push)
+{
+	push_top_node_to_stack_test(1, 0, \
+			((const int []){10}), ((const int []){}), \
+			((const int []){}), ((const int []){10}));
+	push_top_node_to_stack_test(2, 1, \
+			((const int []){10, 1}), ((const int []){1}), \
+			((const int []){1}), ((const int []){10, 1}));
+}
 /*[> ************************************************************************** <]*/
 /*TestSuite(sa, .init=redirect_stdout_to_stderr);*/
 /*[> ************************************************************************** <]*/

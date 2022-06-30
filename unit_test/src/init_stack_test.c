@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/27 18:00:18 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/27 18:13:14 by safoh        \___)=(___/                 */
+/*   Updated: 2022/06/30 15:01:56 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,5 @@ void	init_stack_test(const int len, const int *array)
 		stack = stack->next;
 		i++;
 	}
-	ft_lstclear(&stack, NULL);
 	return ;
 }

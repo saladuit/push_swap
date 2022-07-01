@@ -6,12 +6,12 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/20 17:04:51 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/27 18:12:20 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/01 16:40:52 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UNIT_PUSH_SWAP
-# define UNIT_PUSH_SWAP
+#ifndef UNIT_TEST_H
+# define UNIT_TEST_H
 # include <criterion/criterion.h>
 # include <criterion/new/assert.h>
 # include <criterion/redirect.h>
@@ -28,5 +28,11 @@ void	init_integer_array_test(const int len, const char **argv, const int *expect
 void	parse_argv_to_array_test(const int len, const char **argv, const int *expected);
 void	init_stack_test(const int len, const int *array);
 
+void	push_top_node_test(const size_t size_a, const size_t size_b, \
+		const int *input_a, const int *input_b, \
+		const int *expected_a, const int *expected_b);
+void	rotate_list_test(const size_t size_a, const int *input_a, const int *expected_a);
+void	rev_rotate_list_test(const size_t size_a, const int *input_a, const int *expected_a);
+void	swap_top_list_test(const size_t size, const int *input, const int *expected);
 void	push_swap_test(const int len, const char **argv, const bool expected);
 #endif

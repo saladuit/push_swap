@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/07/01 16:42:11 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/01 16:42:29 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/04 10:20:52 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	rotate_list_test(const size_t size_a, const int *input_a, const int *expect
 	t_list *stack_a = NULL;
 
 	stack_a = init_stack(size_a, input_a);
-	rotate_list(size_a, &stack_a, "");
+	rotate_list(size_a, &stack_a);
 	check_stack(size_a, stack_a, expected_a);
 	return ;
 }

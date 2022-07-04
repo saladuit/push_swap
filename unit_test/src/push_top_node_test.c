@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/07/01 16:09:12 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/01 16:09:38 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/04 10:21:25 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	push_top_node_test(const size_t size_a, const size_t size_b, \
 
 	stack_a = init_stack(size_a, input_a);
 	stack_b = init_stack(size_b, input_b);
-	push_top_node(&stack_b, &stack_a, "");
+	push_top_node(&stack_b, &stack_a);
 	if (size_a != 0)
 	{
 		check_stack(size_a - 1, stack_a, expected_a);

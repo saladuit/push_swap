@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/27 14:46:15 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/04 09:54:30 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/04 10:43:33 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,13 +95,12 @@ t_list	*init_stack(const int len, const int *integer)
 }
 
 
-void	swap_top_list(t_list *stack, char *action)
+void	swap_top_list(t_list *stack)
 {
 	ft_swap(stack->content, stack->next->content);
-	ft_putendl_fd(action, 1);
 }
 
-void	push_top_node(t_list **dest, t_list **src, char *action)
+void	push_top_node(t_list **dest, t_list **src)
 {
 	t_list *tmp;
 
@@ -110,22 +109,30 @@ void	push_top_node(t_list **dest, t_list **src, char *action)
 	tmp = *src;
 	ft_lstadd_front(dest, *src);
 	*src = (*tmp).next;
-	ft_putendl_fd(action, 1);
 }
 
-void	rotate_list(const size_t size, t_list **stack, char *action)
+void	rotate_list(const size_t size, t_list **stack)
 {
+	size_t i;
 	t_list *tmp;
+	
 	if (size < 2)
 		return ;
-	tmp = *stack;
+	i = 0;
+	tmp = (*stack)->next;
 	ft_lstadd_back(stack, *stack);
-	*stack = (*tmp).next;
-	ft_putendl_fd(action, 1);
+	*stack = tmp;
+	while (i < size - 1)
+	{
+		*stack = (*stack)->next;
+		i++;
+	}
+	(*stack)->next = NULL;
+	*stack = tmp;
 }
 
 
-void	rev_rotate_list(const size_t size, t_list **stack, char *action)
+void	rev_rotate_list(const size_t size, t_list **stack)
 {
 	size_t i;
 	t_list *tmp;
@@ -142,10 +149,22 @@ void	rev_rotate_list(const size_t size, t_list **stack, char *action)
 	}
 	(*stack)->next = NULL;
 	*stack = tmp;
-	ft_putendl_fd(action, 1);
 }
 
-bool	push_swap(int len, const char **argv)
+//void	sort(const int len, t_list *stack_a)
+//{
+//	if (len <= 5)
+//		sort_small_stack(len, stack_a);
+//	else
+//		sort_big_stack(len, stack_a);
+//	return ;
+//}
+//void	sort_small_stack(len, stack_a)
+//{
+//	t_list *stack_b;
+//
+//	if (stack_a->content <
+bool	push_swap(const int len, const char **argv)
 {
 	int *integer;
 	int sort_state;
@@ -161,6 +180,7 @@ bool	push_swap(int len, const char **argv)
 		return (false);
 	stack_a = NULL;
 	stack_a = init_stack(len, integer);
+//	sort(len, stack_a);
 	free(integer);
 	return (true);
 }

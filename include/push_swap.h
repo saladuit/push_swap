@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/23 15:17:07 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/01 16:47:03 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/04 10:19:04 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ int	*parse_argv_to_array(int len, const char **argv);
 bool	push_swap(int argc, const char **argv);
 
 //actions
-void	swap_top_list(t_list *stack, char *action);
-void	push_top_node(t_list **dest, t_list **src, char *action);
-void	rotate_list(const size_t size, t_list **stack, char *action);
-void	rev_rotate_list(const size_t size, t_list **stack, char *action);
+void	swap_top_list(t_list *stack);
+void	push_top_node(t_list **dest, t_list **src);
+void	rotate_list(const size_t size, t_list **stack);
+void	rev_rotate_list(const size_t size, t_list **stack);
 #endif

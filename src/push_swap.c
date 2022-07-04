@@ -6,11 +6,12 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/27 14:46:15 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/01 16:46:54 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/04 09:54:30 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "stdio.h"
 
 /*Make sure arguments contain digits*/
 bool	argv_checker(const int len, const char **argv)
@@ -126,15 +127,24 @@ void	rotate_list(const size_t size, t_list **stack, char *action)
 
 void	rev_rotate_list(const size_t size, t_list **stack, char *action)
 {
+	size_t i;
 	t_list *tmp;
+
 	if (size < 2)
 		return ;
+	i = 0;
+	ft_lstadd_front(stack, ft_lstlast(*stack));
 	tmp = *stack;
-	ft_lstadd_back(stack, *stack);
-	*stack = (*tmp).next;
+	while (i < size - 1)
+	{
+		*stack = (*stack)->next;
+		i++;
+	}
+	(*stack)->next = NULL;
+	*stack = tmp;
 	ft_putendl_fd(action, 1);
-
 }
+
 bool	push_swap(int len, const char **argv)
 {
 	int *integer;

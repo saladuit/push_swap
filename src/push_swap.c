@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/27 14:46:15 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/04 12:59:40 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/04 13:01:32 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,11 +118,6 @@ void	rotate_list(const size_t size, t_list **stack)
 	if (size < 2)
 		return ;
 	i = 0;
-//	int		*d;
-//	const int	*s;
-//
-//	d = dest;
-//	s = src;
 	tmp = (*stack)->next;
 	ft_lstadd_back(stack, *stack);
 	*stack = tmp;
@@ -178,11 +173,6 @@ void	sort_array(const int len, int *integer)
 	while (i < (size_t)len)
 	{
 		j = i;
-//	int		*d;
-//	const int	*s;
-//
-//	d = dest;
-//	s = src;
 		while (j < (size_t)len - 1)
 		{
 			if (integer[j] > integer[j + 1])

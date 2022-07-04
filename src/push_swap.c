@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/27 14:46:15 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/04 13:01:32 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/04 13:35:03 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,19 +149,6 @@ void	rev_rotate_list(const size_t size, t_list **stack)
 	*stack = tmp;
 }
 
-//void	sort(const int len, t_list **stack_a)
-//{
-//	if (len <= 5)
-//		sort_small_stack(len, stack_a);
-//	else
-//		sort_big_stack(len, stack_a);
-//	return ;
-//}
-//void	sort_small_stack(len, stack_a)
-//{
-//	t_list *stack_b;
-//
-//	if (stack_a->content <
 void	sort_array(const int len, int *integer)
 {
 	size_t i;
@@ -213,6 +200,76 @@ void	make_positive(const int len, int *integer)
 	return ;
 }
 
+int	biggest_bit(int num)
+{
+	int max;
+
+	max = 0;
+	while ((num >> max) != 0)
+		max++;
+	return (max);
+}
+
+void	sort_radix(int len_a, t_list **stack_a)
+{
+	t_list *stack_b;
+	int max_num; // the biggest number in a is stack_size - 1
+	int max_bits; // how many bits for max_num 
+	int len_b;
+	int num;
+	int i;
+	int j;
+
+	stack_a = NULL;
+	len_b = 0;
+	max_num = len_a - 1;
+	max_bits = biggest_bit(max_num);
+	i = 0;
+	j = 0;
+	while (i < max_bits)
+	{
+		while (j < len_a)
+		{
+			num = *(int *)(*stack_a)->content;
+			if (((num >> i)&1) == 1)
+			{
+				rotate_list(len_a, stack_a);
+				ft_putendl_fd("ra\n", 1);
+				len_a--;
+			}
+			else 
+			{
+				push_top_node(&stack_b, stack_a);
+				ft_putendl_fd("pb\n", 1);
+				len_b++;
+			}
+			j++;
+		}
+		while (len_b)
+		{
+			push_top_node(stack_a, &stack_b);
+			ft_putendl_fd("pa\n", 1);
+			len_b++;
+		}
+		i++;
+	}
+}
+void	sort(const int len, t_list **stack_a)
+{
+	sort_radix(len, stack_a);
+	return ;
+}
+//void	sort_small_stack(len, stack_a)
+//{
+//	t_list *stack_b;
+//	int top;
+//	int mid;
+//	int	bot; 
+//
+//	top = stack_a->content;
+//	mid = stack_a->next->content;
+//	bot = stack_a->next->next->content;
+//	if (
 bool	push_swap(const int len, const char **argv)
 {
 	int *integer;
@@ -230,7 +287,7 @@ bool	push_swap(const int len, const char **argv)
 	make_positive(len, integer);
 	stack_a = NULL;
 	stack_a = init_stack(len, integer);
-//	sort(len, &stack_a);
+	sort(len, &stack_a);
 	free(integer);
 	return (true);
 }

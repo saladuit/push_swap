@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/27 14:45:57 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/04 12:59:20 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/04 15:43:44 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ Test(argv_checker, fixed)
 	argv_checker_test(1, ((const char *[]){"a"}), false);
 /*tests that don't fail the project */
 	argv_checker_test(2, ((const char *[]){"1", "2"}), true);
-	argv_checker_test(1, ((const char *[]){"10+-"}), true);
+	argv_checker_test(1, ((const char *[]){"10+-"}), false);
 	argv_checker_test(9, ((const char *[]){"1", "2", "3", "4", "5", "6", "7", "8", "9"}), true);
 	argv_checker_test(2, ((const char *[]){"1", "a"}), false);
 	argv_checker_test(2, ((const char *[]){"1", "1a"}), false);
@@ -44,6 +44,7 @@ Test(init_integer_array_test, fixed)
 	init_integer_array_test(1, ((const char *[]){"0"}), ((const int []){0}));
 	init_integer_array_test(1, ((const char *[]){"-00"}), ((const int []){0}));
 	init_integer_array_test(1, ((const char *[]){"+00"}), ((const int []){0}));
+	init_integer_array_test(1, ((const char *[]){"00-"}), NULL);
 	init_integer_array_test(1, ((const char *[]){"000001"}), ((const int []){1}));
 	init_integer_array_test(1, ((const char *[]){"+2147483647"}), ((const int []){2147483647}));
 	init_integer_array_test(1, ((const char *[]){"--+2147483647"}), NULL);

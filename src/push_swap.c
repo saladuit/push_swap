@@ -6,21 +6,46 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/27 14:46:15 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/04 13:35:03 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/04 17:29:51 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+static bool	argv_checker_helper(const char *argument)
+{
+	size_t i;
+
+	i = 0; 
+	if(ft_isempty(argument[i]))
+		return (false);
+	while (argument[i])
+	{
+		if (i == 0)
+		{
+			if (ft_isatoi(argument[i]) == false)
+				return (false);
+		}
+		else
+		{
+			if (ft_isdigit(argument[i]) == false)
+				return (false);
+		}
+		i++;
+	}
+	return (true);
+}
+
 /*Make sure arguments contain digits*/
 bool	argv_checker(const int len, const char **argv)
 {
+
 	size_t i;
 
 	i = 0;
 	while(i < (size_t)len)
 	{
-		if (ft_strbapi(argv[i], ft_isatoi) == false || *argv[i] == '\0')
+		if(argv_checker_helper(argv[i]) == false)
 			return (false);
 		i++;
 	}
@@ -33,16 +58,14 @@ int	*init_integer_array(const int len, const char **argv)
 	size_t i;
 	int *integer;
 
-	if (**argv == '\0')
-		return (NULL);
-	integer = ft_calloc(len + 1, sizeof(int));
+	integer = ft_calloc(len, sizeof(int));
 	if (integer == NULL)
 		return (NULL);
 	i = 0;
 	while (i < (size_t)len)
 	{
 		integer[i] = ft_atoi(argv[i]);
-		if ((integer[i] == 0 && ft_iszero(argv[i]) == false) || *argv[i] == '\0')
+		if ((integer[i] == 0 && ft_iszero(argv[i]) == false))
 		{
 			free(integer);
 			integer = NULL;
@@ -68,10 +91,15 @@ int	array_check(const int len, const int *integer)
 	i = 0;
 	while (i < (size_t)len)
 	{
-		if (integer[i] > integer[i + 1] && i != (size_t)len - 1)
-			return (NOT_SORTED);
 		if (ft_arrint(integer, integer[i], i))
 			return (DOUBLE);
+		i++;
+	}
+	i = 0;
+	while (i < (size_t)len)
+	{
+		if (integer[i] > integer[i + 1] && i != (size_t)len - 1)
+			return (NOT_SORTED);
 		i++;
 	}
 	return (SORTED);
@@ -107,7 +135,8 @@ void	push_top_node(t_list **dest, t_list **src)
 		return ;
 	tmp = *src;
 	ft_lstadd_front(dest, *src);
-	*src = (*tmp).next;
+	*src = tmp->next;
+	ft_lstlast(*src);
 }
 
 void	rotate_list(const size_t size, t_list **stack)
@@ -177,7 +206,7 @@ void	make_positive(const int len, int *integer)
 	size_t y;
 
 	x = 0;
-	copy = ft_calloc(len + 1, sizeof(int));
+	copy = ft_calloc(len, sizeof(int));
 	if (copy == NULL)
 		return ;
 	ft_memcpy(copy, integer, len);
@@ -210,7 +239,7 @@ int	biggest_bit(int num)
 	return (max);
 }
 
-void	sort_radix(int len_a, t_list **stack_a)
+void	sort_radix(int len_a, t_list *stack_a)
 {
 	t_list *stack_b;
 	int max_num; // the biggest number in a is stack_size - 1
@@ -220,7 +249,7 @@ void	sort_radix(int len_a, t_list **stack_a)
 	int i;
 	int j;
 
-	stack_a = NULL;
+	stack_b = NULL;
 	len_b = 0;
 	max_num = len_a - 1;
 	max_bits = biggest_bit(max_num);
@@ -230,33 +259,36 @@ void	sort_radix(int len_a, t_list **stack_a)
 	{
 		while (j < len_a)
 		{
-			num = *(int *)(*stack_a)->content;
+			num = *(int *)stack_a->content;
 			if (((num >> i)&1) == 1)
 			{
-				rotate_list(len_a, stack_a);
-				ft_putendl_fd("ra\n", 1);
+				rotate_list(len_a, &stack_a);
+				ft_putendl_fd("ra", 1);
+				len_b++;
 				len_a--;
 			}
 			else 
 			{
-				push_top_node(&stack_b, stack_a);
-				ft_putendl_fd("pb\n", 1);
+				push_top_node(&stack_b, &stack_a);
+				ft_putendl_fd("pb", 1);
 				len_b++;
+				len_a--;
 			}
 			j++;
 		}
 		while (len_b)
 		{
-			push_top_node(stack_a, &stack_b);
-			ft_putendl_fd("pa\n", 1);
-			len_b++;
+			push_top_node(&stack_a, &stack_b);
+			ft_putendl_fd("pa", 1);
+			len_a++;
+			len_b--;
 		}
 		i++;
 	}
 }
 void	sort(const int len, t_list **stack_a)
 {
-	sort_radix(len, stack_a);
+	sort_radix(len, *stack_a);
 	return ;
 }
 //void	sort_small_stack(len, stack_a)

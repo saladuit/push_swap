@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/23 15:15:24 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/27 16:20:52 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/04 15:50:14 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ bool	ft_isprint(int c);
 bool	ft_isspace(int c);
 bool	ft_isatoi(int c);
 bool	ft_iszero(const char *string);
+bool	ft_isempty(int c);
 
 //MEMORY FUNCTIONS
 void	ft_bzero(void *s, size_t n);

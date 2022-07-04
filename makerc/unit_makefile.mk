@@ -6,7 +6,7 @@
 #    By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /    #
 #                                                  (|     | )|_| |_| |>  <     #
 #    Created: 2022/06/23 16:20:51 by safoh        /'\_   _/`\__|\__,_/_/\_\    #
-#    Updated: 2022/07/01 16:45:25 by safoh        \___)=(___/                  #
+#    Updated: 2022/07/04 11:38:31 by safoh        \___)=(___/                  #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ UNIT_SRCS			=push_swap_tester.c redirect_all_std.c \
 					 array_check_test.c parse_argv_to_array_test.c  \
 					 push_swap_test.c init_stack_test.c \
 					 swap_top_list_test.c push_top_node_test.c \
-					 rotate_list_test.c rev_rotate_list_test.c
+					 rotate_list_test.c rev_rotate_list_test.c \
+					 make_positive_test.c sort_array_test.c
 
 UNIT_OBJS			=$(addprefix ../$(BUILD_DIR)/, $(UNIT_SRCS:%.c=%.o))
 PRODUCTION_OBJS		=$(addprefix ../, $(OBJS))

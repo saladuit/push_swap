@@ -6,12 +6,11 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/27 14:46:15 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/04 10:43:33 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/04 12:59:40 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "stdio.h"
 
 /*Make sure arguments contain digits*/
 bool	argv_checker(const int len, const char **argv)
@@ -119,6 +118,11 @@ void	rotate_list(const size_t size, t_list **stack)
 	if (size < 2)
 		return ;
 	i = 0;
+//	int		*d;
+//	const int	*s;
+//
+//	d = dest;
+//	s = src;
 	tmp = (*stack)->next;
 	ft_lstadd_back(stack, *stack);
 	*stack = tmp;
@@ -130,7 +134,6 @@ void	rotate_list(const size_t size, t_list **stack)
 	(*stack)->next = NULL;
 	*stack = tmp;
 }
-
 
 void	rev_rotate_list(const size_t size, t_list **stack)
 {
@@ -151,7 +154,7 @@ void	rev_rotate_list(const size_t size, t_list **stack)
 	*stack = tmp;
 }
 
-//void	sort(const int len, t_list *stack_a)
+//void	sort(const int len, t_list **stack_a)
 //{
 //	if (len <= 5)
 //		sort_small_stack(len, stack_a);
@@ -164,6 +167,62 @@ void	rev_rotate_list(const size_t size, t_list **stack)
 //	t_list *stack_b;
 //
 //	if (stack_a->content <
+void	sort_array(const int len, int *integer)
+{
+	size_t i;
+	size_t j;
+
+	i = 0;
+	if (len < 2)
+		return ;
+	while (i < (size_t)len)
+	{
+		j = i;
+//	int		*d;
+//	const int	*s;
+//
+//	d = dest;
+//	s = src;
+		while (j < (size_t)len - 1)
+		{
+			if (integer[j] > integer[j + 1])
+				ft_swap(&integer[j], &integer[j + 1]);
+			j++;
+		}
+		i++;
+	}
+}
+
+void	make_positive(const int len, int *integer)
+{
+	int *copy;
+	size_t x;
+	size_t y;
+
+	x = 0;
+	copy = ft_calloc(len + 1, sizeof(int));
+	if (copy == NULL)
+		return ;
+	ft_memcpy(copy, integer, len);
+	sort_array(len, copy);
+	while (x < (size_t)len)
+	{
+		y = 0;
+		while ( y < (size_t)len)
+		{
+			if (integer[x] == copy[y])
+			{
+				integer[x] = y;
+				break ;
+			}
+			y++;
+		}
+		x++;
+	}
+	free(copy);
+	return ;
+}
+
 bool	push_swap(const int len, const char **argv)
 {
 	int *integer;
@@ -178,9 +237,10 @@ bool	push_swap(const int len, const char **argv)
 		return (true);
 	else if (sort_state == DOUBLE)
 		return (false);
+	make_positive(len, integer);
 	stack_a = NULL;
 	stack_a = init_stack(len, integer);
-//	sort(len, stack_a);
+//	sort(len, &stack_a);
 	free(integer);
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/27 14:45:57 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/04 09:55:23 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/04 12:59:20 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,20 @@ Test(array_check, fixed)
 	array_check_test(2, ((const int []){0, 1}), SORTED);
 	array_check_test(2, ((const int []){1, 0}), NOT_SORTED);
 	array_check_test(2, ((const int []){0, 0}), DOUBLE);
+}
+
+Test(make_positive, fixed)
+{
+	make_positive_test(1, ((int []){-1}), ((const int []){0}));
+	make_positive_test(2, ((int []){-1, -500}), ((const int []){1, 0}));
+	make_positive_test(5, ((int []){40, -10, -5, 0, -1}), ((const int []){4, 0, 1, 3, 2}));
+}
+
+Test(sort_array, fixed)
+{
+	sort_array_test(1, ((const int []){-1}), ((const int []){-1}));
+	sort_array_test(2, ((const int []){0, -1}), ((const int []){-1, 0}));
+	sort_array_test(5, ((const int []){40, -10000, -5, 0, -1}), ((const int []){-10000, -5, -1, 0, 40}));
 }
 
 Test(parse_argv_to_array, fixed)

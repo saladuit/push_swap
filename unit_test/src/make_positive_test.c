@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                    .--.  _                 */
-/*   ft_memcpy.c                                     |o_o || |                */
+/*   make_positive_test.c                            |o_o || |                */
 /*                                                   |:_/ || |_ _   ___  __   */
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
-/*   Created: 2022/06/23 15:11:38 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/04 12:58:34 by safoh        \___)=(___/                 */
+/*   Created: 2022/07/04 11:39:40 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
+/*   Updated: 2022/07/04 12:59:56 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "unit_test.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+void	make_positive_test(const int len, int *input, const int *expected)
 {
 	size_t i;
 
 	i = 0;
-	if (dest == src && dest == 0)
-		return (NULL);
-	while (i < n)
+	make_positive(len, input);
+	while (i < (size_t)len)
 	{
-		((int *)dest)[i] = ((int *)src)[i];
+		cr_assert(eq(int, input[i], expected[i]));
 		i++;
 	}
-	return (dest);
 }

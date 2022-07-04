@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/23 15:17:07 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/04 10:19:04 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/04 11:28:47 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ enum arrayCheck {
 // Parsing Functions
 bool	argv_checker(const int len, const char **argv);
 int		*init_integer_array(const int len, const char **argv);
+void	make_positive(const int len, int *integer);
+void	sort_array(const int len, int *integer);
 
 
 int	array_check(const int len, const int *integer);

@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/27 14:45:57 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/07 17:56:52 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/07 22:01:03 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,40 +74,40 @@ Test(init_stack, fixed)
 ////////////////////////////////////////////////////////////////////////////////
 //			ACTIONS
 ////////////////////////////////////////////////////////////////////////////////
-Test(swap_top_list_test, fixed, .init=redirect_all_std)
-{
-	swap_top_list_test(2, ((const int []){10, 1}), ((const int []){1, 10}));
-	swap_top_list_test(3, ((const int []){1, 10, 1}), ((const int []){10, 1, 1}));
-}
+//Test(ft_swap_nodes_test, fixed, .init=redirect_all_std)
+//{
+//	ft_swap_nodes_test(2, ((const int []){10, 1}), ((const int []){1, 10}));
+//	ft_swap_nodes_test(3, ((const int []){1, 10, 1}), ((const int []){10, 1, 1}));
+//}
 
-Test(push_top_node, fixed, .init=redirect_all_std)
-{
-	push_top_node_test(1, 0, \
-			((const int []){10}), ((const int []){}), \
-			((const int []){}), ((const int []){10}));
-	push_top_node_test(2, 1, \
-			((const int []){10, 1}), ((const int []){1}), \
-			((const int []){1}), ((const int []){10, 1}));
-	push_top_node_test(0, 2, \
-			((const int []){}), ((const int []){10, 1}), \
-			((const int []){}), ((const int []){10, 1}));
-}
+//Test(push_top_node, fixed, .init=redirect_all_std)
+//{
+//	push_top_node_test(1, 0, \
+//			((const int []){10}), ((const int []){}), \
+//			((const int []){}), ((const int []){10}));
+//	push_top_node_test(2, 1, \
+//			((const int []){10, 1}), ((const int []){1}), \
+//			((const int []){1}), ((const int []){10, 1}));
+//	push_top_node_test(0, 2, \
+//			((const int []){}), ((const int []){10, 1}), \
+//			((const int []){}), ((const int []){10, 1}));
+//}
 
-Test(roatate_list, fixed, .init=redirect_all_std)
-{
-	rotate_list_test(0, ((const int []){}), ((const int []){}));
-	rotate_list_test(1, ((const int []){10}), ((const int []){10}));
-	rotate_list_test(2, ((const int []){10, 1}), ((const int []){1, 10}));
-	rotate_list_test(3, ((const int []){10, 2, 1}), ((const int []){2, 1, 10}));
-}
-
-Test(rev_rotate_list, fixed, .init=redirect_all_std)
-{
-	rev_rotate_list_test(0, ((const int []){}), ((const int []){}));
-	rev_rotate_list_test(1, ((const int []){10}), ((const int []){10}));
-	rev_rotate_list_test(2, ((const int []){10, 1}), ((const int []){1, 10}));
-	rev_rotate_list_test(3, ((const int []){10, 2, 1}), ((const int []){1, 10, 2}));
-}
+//Test(roatate_list, fixed, .init=redirect_all_std)
+//{
+//	rotate_list_test(0, ((const int []){}), ((const int []){}));
+//	rotate_list_test(1, ((const int []){10}), ((const int []){10}));
+//	rotate_list_test(2, ((const int []){10, 1}), ((const int []){1, 10}));
+//	rotate_list_test(3, ((const int []){10, 2, 1}), ((const int []){2, 1, 10}));
+//}
+//
+//Test(rev_rotate_list, fixed, .init=redirect_all_std)
+//{
+//	rev_rotate_list_test(0, ((const int []){}), ((const int []){}));
+//	rev_rotate_list_test(1, ((const int []){10}), ((const int []){10}));
+//	rev_rotate_list_test(2, ((const int []){10, 1}), ((const int []){1, 10}));
+//	rev_rotate_list_test(3, ((const int []){10, 2, 1}), ((const int []){1, 10, 2}));
+//}
 ////////////////////////////////////////////////////////////////////////////////
 //			PROGRAM
 ////////////////////////////////////////////////////////////////////////////////

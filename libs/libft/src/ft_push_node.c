@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                    .--.  _                 */
-/*   swap_top_list_test.c                            |o_o || |                */
+/*   ft_push_node.c                                  |o_o || |                */
 /*                                                   |:_/ || |_ _   ___  __   */
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
-/*   Created: 2022/07/01 15:51:53 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/07 21:58:00 by safoh        \___)=(___/                 */
+/*   Created: 2022/07/07 21:30:23 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
+/*   Updated: 2022/07/07 21:55:48 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "unit_test.h"
+#include "libft.h"
 
-void	ft_swap_nodes_test(const size_t size, const int *input, const int *expected)
+void	ft_push_node(t_list **dest, t_list **src)
 {
-	t_list *stack;
+	t_list *tmp;
 
-	stack = init_stack(size, input);
-	ft_swap_nodes(stack);
-	cr_assert(eq(int[size], (int *)input,(int *)expected));
-	return ;
+	if (*src == NULL)
+		return ;
+	tmp = (*src)->next;
+	ft_lstadd_front(dest, *src);
+	*src = tmp;
 }

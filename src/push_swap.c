@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/27 14:46:15 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/07 17:48:56 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/07 18:27:54 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,10 +135,9 @@ void	push_top_node(t_list **dest, t_list **src)
 
 	if (*src == NULL)
 		return ;
-	tmp = *src;
+	tmp = (*src)->next;
 	ft_lstadd_front(dest, *src);
-	*src = tmp->next;
-	ft_lstlast(*src);
+	*src = tmp;
 }
 
 void	rotate_list(const size_t size, t_list **stack)

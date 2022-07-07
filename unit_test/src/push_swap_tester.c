@@ -6,12 +6,11 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/27 14:45:57 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/07 17:16:33 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/07 17:56:52 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "unit_test.h"
-#include <limits.h>
 
 Test(argv_checker, fixed)
 {
@@ -62,13 +61,6 @@ Test(make_positive, fixed)
 	make_positive_test(5, ((int []){40, -10, -5, 0, -1}), ((const int []){4, 0, 1, 3, 2}));
 }
 
-Test(sort_array, fixed)
-{
-	sort_array_test(1, ((const int []){-1}), ((const int []){-1}));
-	sort_array_test(2, ((const int []){0, -1}), ((const int []){-1, 0}));
-	sort_array_test(5, ((const int []){40, -10000, -5, 0, -1}), ((const int []){-10000, -5, -1, 0, 40}));
-}
-
 Test(parse_argv_to_array, fixed)
 {
 	parse_argv_to_array_test(1, (const char *[]){"1"}, (const int []){1});
@@ -79,9 +71,9 @@ Test(init_stack, fixed)
 {
 	init_stack_test(2, ((const int []){1, 2}));
 }
-
+////////////////////////////////////////////////////////////////////////////////
 //			ACTIONS
-//
+////////////////////////////////////////////////////////////////////////////////
 Test(swap_top_list_test, fixed, .init=redirect_all_std)
 {
 	swap_top_list_test(2, ((const int []){10, 1}), ((const int []){1, 10}));
@@ -116,8 +108,9 @@ Test(rev_rotate_list, fixed, .init=redirect_all_std)
 	rev_rotate_list_test(2, ((const int []){10, 1}), ((const int []){1, 10}));
 	rev_rotate_list_test(3, ((const int []){10, 2, 1}), ((const int []){1, 10, 2}));
 }
-
+////////////////////////////////////////////////////////////////////////////////
 //			PROGRAM
+////////////////////////////////////////////////////////////////////////////////
 Test(push_swap, fixed)
 {
 	push_swap_test(1, ((const char *[]){"1"}), true);

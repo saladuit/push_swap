@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/23 15:11:38 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/04 10:35:17 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/07 18:33:28 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ void	ft_lstadd_back(t_list **lst, t_list *lnew)
 	}
 	last = ft_lstlast(*lst);
 	last->next = lnew;
+	lnew->next = NULL;
 	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/27 14:46:15 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/07 18:27:54 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/07 20:42:33 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,45 +140,6 @@ void	push_top_node(t_list **dest, t_list **src)
 	*src = tmp;
 }
 
-void	rotate_list(const size_t size, t_list **stack)
-{
-	size_t i;
-	t_list *tmp;
-	
-	if (size < 2)
-		return ;
-	i = 0;
-	tmp = (*stack)->next;
-	ft_lstadd_back(stack, *stack);
-	*stack = tmp;
-	while (i < size - 1)
-	{
-		*stack = (*stack)->next;
-		i++;
-	}
-	(*stack)->next = NULL;
-	*stack = tmp;
-}
-
-void	rev_rotate_list(const size_t size, t_list **stack)
-{
-	size_t i;
-	t_list *tmp;
-
-	if (size < 2)
-		return ;
-	i = 0;
-	ft_lstadd_front(stack, ft_lstlast(*stack));
-	tmp = *stack;
-	while (i < size - 1)
-	{
-		*stack = (*stack)->next;
-		i++;
-	}
-	(*stack)->next = NULL;
-	*stack = tmp;
-}
-
 void	make_positive(const int len, int *integer)
 {
 	int *copy;
@@ -209,7 +170,7 @@ void	make_positive(const int len, int *integer)
 	return ;
 }
 
-int	biggest_bit(int num)
+int	bit_count(int num)
 {
 	int max;
 
@@ -232,7 +193,7 @@ void	sort_radix(int len_a, t_list *stack_a)
 	stack_b = NULL;
 	len_b = 0;
 	max_num = len_a - 1;
-	max_bits = biggest_bit(max_num);
+	max_bits = biggest(max_num);
 	i = 0;
 	j = 0;
 	while (i < max_bits)
@@ -242,7 +203,7 @@ void	sort_radix(int len_a, t_list *stack_a)
 			num = *(int *)stack_a->content;
 			if (((num >> i)&1) == 1)
 			{
-				rotate_list(len_a, &stack_a);
+				ft_rotate_list(&stack_a, stack_a);
 				ft_putendl_fd("ra", 1);
 				len_b++;
 				len_a--;

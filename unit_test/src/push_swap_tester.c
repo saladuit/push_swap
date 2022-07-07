@@ -6,19 +6,12 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/27 14:45:57 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/04 15:43:44 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/07 17:16:33 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "unit_test.h"
-
-//Test(crashes, fixed, .signal = SIGSEGV)
-//{
-//	argv_checker_test(0, NULL, false);
-//	init_integer_array_test(0, NULL, NULL);
-//	array_check_test(0, NULL, SORTED);
-//	parse_argv_to_array_test(0, NULL, NULL);
-//}
+#include <limits.h>
 
 Test(argv_checker, fixed)
 {
@@ -36,7 +29,6 @@ Test(argv_checker, fixed)
 
 Test(init_integer_array_test, fixed)
 {
-	init_integer_array_test(1, ((const char *[]){""}), NULL);
 	init_integer_array_test(1, ((const char *[]){"1"}), ((const int []){1}));
 	init_integer_array_test(1, ((const char *[]){"+2147483648"}), NULL);
 /*tests that don't fail the project */
@@ -52,7 +44,6 @@ Test(init_integer_array_test, fixed)
 	init_integer_array_test(1, ((const char *[]){"+-2147483648"}), NULL);
 	init_integer_array_test(1, ((const char *[]){"2147483648"}), NULL);
 	init_integer_array_test(2, ((const char *[]){"1", "2"}), ((const int []){1, 2}));
-	init_integer_array_test(3, ((const char *[]){"1", "", "2"}), NULL);
 }
 
 // Is the list already sorted and does it contain double numbers
@@ -84,20 +75,13 @@ Test(parse_argv_to_array, fixed)
 	parse_argv_to_array_test(1, (const char *[]){"a"}, NULL);
 }
 
-Test(push_swap, fixed)
-{
-	push_swap_test(1, ((const char *[]){"1"}), true);
-	push_swap_test(2, ((const char *[]){"2", "1"}), true);
-	push_swap_test(2, ((const char *[]){"1", "1"}), false);
-	push_swap_test(2, ((const char *[]){"99999999999999999999", "1"}), false);
-}
-
 Test(init_stack, fixed)
 {
 	init_stack_test(2, ((const int []){1, 2}));
 }
 
-
+//			ACTIONS
+//
 Test(swap_top_list_test, fixed, .init=redirect_all_std)
 {
 	swap_top_list_test(2, ((const int []){10, 1}), ((const int []){1, 10}));
@@ -131,4 +115,14 @@ Test(rev_rotate_list, fixed, .init=redirect_all_std)
 	rev_rotate_list_test(1, ((const int []){10}), ((const int []){10}));
 	rev_rotate_list_test(2, ((const int []){10, 1}), ((const int []){1, 10}));
 	rev_rotate_list_test(3, ((const int []){10, 2, 1}), ((const int []){1, 10, 2}));
+}
+
+//			PROGRAM
+Test(push_swap, fixed)
+{
+	push_swap_test(1, ((const char *[]){"1"}), true);
+	push_swap_test(1, ((const char *[]){"-2147483649"}), false);
+	push_swap_test(2, ((const char *[]){"2", "1"}), true);
+	push_swap_test(2, ((const char *[]){"1", "1"}), false);
+	push_swap_test(2, ((const char *[]){"99999999999999999999", "1"}), false);
 }

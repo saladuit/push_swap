@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/27 15:43:20 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/27 16:26:53 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/07 17:15:22 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 char	*ft_joinmatrix(const char **matrix, size_t count)
 {
-	size_t	total_len;
-	size_t i;
 	char	*result;
+	size_t	total_len;
+	size_t	i;
 
 	if (matrix == NULL)
 		return ("(null)\n");
@@ -28,12 +28,12 @@ char	*ft_joinmatrix(const char **matrix, size_t count)
 	if (!result)
 		return (NULL);
 	i = 0;
-	while (i < count - 1)
+	while (i < count)
 	{
 		result = ft_strjoin(result, matrix[i]);
-		result = ft_strjoin(result, " ");
+		if (i != 0 || i != count - 1)
+			result = ft_strjoin(result, " ");
 		i++;
     }
-	result = ft_strjoin(result, matrix[count - 1]);
 	return (result);
 }

@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/27 14:46:15 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/04 17:29:51 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/07 17:48:56 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 static bool	argv_checker_helper(const char *argument)
 {
+	bool isdigit;
 	size_t i;
 
 	i = 0; 
+	isdigit = true;
 	if(ft_isempty(argument[i]))
 		return (false);
 	while (argument[i])
@@ -25,6 +27,7 @@ static bool	argv_checker_helper(const char *argument)
 		{
 			if (ft_isatoi(argument[i]) == false)
 				return (false);
+			isdigit = ft_isdigit(argument[i]);
 		}
 		else
 		{
@@ -33,7 +36,7 @@ static bool	argv_checker_helper(const char *argument)
 		}
 		i++;
 	}
-	return (true);
+	return (isdigit);
 }
 
 /*Make sure arguments contain digits*/
@@ -67,8 +70,7 @@ int	*init_integer_array(const int len, const char **argv)
 		integer[i] = ft_atoi(argv[i]);
 		if ((integer[i] == 0 && ft_iszero(argv[i]) == false))
 		{
-			free(integer);
-			integer = NULL;
+			integer = ft_memdel((void *)integer);
 			return (NULL);
 		}
 		i++;
@@ -96,9 +98,9 @@ int	array_check(const int len, const int *integer)
 		i++;
 	}
 	i = 0;
-	while (i < (size_t)len)
+	while (i < (size_t)len - 1)
 	{
-		if (integer[i] > integer[i + 1] && i != (size_t)len - 1)
+		if (integer[i] > integer[i + 1])
 			return (NOT_SORTED);
 		i++;
 	}
@@ -178,27 +180,6 @@ void	rev_rotate_list(const size_t size, t_list **stack)
 	*stack = tmp;
 }
 
-void	sort_array(const int len, int *integer)
-{
-	size_t i;
-	size_t j;
-
-	i = 0;
-	if (len < 2)
-		return ;
-	while (i < (size_t)len)
-	{
-		j = i;
-		while (j < (size_t)len - 1)
-		{
-			if (integer[j] > integer[j + 1])
-				ft_swap(&integer[j], &integer[j + 1]);
-			j++;
-		}
-		i++;
-	}
-}
-
 void	make_positive(const int len, int *integer)
 {
 	int *copy;
@@ -210,7 +191,7 @@ void	make_positive(const int len, int *integer)
 	if (copy == NULL)
 		return ;
 	ft_memcpy(copy, integer, len);
-	sort_array(len, copy);
+	ft_bubble_sort(len, copy);
 	while (x < (size_t)len)
 	{
 		y = 0;
@@ -286,11 +267,7 @@ void	sort_radix(int len_a, t_list *stack_a)
 		i++;
 	}
 }
-void	sort(const int len, t_list **stack_a)
-{
-	sort_radix(len, *stack_a);
-	return ;
-}
+
 //void	sort_small_stack(len, stack_a)
 //{
 //	t_list *stack_b;
@@ -302,6 +279,13 @@ void	sort(const int len, t_list **stack_a)
 //	mid = stack_a->next->content;
 //	bot = stack_a->next->next->content;
 //	if (
+
+static void	sort(const int len, t_list **stack_a)
+{
+	sort_radix(len, *stack_a);
+	return ;
+}
+
 bool	push_swap(const int len, const char **argv)
 {
 	int *integer;

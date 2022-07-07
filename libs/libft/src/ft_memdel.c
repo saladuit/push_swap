@@ -6,17 +6,16 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/23 15:11:38 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/23 15:11:59 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/07 17:04:04 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-void	ft_memdel(void **ptr)
+void	*ft_memdel(void *ptr)
 {
 	if (!ptr)
-		return ;
-	free(*ptr);
-	*ptr = NULL;
-	return ;
+		return (NULL);
+	free(ptr);
+	return (NULL);
 }

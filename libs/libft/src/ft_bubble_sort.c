@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                    .--.  _                 */
-/*   main.c                                          |o_o || |                */
+/*   ft_bubble_sort.c                                |o_o || |                */
 /*                                                   |:_/ || |_ _   ___  __   */
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
-/*   Created: 2022/06/27 15:07:11 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/07 16:07:54 by safoh        \___)=(___/                 */
+/*   Created: 2022/07/07 17:36:03 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
+/*   Updated: 2022/07/07 17:36:45 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+void	ft_bubble_sort(const int len, int *integer)
 {
-	if (argc == 1)
-		return (EXIT_SUCCESS);
-	if (push_swap(argc - 1, (const char **)&argv[1]) == false)
+	size_t i;
+	size_t j;
+
+	i = 0;
+	if (len < 2)
+		return ;
+	while (i < (size_t)len)
 	{
-		ft_error();
-		return (EXIT_FAILURE);
+		j = i;
+		while (j < (size_t)len - 1)
+		{
+			if (integer[j] > integer[j + 1])
+				ft_swap(&integer[j], &integer[j + 1]);
+			j++;
+		}
+		i++;
 	}
-	return (EXIT_SUCCESS);
 }

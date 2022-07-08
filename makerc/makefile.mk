@@ -6,11 +6,12 @@
 #    By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /    #
 #                                                  (|     | )|_| |_| |>  <     #
 #    Created: 2022/07/08 18:13:12 by safoh        /'\_   _/`\__|\__,_/_/\_\    #
-#    Updated: 2022/07/08 18:13:14 by safoh        \___)=(___/                  #
+#    Updated: 2022/07/08 18:42:41 by safoh        \___)=(___/                  #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS			=push_swap.c init.c swap.c argv_checker.c
+SRCS			=push_swap.c init.c swap.c argv_checker.c sort_radix.c swap.c \
+				 sort_two.c
 MAIN 			=main.c
 
 SRC_DIR			:=src

@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                    .--.  _                 */
-/*   actions.h                                       |o_o || |                */
+/*   swap.c                                          |o_o || |                */
 /*                                                   |:_/ || |_ _   ___  __   */
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
-/*   Created: 2022/07/07 21:24:55 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/07 21:53:51 by safoh        \___)=(___/                 */
+/*   Created: 2022/07/08 18:09:58 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
+/*   Updated: 2022/07/08 18:10:25 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ACTIONS_H
-# define ACTIONS_H
+#include "swap.h"
 
-# define SWAP_A			"sa"
-# define SWAP_B			"sb"
-# define SWAP_AB		"ss"
-# include "libft.h"
-void	swap_a(t_list *stack_a);
-void	swap_b(t_list *stack_b);
-void	swap_ab(t_list *stack_a, t_list *stack_b);
+void	swap_a(t_list *stack_a)
+{
+	ft_swap_nodes(stack_a);
+	ft_putendl_fd(SWAP_A, STDOUT_FILENO);
+}
 
-#endif
+void	swap_b(t_list *stack_b)
+{
+	ft_swap_nodes(stack_b);
+	ft_putendl_fd(SWAP_B, STDOUT_FILENO);
+}
+
+void	swap_ab(t_list *stack_a, t_list *stack_b)
+{
+	ft_swap_nodes(stack_a);
+	ft_swap_nodes(stack_b);
+	ft_putendl_fd(SWAP_AB, STDOUT_FILENO);
+}

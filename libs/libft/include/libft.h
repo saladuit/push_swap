@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/23 15:15:24 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/08 17:18:45 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/08 18:17:00 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,9 @@ void	*ft_memmove(void *dest, const void *src, size_t n);
 void	*ft_memset(void *s, int c, size_t n);
 
 void	*ft_memint(int *arr, int d, size_t n);
+
+//BIT FUNCTIONS
+int	bit_count(int num)
 
 //STRING FUNCTIONS
 char	**ft_split(char const *s, char c);

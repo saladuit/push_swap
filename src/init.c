@@ -1,16 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                    .--.  _                 */
-/*   init_integer_array.c                            |o_o || |                */
+/*   init.c                                          |o_o || |                */
 /*                                                   |:_/ || |_ _   ___  __   */
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/07/08 17:57:18 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/08 17:59:15 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/08 18:14:15 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "init.h"
+
+// Prepare array for radix sort
+void	make_positive(const int len, int *integer)
+{
+	int *copy;
+	size_t x;
+	size_t y;
+
+	x = 0;
+	copy = ft_calloc(len, sizeof(int));
+	if (copy == NULL)
+		return ;
+	ft_memcpy(copy, integer, len);
+	ft_bubble_sort(len, copy);
+	while (x < (size_t)len)
+	{
+		y = 0;
+		while ( y < (size_t)len)
+		{
+			if (integer[x] == copy[y])
+			{
+				integer[x] = y;
+				break ;
+			}
+			y++;
+		}
+		x++;
+	}
+	free(copy);
+	return ;
+}
 
 /*We want to check whether the values inside are correct*/
 int	*init_integer_array(const int len, const char **argv)

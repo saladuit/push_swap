@@ -6,116 +6,13 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/27 14:46:15 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/07 21:55:15 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/08 18:02:20 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <unistd.h>
 
-static bool	argv_checker_helper(const char *argument)
-{
-	bool isdigit;
-	size_t i;
-
-	i = 0; 
-	isdigit = true;
-	if(ft_isempty(argument[i]))
-		return (false);
-	while (argument[i])
-	{
-		if (i == 0)
-		{
-			if (ft_isatoi(argument[i]) == false)
-				return (false);
-			isdigit = ft_isdigit(argument[i]);
-		}
-		else
-		{
-			if (ft_isdigit(argument[i]) == false)
-				return (false);
-		}
-		i++;
-	}
-	return (isdigit);
-}
-
-/*Make sure arguments contain digits*/
-bool	argv_checker(const int len, const char **argv)
-{
-
-	size_t i;
-
-	i = 0;
-	while(i < (size_t)len)
-	{
-		if(argv_checker_helper(argv[i]) == false)
-			return (false);
-		i++;
-	}
-	return (true);
-}
-
-/*We want to check whether the values inside are correct*/
-int	*init_integer_array(const int len, const char **argv)
-{
-	size_t i;
-	int *integer;
-
-	integer = ft_calloc(len, sizeof(int));
-	if (integer == NULL)
-		return (NULL);
-	i = 0;
-	while (i < (size_t)len)
-	{
-		integer[i] = ft_atoi(argv[i]);
-		if ((integer[i] == 0 && ft_iszero(argv[i]) == false))
-		{
-			integer = ft_memdel((void *)integer);
-			return (NULL);
-		}
-		i++;
-	}
-	return (integer);
-}
-
-/*Integer shouldn't be sorted or contain duplicate integer values*/
-int	array_check(const int len, const int *integer)
-{
-	size_t i;
-
-	i = 0;
-	while (i < (size_t)len)
-	{
-		if (ft_arrint(integer, integer[i], i))
-			return (DOUBLE);
-		i++;
-	}
-	i = 0;
-	while (i < (size_t)len - 1)
-	{
-		if (integer[i] > integer[i + 1])
-			return (NOT_SORTED);
-		i++;
-	}
-	return (SORTED);
-}
-
-// handle conversion to int & INT_MINMAX before putting in to linked list
-t_list	*init_stack(const int len, const int *integer)
-{
-	t_list *stack;
-	size_t	i;
-
-	i = 0;
-	stack = NULL;
-	while (i < (size_t)len)
-	{
-		ft_lstadd_back(&stack, ft_lstnew((void *)&integer[i])); 
-		i++;
-	}
-	return (stack);
-}
 
 void	swap_a(t_list *stack_a)
 {
@@ -202,23 +99,19 @@ void	sort_radix(int len_a, t_list *stack_a)
 			{
 				ft_rotate_list(&stack_a, stack_a);
 				ft_putendl_fd("ra", STDOUT_FILENO);
-				len_b++;
-				len_a--;
 			}
 			else 
 			{
 				ft_push_node(&stack_b, &stack_a);
 				ft_putendl_fd("pb", STDOUT_FILENO);
-				len_b++;
-				len_a--;
 			}
 			j++;
 		}
+		len_b = ft_lstsize(stack_b);
 		while (len_b)
 		{
 			ft_push_node(&stack_a, &stack_b);
 			ft_putendl_fd("pa", STDOUT_FILENO);
-			len_a++;
 			len_b--;
 		}
 		i++;
@@ -230,7 +123,7 @@ static void	sort_two(t_list *stack_a)
 		swap_a(stack_a);
 }
 
-int	*parse_argv_to_array(const int len, const char **stack_a)
+static	int	*parse_argv_to_array(const int len, const char **stack_a)
 {
 	if(argv_checker(len, stack_a) == false)
 		return (NULL);

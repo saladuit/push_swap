@@ -13,4 +13,4 @@ SRCS  := ft_memset.c ft_bzero.c ft_memcpy.c ft_strlen.c ft_atoi.c \
 		 ft_arrint.c ft_swap.c ft_error.c ft_iszero.c ft_isatoi.c \
 		 ft_put2d_fd.c ft_matrixlen.c ft_joinmatrix.c ft_isempty.c \
 		 ft_bubble_sort.c ft_rotate_list.c ft_rev_rotate_list.c \
-		 ft_swap_nodes.c ft_push_node.c
+		 ft_swap_nodes.c ft_push_node.c ft_memint.c

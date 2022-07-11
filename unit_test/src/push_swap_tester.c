@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/27 14:45:57 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/11 12:41:04 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/11 17:04:30 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,14 @@ Test(argv_checker, fixed)
 	argv_checker_test(1, ((const char *[]){"a"}), false);
 /*tests that don't fail the project */
 	argv_checker_test(2, ((const char *[]){"1", "2"}), true);
+	argv_checker_test(2, ((const char *[]){"1", "+2"}), true);
 	argv_checker_test(1, ((const char *[]){"10+-"}), false);
 	argv_checker_test(9, ((const char *[]){"1", "2", "3", "4", "5", "6", "7", "8", "9"}), true);
 	argv_checker_test(2, ((const char *[]){"1", "a"}), false);
 	argv_checker_test(2, ((const char *[]){"1", "1a"}), false);
 	argv_checker_test(2, ((const char *[]){"1", "\n"}), false);
+	argv_checker_test(2, ((const char *[]){"1", " 2"}), false);
+	argv_checker_test(2, ((const char *[]){"1", " "}), false);
 }
 
 Test(init_integer_array_test, fixed)
@@ -59,6 +62,7 @@ Test(make_positive, fixed)
 	make_positive_test(1, ((int []){-1}), ((const int []){0}));
 	make_positive_test(2, ((int []){-1, -500}), ((const int []){1, 0}));
 	make_positive_test(5, ((int []){40, -10, -5, 0, -1}), ((const int []){4, 0, 1, 3, 2}));
+	make_positive_test(3, ((int []){2, 3, 1}), ((const int []){1, 2, 0}));
 }
 
 //Test(parse_argv_to_array, fixed)

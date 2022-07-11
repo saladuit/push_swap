@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/07/07 17:36:03 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/07 17:36:45 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/11 16:58:05 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	ft_bubble_sort(const int len, int *integer)
 		return ;
 	while (i < (size_t)len)
 	{
-		j = i;
-		while (j < (size_t)len - 1)
+		j = 0;
+		while (j < (size_t)len - i - 1)
 		{
 			if (integer[j] > integer[j + 1])
 				ft_swap(&integer[j], &integer[j + 1]);

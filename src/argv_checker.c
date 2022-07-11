@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/07/08 17:36:49 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/08 17:40:25 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/11 17:11:34 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,8 @@ static bool	argv_checker_helper(const char *argument)
 				return (false);
 			isdigit = ft_isdigit(argument[i]);
 		}
-		else
-		{
-			if (ft_isdigit(argument[i]) == false)
+		else if (ft_isdigit(argument[i]) == false) 
 				return (false);
-		}
 		i++;
 	}
 	return (isdigit);
@@ -46,9 +43,9 @@ bool	argv_checker(const int len, const char **argv)
 	size_t i;
 
 	i = 0;
-	while(i < (size_t)len)
+	while (i < (size_t)len)
 	{
-		if(argv_checker_helper(argv[i]) == false)
+		if (argv_checker_helper(argv[i]) == false)
 			return (false);
 		i++;
 	}

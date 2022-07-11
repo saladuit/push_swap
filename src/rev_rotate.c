@@ -1,18 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                    .--.  _                 */
-/*   sort_two.c                                      |o_o || |                */
+/*   rev_rotate.c                                    |o_o || |                */
 /*                                                   |:_/ || |_ _   ___  __   */
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
-/*   Created: 2022/07/08 18:24:38 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/11 15:39:51 by safoh        \___)=(___/                 */
+/*   Created: 2022/07/11 15:48:53 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
+/*   Updated: 2022/07/11 15:51:24 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "actions.h"
 
-void	sort_two(t_list *stack_a)
+
+void	rev_rotate_a(t_list *stack_a)
 {
-		swap_a(stack_a);
+	ft_rev_rotate_list(&stack_a, stack_a);
+	ft_putendl_fd(ROTATE_A, STDOUT_FILENO);
+}
+
+void	rev_rotate_b(t_list *stack_b)
+{
+	ft_rev_rotate_list(&stack_b, stack_b);
+	ft_putendl_fd(ROTATE_B, STDOUT_FILENO);
+}
+
+void	rev_rotate_ab(t_list *stack_a, t_list *stack_b)
+{
+	ft_rev_rotate_list(&stack_a, stack_a);
+	ft_rev_rotate_list(&stack_b, stack_b);
+	ft_putendl_fd(ROTATE_AB, STDOUT_FILENO);
 }

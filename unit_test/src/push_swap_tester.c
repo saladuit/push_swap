@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/27 14:45:57 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/07 22:01:03 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/11 12:41:04 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,11 @@ Test(make_positive, fixed)
 	make_positive_test(5, ((int []){40, -10, -5, 0, -1}), ((const int []){4, 0, 1, 3, 2}));
 }
 
-Test(parse_argv_to_array, fixed)
-{
-	parse_argv_to_array_test(1, (const char *[]){"1"}, (const int []){1});
-	parse_argv_to_array_test(1, (const char *[]){"a"}, NULL);
-}
+//Test(parse_argv_to_array, fixed)
+//{
+//	parse_argv_to_array_test(1, (const char *[]){"1"}, (const int []){1});
+//	parse_argv_to_array_test(1, (const char *[]){"a"}, NULL);
+//}
 
 Test(init_stack, fixed)
 {

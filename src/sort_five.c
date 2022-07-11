@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                    .--.  _                 */
-/*   swap_top_list_test.c                            |o_o || |                */
+/*   sort_five.c                                     |o_o || |                */
 /*                                                   |:_/ || |_ _   ___  __   */
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
-/*   Created: 2022/07/01 15:51:53 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/07 21:58:00 by safoh        \___)=(___/                 */
+/*   Created: 2022/07/11 14:35:12 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
+/*   Updated: 2022/07/11 14:50:55 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "unit_test.h"
+#include "libft.h"
 
-void	ft_swap_nodes_test(const size_t size, const int *input, const int *expected)
+void	sort_five(t_list *stack_a)
 {
-	t_list *stack;
-
-	stack = init_stack(size, input);
-	ft_swap_nodes(stack);
-	cr_assert(eq(int[size], (int *)input,(int *)expected));
+	(void)*stack_a;
 	return ;
 }

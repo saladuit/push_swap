@@ -6,12 +6,11 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/27 15:07:11 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/08 18:34:47 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/12 15:42:40 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "libft.h"
 
 int	main(int argc, char **argv)
 {

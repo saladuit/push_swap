@@ -6,12 +6,14 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/27 14:46:15 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/11 14:37:26 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/12 15:45:55 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <unistd.h>
+#include "init.h"
+#include "argv_checker.h"
+#include "sort.h"
 
 static int	*parse_argv_to_array(const int len, const char **stack_a)
 {

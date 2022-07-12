@@ -6,11 +6,11 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/07/08 18:23:53 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/08 18:24:22 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/12 14:15:26 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "sort.h"
+#include "actions.h"
 
 void	sort_radix(int len_a, t_list *stack_a)
 {
@@ -34,22 +34,15 @@ void	sort_radix(int len_a, t_list *stack_a)
 		{
 			num = *(int *)stack_a->content;
 			if (((num >> i)&1) == 1)
-			{
-				ft_rotate_list(&stack_a, stack_a);
-				ft_putendl_fd("ra", STDOUT_FILENO);
-			}
+				rotate_a(&stack_a);
 			else 
-			{
-				ft_push_node(&stack_b, &stack_a);
-				ft_putendl_fd("pb", STDOUT_FILENO);
-			}
+				push_a_to_b(&stack_b, &stack_a);
 			j++;
 		}
 		len_b = ft_lstsize(stack_b);
 		while (len_b)
 		{
-			ft_push_node(&stack_a, &stack_b);
-			ft_putendl_fd("pa", STDOUT_FILENO);
+			push_b_to_a(&stack_a, &stack_b);
 			len_b--;
 		}
 		i++;

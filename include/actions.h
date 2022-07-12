@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/07/08 18:04:23 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/11 15:38:17 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/12 14:15:34 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,19 @@
 
 # include "libft.h"
 
-void	swap_a(t_list *stack_a);
-void	swap_b(t_list *stack_b);
-void	swap_ab(t_list *stack_a, t_list *stack_b);
+void	swap_a(t_list **stack_a);
+void	swap_b(t_list **stack_b);
+void	swap_ab(t_list **stack_a, t_list **stack_b);
 
-void	rotate_a(t_list *stack_a);
-void	rotate_b(t_list *stack_b);
-void	rotate_ab(t_list *stack_a, t_list *stack_b);
+void	rotate_a(t_list **stack_a);
+void	rotate_b(t_list **stack_b);
+void	rotate_ab(t_list **stack_a, t_list **stack_b);
 
-void	rev_rotate_a(t_list *stack_a);
-void	rev_rotate_b(t_list *stack_b);
-void	rev_rotate_ab(t_list *stack_a, t_list *stack_b);
+void	rev_rotate_a(t_list **stack_a);
+void	rev_rotate_b(t_list **stack_b);
+void	rev_rotate_ab(t_list **stack_a, t_list **stack_b);
 
-void	push_b(t_list *stack_a, t_list *stack_b);
-void	push_a(t_list *stack_a, t_list *stack_b);
+void	push_a_to_b(t_list **stack_a, t_list **stack_b);
+void	push_b_to_a(t_list **stack_a, t_list **stack_b);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/27 14:46:15 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/12 16:03:11 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/12 16:48:46 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,29 @@
 #include "argv_checker.h"
 #include "sort.h"
 
-static void	select_sorting_algorithm(const int len, t_list **stack_a)
+static void	select_sorting_algorithm(const int len, t_list *stack_a)
 {
 	if (len == 2)
 	{
-		sort_two(*stack_a);
+		sort_two(stack_a);
 		return ;
 	}
 	if (len <= 3)
 	{
-		sort_three(*stack_a);
+		sort_three(&stack_a);
+		return ;
+	}
+	if (len <= 4)
+	{
+		sort_four(&stack_a);
 		return ;
 	}
 	if (len <= 5)
 	{
-		sort_five(*stack_a);
+		sort_five(&stack_a);
 		return ;
 	}
-	sort_radix(len, *stack_a);
+	sort_radix(len, stack_a);
 	return ;
 }
 
@@ -59,9 +64,7 @@ bool	push_swap(const int len, const char **argv)
 	else if (sort_state == DOUBLE)
 		return (clean_and_bool(integer, false));
 	make_positive(len, integer);
-	stack_a = NULL;
 	stack_a = init_stack(len, integer);
-	select_sorting_algorithm(len, &stack_a);
-	free(integer);
-	return (true);
+	select_sorting_algorithm(len, stack_a);
+	return (clean_and_bool(integer, true));
 }

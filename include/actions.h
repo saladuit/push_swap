@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/07/08 18:04:23 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/12 14:15:34 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/12 16:39:27 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	rev_rotate_a(t_list **stack_a);
 void	rev_rotate_b(t_list **stack_b);
 void	rev_rotate_ab(t_list **stack_a, t_list **stack_b);
 
-void	push_a_to_b(t_list **stack_a, t_list **stack_b);
-void	push_b_to_a(t_list **stack_a, t_list **stack_b);
+void	push_a_to_b(t_list **dest, t_list **source);
+void	push_b_to_a(t_list **dest, t_list **source);
 
 #endif

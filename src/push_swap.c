@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/27 14:46:15 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/12 15:45:55 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/12 16:03:11 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,6 @@
 #include "init.h"
 #include "argv_checker.h"
 #include "sort.h"
-
-static int	*parse_argv_to_array(const int len, const char **stack_a)
-{
-	if(argv_checker(len, stack_a) == false)
-		return (NULL);
-	return (init_integer_array(len, stack_a));
-}
 
 static void	select_sorting_algorithm(const int len, t_list **stack_a)
 {
@@ -43,20 +36,28 @@ static void	select_sorting_algorithm(const int len, t_list **stack_a)
 	return ;
 }
 
+static bool	clean_and_bool(void *m, bool state)
+{
+	free(m);
+	return (state);
+}
+
 bool	push_swap(const int len, const char **argv)
 {
 	int		*integer;
 	int		sort_state;
 	t_list	*stack_a;
 
-	integer = parse_argv_to_array(len, argv);
+	if(argv_checker(len, argv) == false)
+		return (false);
+	integer = init_integer_array(len, argv);
 	if (integer == NULL)
 		return (false);
 	sort_state = array_check(len, integer);
 	if (sort_state == SORTED)
-		return (true);
+		return (clean_and_bool(integer, true));
 	else if (sort_state == DOUBLE)
-		return (false);
+		return (clean_and_bool(integer, false));
 	make_positive(len, integer);
 	stack_a = NULL;
 	stack_a = init_stack(len, integer);

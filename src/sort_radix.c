@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/07/08 18:23:53 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/12 15:08:22 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/12 15:56:25 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static void	helper(int len_a, t_list **stack_a, int i)
 {
-	t_list *stack_b;
-	int j;
-	int num;
+	t_list	*stack_b;
+	int		j;
+	int		num;
 
 	j = 0;
 	stack_b = NULL;
@@ -35,9 +35,9 @@ static void	helper(int len_a, t_list **stack_a, int i)
 
 void	sort_radix(int len_a, t_list *stack_a)
 {
-	int max_num; // the biggest number in a is stack_size - 1
-	int max_bits; // how many bits for max_num 
-	int i;
+	int	max_num;
+	int	max_bits;
+	int	i;
 
 	max_num = len_a - 1;
 	max_bits = bit_count(max_num);

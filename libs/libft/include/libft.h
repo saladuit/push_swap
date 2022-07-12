@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/23 15:15:24 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/08 18:31:19 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/12 15:09:20 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	*ft_memset(void *s, int c, size_t n);
 void	*ft_memint(int *arr, int d, size_t n);
 
 //BIT FUNCTIONS
-int	bit_count(int num);
+int		bit_count(int num);
 
 //STRING FUNCTIONS
 char	**ft_split(char const *s, char c);
@@ -108,8 +108,8 @@ void	ft_lstadd_back(t_list **lst, t_list *lnew);
 void	ft_lstadd_front(t_list **lst, t_list *lnew);
 void	ft_swap_nodes(t_list *stack);
 void	ft_push_node(t_list **dest, t_list **src);
-t_list 	*ft_rotate_list(t_list **lst, t_list *lnew);
-t_list *ft_rev_rotate_list(t_list **lst, t_list *lnew);
+void	ft_rotate_list(t_list **lst);
+void	ft_rev_rotate_list(t_list **lst);
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));

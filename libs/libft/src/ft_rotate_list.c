@@ -6,18 +6,18 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/07/07 20:28:56 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/07 20:40:09 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/12 14:39:06 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list 	*ft_rotate_list(t_list **lst, t_list *lnew)
+void	ft_rotate_list(t_list **lst)
 {
-	t_list	*tmp;
+	t_list *tmp;
 
-	tmp = lnew->next;
-	ft_lstadd_front(lst, lnew);
-	lnew->next = NULL;
-	return (tmp);
+	tmp = (*lst)->next;
+	ft_lstadd_back(lst, *lst);
+	*lst = tmp;
+	return ;
 }

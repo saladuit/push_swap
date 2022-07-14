@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                    .--.  _                 */
+/*                                                        :::      ::::::::   */
 /*   init.h                                          |o_o || |                */
-/*                                                   |:_/ || |_ _   ___  __   */
-/*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
-/*                                                 (|     | )|_| |_| |>  <    */
-/*   Created: 2022/07/08 17:49:30 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/08 18:30:50 by safoh        \___)=(___/                 */
+/*                                                    +:+ +:+         +:+     */
+/*   By: saladuit <safoh@student.codam.nl>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/14 20:10:45 by saladuit          #+#    #+#             */
+/*   Updated: 2022/07/14 20:23:01 by saladuit     \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	INIT_H
-# define	INIT_H
+#ifndef INIT_H
+# define INIT_H
 # include "libft.h"
 
-enum arrayCheck {
+enum e_arrayCheck {
 	DOUBLE,
 	SORTED,
 	NOT_SORTED

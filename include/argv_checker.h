@@ -6,12 +6,12 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/07/08 17:37:37 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/08 18:33:38 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/14 20:24:34 by saladuit     \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ARGV_CHECKER_H
-# define	ARGV_CHECKER_H
+# define ARGV_CHECKER_H
 # include	<stdbool.h>
 # include "libft.h"
 

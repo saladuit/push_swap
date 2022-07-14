@@ -6,29 +6,22 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/07/08 17:57:18 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/11 16:49:39 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/14 20:45:37 by saladuit     \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "init.h"
 
-// Prepare array for radix sort
-void	make_positive(const int len, int *integer)
+static void	helper(int *integer, int *copy, int len)
 {
-	int *copy;
-	size_t x;
-	size_t y;
+	size_t	x;
+	size_t	y;
 
 	x = 0;
-	copy = ft_calloc(len, sizeof(int));
-	if (copy == NULL)
-		return ;
-	ft_memcpy(copy, integer, len);
-	ft_bubble_sort(len, copy);
 	while (x < (size_t)len)
 	{
 		y = 0;
-		while ( y < (size_t)len)
+		while (y < (size_t)len)
 		{
 			if (integer[x] == copy[y])
 			{
@@ -39,6 +32,19 @@ void	make_positive(const int len, int *integer)
 		}
 		x++;
 	}
+}
+
+// Prepare array for radix sort
+void	make_positive(const int len, int *integer)
+{
+	int	*copy;
+
+	copy = ft_calloc(len, sizeof(int));
+	if (copy == NULL)
+		return ;
+	ft_memcpy(copy, integer, len);
+	ft_bubble_sort(len, copy);
+	helper(integer, copy, len);
 	free(copy);
 	return ;
 }
@@ -46,8 +52,8 @@ void	make_positive(const int len, int *integer)
 /*We want to check whether the values inside are correct*/
 int	*init_integer_array(const int len, const char **argv)
 {
-	size_t i;
-	int *integer;
+	size_t	i;
+	int		*integer;
 
 	integer = ft_calloc(len, sizeof(int));
 	if (integer == NULL)
@@ -69,12 +75,12 @@ int	*init_integer_array(const int len, const char **argv)
 /*Integer shouldn't be sorted or contain duplicate integer values*/
 int	array_check(const int len, const int *integer)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (i < (size_t)len)
 	{
-		if (ft_arrint(integer, integer[i], i)) //should be placed in init_integer_array
+		if (ft_arrint(integer, integer[i], i))
 			return (DOUBLE);
 		i++;
 	}
@@ -91,14 +97,14 @@ int	array_check(const int len, const int *integer)
 // handle conversion to int & INT_MINMAX before putting in to linked list
 t_list	*init_stack(const int len, const int *integer)
 {
-	t_list *stack;
+	t_list	*stack;
 	size_t	i;
 
 	i = 0;
 	stack = NULL;
 	while (i < (size_t)len)
 	{
-		ft_lstadd_back(&stack, ft_lstnew((void *)&integer[i])); 
+		ft_lstadd_back(&stack, ft_lstnew((void *)&integer[i]));
 		i++;
 	}
 	return (stack);

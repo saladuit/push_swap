@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                    .--.  _                 */
-/*   sort_two.c                                      |o_o || |                */
+/*   sort.c                                          |o_o || |                */
 /*                                                   |:_/ || |_ _   ___  __   */
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/07/08 18:24:38 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/12 16:48:29 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/14 20:31:33 by saladuit     \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	sort_two(t_list **stack_a)
 {
-		swap_a(stack_a);
+	swap_a(stack_a);
 }
 
 void	sort_three(t_list **stack_a)
@@ -46,7 +46,7 @@ void	sort_three(t_list **stack_a)
 
 void	sort_four(t_list **stack_a)
 {
-	t_list *stack_b;
+	t_list	*stack_b;
 
 	stack_b = NULL;
 	push_a_to_b(&stack_b, stack_a);
@@ -59,7 +59,7 @@ void	sort_four(t_list **stack_a)
 
 void	sort_five(t_list **stack_a)
 {
-	t_list *stack_b;
+	t_list	*stack_b;
 
 	stack_b = NULL;
 	push_a_to_b(&stack_b, stack_a);

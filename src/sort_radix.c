@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/07/08 18:23:53 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/12 15:56:25 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/14 21:09:08 by saladuit     \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ static void	helper(int len_a, t_list **stack_a, int i)
 	while (j < len_a)
 	{
 		num = *(int *)(*stack_a)->content;
-		if (((num >> i)&1) == 1)
+		if (((num >> i) & 1) == 1)
 			rotate_a(stack_a);
-		else 
+		else
 			push_a_to_b(&stack_b, stack_a);
 		j++;
 	}
@@ -40,7 +40,7 @@ void	sort_radix(int len_a, t_list *stack_a)
 	int	i;
 
 	max_num = len_a - 1;
-	max_bits = bit_count(max_num);
+	max_bits = ft_bit_count(max_num);
 	i = 0;
 	while (i < max_bits)
 	{

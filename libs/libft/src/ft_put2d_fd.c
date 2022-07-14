@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/23 15:11:38 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/23 15:11:59 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/14 20:48:22 by saladuit     \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_put2d_fd(char **s2d, int fd, size_t len)
 {
-	size_t  i;
+	size_t	i;
 
 	i = 0;
 	while (i < len)

@@ -6,13 +6,13 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/07/08 18:16:04 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/08 18:16:26 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/14 20:49:13 by saladuit     \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	bit_count(int num)
+int	ft_bit_count(int num)
 {
-	int max;
+	int	max;
 
 	max = 0;
 	while ((num >> max) != 0)

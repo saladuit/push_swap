@@ -6,13 +6,13 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/23 15:11:38 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/23 15:11:59 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/14 20:52:51 by saladuit     \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-static void 	recursion(t_list *lst, void *(*f)(void *), t_list *new)
+static void	recursion(t_list *lst, void *(*f)(void *), t_list *new)
 {
 	if (lst == NULL)
 		return ;
@@ -23,8 +23,8 @@ static void 	recursion(t_list *lst, void *(*f)(void *), t_list *new)
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list *new;
-	
+	t_list	*new;
+
 	if (lst == NULL)
 		return (NULL);
 	new = ft_lstnew(f(lst->content));

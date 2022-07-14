@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/07/07 20:28:56 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/12 14:39:06 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/14 20:57:57 by saladuit     \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_rotate_list(t_list **lst)
 {
-	t_list *tmp;
+	t_list	*tmp;
 
 	tmp = (*lst)->next;
 	ft_lstadd_back(lst, *lst);

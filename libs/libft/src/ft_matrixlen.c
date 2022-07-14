@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/27 15:37:10 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/27 16:20:25 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/14 21:03:13 by saladuit     \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 size_t	ft_matrixlen(const	char **matrix, size_t count)
 {
-	size_t total_len;
-	size_t i;
+	size_t	total_len;
+	size_t	i;
 
 	total_len = 0;
 	i = 0;

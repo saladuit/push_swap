@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/23 15:11:38 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/23 15:11:59 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/14 20:53:17 by saladuit     \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ bool	ft_strbapi(char const *s, bool (*f)(int))
 	len = ft_strlen(s);
 	while (i < len)
 	{
-		if(!f(s[i]))
+		if (!f(s[i]))
 			return (false);
 		i++;
 	}

@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                    .--.  _                 */
-/*   ft_rotate_list.c                                |o_o || |                */
+/*   ft_free_list.c                                  |o_o || |                */
 /*                                                   |:_/ || |_ _   ___  __   */
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
-/*   Created: 2022/07/07 20:28:56 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/15 17:03:48 by safoh        \___)=(___/                 */
+/*   Created: 2022/07/15 15:04:16 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
+/*   Updated: 2022/07/15 17:15:59 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_rotate_list(t_list **lst)
+void	ft_free_list(t_list **stack)
 {
-	t_list	*first;
-	t_list	*last;
+	t_list	*tmp;
 
-	first = *lst;
-	last = *lst;
-	while (last->next != NULL)
-		last = last->next;
-	*lst = first->next;
-	first->next = NULL;
-	last->next = first;
+	while (*stack != NULL)
+	{
+		tmp = *stack;
+		*stack = (*stack)->next;
+		free(tmp);
+	}
 	return ;
 }

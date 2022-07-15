@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/07/08 18:24:38 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/14 20:31:33 by saladuit     \___)=(___/                 */
+/*   Updated: 2022/07/15 16:29:54 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	sort_three(t_list **stack_a)
 	}
 	else if (top < mid && mid > bot && top > bot)
 		rev_rotate_a(stack_a);
+	else
+		return ;
 }
 
 void	sort_four(t_list **stack_a)
@@ -49,11 +51,11 @@ void	sort_four(t_list **stack_a)
 	t_list	*stack_b;
 
 	stack_b = NULL;
-	push_a_to_b(&stack_b, stack_a);
+	while (*(int *)(*stack_a)->content != 0)
+		rotate_a(stack_a);
 	push_a_to_b(&stack_b, stack_a);
 	sort_three(stack_a);
 	push_b_to_a(stack_a, &stack_b);
-	sort_three(stack_a);
 	return ;
 }
 
@@ -62,12 +64,17 @@ void	sort_five(t_list **stack_a)
 	t_list	*stack_b;
 
 	stack_b = NULL;
+	if (*(int *)(*stack_a)->next->next->next->next->content == 0)
+		rev_rotate_a(stack_a);
+	else
+		while (*(int *)(*stack_a)->content != 0)
+			rotate_a(stack_a);
 	push_a_to_b(&stack_b, stack_a);
+	while (*(int *)(*stack_a)->content != 1)
+		rotate_a(stack_a);
 	push_a_to_b(&stack_b, stack_a);
 	sort_three(stack_a);
 	push_b_to_a(stack_a, &stack_b);
-	sort_three(stack_a);
 	push_b_to_a(stack_a, &stack_b);
-	sort_three(stack_a);
 	return ;
 }

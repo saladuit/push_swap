@@ -6,7 +6,7 @@
 #    By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /    #
 #                                                  (|     | )|_| |_| |>  <     #
 #    Created: 2022/02/09 17:06:29 by safoh        /'\_   _/`\__|\__,_/_/\_\    #
-#    Updated: 2022/07/04 15:22:08 by safoh        \___)=(___/                  #
+#    Updated: 2022/07/15 18:55:27 by safoh        \___)=(___/                  #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,16 +52,5 @@ re: all
 debug:
 	@$(MAKE) DEBUG=1
 
-libft_tester: re
-	bash tests/libft-war-machine/grademe.sh -d -u $(FILE)
-
-libft_unit_test: re
-	$(MAKE) -C ./tests/libft-unit-test f $(FILE)
-	cat -e tests/libft-unit-test/result.log
-
-main: all
-	$(CC) $(CFLAGS) src/main.c -lft_debug -o libft_gdb
-	./libft_gdb
-
-.PHONY: all clean fclean re libft_tester main debug
+.PHONY: all clean fclean re debug
 ################################################################################

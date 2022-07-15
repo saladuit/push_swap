@@ -6,13 +6,13 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/07/07 21:31:50 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/07 21:32:22 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/15 11:09:12 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_swap_nodes(t_list *stack)
+void	ft_swap_nodes(t_list **stack)
 {
-	ft_swap(stack->content, stack->next->content);
+	ft_swap((*stack)->content, (*stack)->next->content);
 }

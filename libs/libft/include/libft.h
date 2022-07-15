@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/23 15:15:24 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/14 21:13:10 by saladuit     \___)=(___/                 */
+/*   Updated: 2022/07/15 11:07:18 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ typedef struct s_list
 
 void		ft_lstadd_back(t_list **lst, t_list *lnew);
 void		ft_lstadd_front(t_list **lst, t_list *lnew);
-void		ft_swap_nodes(t_list *stack);
+void		ft_swap_nodes(t_list **stack);
 void		ft_push_node(t_list **dest, t_list **src);
 void		ft_rotate_list(t_list **lst);
 void		ft_rev_rotate_list(t_list **lst);

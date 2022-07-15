@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/27 14:46:15 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/15 18:24:43 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/15 18:27:20 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static void	select_sorting_algorithm(const int len, t_list **stack_a)
 static bool	clean_and_bool(void *m, bool state)
 {
 	free(m);
+	system("leaks push_swap");
 	return (state);
 }
 

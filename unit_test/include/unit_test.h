@@ -16,6 +16,10 @@
 # include <criterion/new/assert.h>
 # include <criterion/redirect.h>
 # include "push_swap.h"
+# include "actions.h"
+# include "sort.h"
+# include "init.h"
+# include "argv_checker.h"
 
 void	redirect_all_std(void);
 void	assert_empty_stdout();

@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/27 14:46:15 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/15 18:34:51 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/16 18:02:04 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ bool	push_swap(const int len, const char **argv)
 		return (clean_and_bool(integer, false));
 	make_positive(len, integer);
 	stack_a = init_stack(len, integer);
+	if (stack_a == NULL)
+		return (clean_and_bool(integer, false));
 	select_sorting_algorithm(len, &stack_a);
 	ft_free_list(&stack_a);
 	return (clean_and_bool(integer, true));

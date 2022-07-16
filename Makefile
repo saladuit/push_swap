@@ -6,7 +6,7 @@
 #    By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /    #
 #                                                  (|     | )|_| |_| |>  <     #
 #    Created: 2022/07/07 17:49:38 by safoh        /'\_   _/`\__|\__,_/_/\_\    #
-#    Updated: 2022/07/07 17:49:39 by safoh        \___)=(___/                  #
+#    Updated: 2022/07/16 18:45:16 by safoh        \___)=(___/                  #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,10 @@ include makerc/unit_makefile.mk
 
 NAME			:=push_swap
 
-CC				:=gcc
+CC				:=cc$(if $(MALLOC), -clang)
 RM				:=rm -rfv
-CFLAGS			=-Wall -Wextra -Werror$(if $(DEBUG), -g -fsanitize=address)
+CFLAGS			=-Wall -Wextra -Werror$(if $(DEBUG), -g -fsanitize=address)\
+				 $(if $(MALLOC), -g)
 
 ################################################################################
 all: $(NAME)
@@ -58,16 +59,27 @@ tests_run: $(OBJS) $(LIBFT)
 	@$(MAKE) -C $(UNIT_DIR)
 	@./$(UNIT_TEST) -j0
 	@gcov $(addprefix build/, $(SRCS)) -n -b -f -a 
-  
+
 re_tests: fclean
 	@$(MAKE) tests_run
 
 debug:
 	@$(MAKE) DEBUG=1
 
+rebug: fclean
+	@$(MAKE) debug
+
+re_malloc_test: fclean
+	@$(MAKE) malloc_test
+
+malloc_test: $(OBJS) $(MAIN_OBJ) $(LIBFT)
+	@$(MAKE) MALLOC=1
+	$(CC) $(CFLAGS) $^ -fsanitize=undefined -rdynamic -o $@ $(INCLUDE_FLAGS) -L. -lmallocator
+
 valgrind: all ## Launch valgrind
 	valgrind --leak-check=full ./$(TARGET)
 
-.PHONY: all clean fclean re tests_run debug valgrind
+.PHONY: all clean fclean re tests_run debug rebug valgrind malloc_test \
+	re_malloc_test
 
 ################################################################################

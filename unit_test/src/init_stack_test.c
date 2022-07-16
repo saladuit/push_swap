@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/27 18:00:18 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/06/30 15:01:56 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/16 15:27:53 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 
 void	init_stack_test(const int len, const int *array)
 {
-	t_list	*stack = NULL;
-	int number;
-	size_t i = 0;
+	t_list	*stack;
+	int		number;
+	size_t	i;
 
+	i = 0;
 	stack = init_stack(len, array);
-	while(i < (size_t)len)
+	while (i < (size_t)len)
 	{
 		number = *(int *)stack->content;
 		cr_assert_eq(number, array[i]);

@@ -6,7 +6,7 @@
 #    By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /    #
 #                                                  (|     | )|_| |_| |>  <     #
 #    Created: 2022/07/07 17:49:38 by safoh        /'\_   _/`\__|\__,_/_/\_\    #
-#    Updated: 2022/07/16 18:45:16 by safoh        \___)=(___/                  #
+#    Updated: 2022/07/16 19:42:44 by safoh        \___)=(___/                  #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ include makerc/unit_makefile.mk
 
 NAME			:=push_swap
 
-CC				:=cc$(if $(MALLOC), -clang)
+CC				:=gcc
 RM				:=rm -rfv
 CFLAGS			=-Wall -Wextra -Werror$(if $(DEBUG), -g -fsanitize=address)\
 				 $(if $(MALLOC), -g)

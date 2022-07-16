@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/07/08 17:57:18 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/15 16:10:21 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/16 15:50:20 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,13 +98,20 @@ int	array_check(const int len, const int *integer)
 t_list	*init_stack(const int len, const int *integer)
 {
 	t_list	*stack;
+	t_list	*tmp;
 	size_t	i;
 
 	i = 0;
 	stack = NULL;
 	while (i < (size_t)len)
 	{
-		ft_lstadd_back(&stack, ft_lstnew((void *)&integer[i]));
+		tmp = ft_lstnew((void *)&integer[i]);
+		if (!tmp)
+		{
+			ft_free_list(&stack);
+			return (NULL);
+		}
+		ft_lstadd_back(&stack, tmp);
 		i++;
 	}
 	return (stack);

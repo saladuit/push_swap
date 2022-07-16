@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/27 14:45:57 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/11 17:04:30 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/16 15:35:23 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ Test(argv_checker, fixed)
 	argv_checker_test(1, ((const char *[]){""}), false);
 	argv_checker_test(1, ((const char *[]){"1"}), true);
 	argv_checker_test(1, ((const char *[]){"a"}), false);
-/*tests that don't fail the project */
+
 	argv_checker_test(2, ((const char *[]){"1", "2"}), true);
 	argv_checker_test(2, ((const char *[]){"1", "+2"}), true);
 	argv_checker_test(1, ((const char *[]){"10+-"}), false);

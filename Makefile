@@ -6,7 +6,7 @@
 #    By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /    #
 #                                                  (|     | )|_| |_| |>  <     #
 #    Created: 2022/07/07 17:49:38 by safoh        /'\_   _/`\__|\__,_/_/\_\    #
-#    Updated: 2022/07/16 19:48:32 by safoh        \___)=(___/                  #
+#    Updated: 2022/07/16 22:43:14 by safoh        \___)=(___/                  #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ clean:
 	@$(MAKE) clean -C $(UNIT_DIR)
 
 fclean: clean
-	@$(RM) $(NAME) $(UNIT_TEST)
+	@$(RM) $(NAME) $(UNIT_TEST) libmallocator.a
 	@$(MAKE) fclean -C $(LIBFT_DIR)
 	@$(MAKE) fclean -C $(UNIT_DIR)
 

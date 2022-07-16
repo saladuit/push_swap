@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                     .--.  _                  #
+#    lib_makefile.mk                                 |o_o || |                 #
+#                                                    |:_/ || |_ _   ___  __    #
+#    By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /    #
+#                                                  (|     | )|_| |_| |>  <     #
+#    Created: 2022/07/16 22:32:28 by safoh        /'\_   _/`\__|\__,_/_/\_\    #
+#    Updated: 2022/07/16 22:32:31 by safoh        \___)=(___/                  #
+#                                                                              #
+# **************************************************************************** #
+
 SRCS  := ft_memset.c ft_bzero.c ft_memcpy.c ft_strlen.c ft_atoi.c \
 		 ft_memmove.c ft_memccpy.c ft_memcmp.c ft_strlcpy.c ft_strlcat.c \
 		 ft_strrchr.c ft_strnstr.c ft_strncmp.c ft_isalpha.c ft_strchr.c \

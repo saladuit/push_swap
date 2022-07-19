@@ -6,7 +6,7 @@
 #    By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /    #
 #                                                  (|     | )|_| |_| |>  <     #
 #    Created: 2022/07/07 17:49:38 by safoh        /'\_   _/`\__|\__,_/_/\_\    #
-#    Updated: 2022/07/16 22:43:14 by safoh        \___)=(___/                  #
+#    Updated: 2022/07/19 18:22:01 by safoh        \___)=(___/                  #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,7 +77,7 @@ malloc_test: $(OBJS) $(MAIN_OBJ) $(LIBFT)
 	$(CC) $(CFLAGS) $^ -fsanitize=undefined -rdynamic -o $@ $(INCLUDE_FLAGS) -L. -lmallocator
 
 valgrind: all ## Launch valgrind
-	valgrind --leak-check=full ./$(TARGET)
+	valgrind --leak-check=full ./$(NAME)
 
 .PHONY: all clean fclean re tests_run debug rebug valgrind malloc_test \
 	re_malloc_test

@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /   */
 /*                                                 (|     | )|_| |_| |>  <    */
 /*   Created: 2022/06/27 14:45:57 by safoh        /'\_   _/`\__|\__,_/_/\_\   */
-/*   Updated: 2022/07/16 19:53:03 by safoh        \___)=(___/                 */
+/*   Updated: 2022/07/19 20:57:50 by safoh        \___)=(___/                 */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ Test(make_positive, fixed)
 	make_positive_test(5, ((int []){40, -10, -5, 0, -1}), ((const int []){4, 0, 1, 3, 2}));
 	make_positive_test(3, ((int []){2, 3, 1}), ((const int []){1, 2, 0}));
 }
+1 2 3
 
 Test(init_stack, fixed)
 {
